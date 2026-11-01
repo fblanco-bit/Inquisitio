@@ -24,6 +24,7 @@ from .exporter import _load_firm_profile, export_case, export_case_pdf, export_t
 from .forms import load_forms, load_form
 from .storage import CaseStore
 from .production import build_production_review, PRODUCTION_STATUSES
+from .questionnaire import apply_questionnaire
 
 
 ROOT = Path(getattr(sys, "_MEIPASS", Path(__file__).resolve().parent.parent))
@@ -216,6 +217,11 @@ def _build_workspace(record: dict, documents: list, segments: list[EvidenceSegme
         answer["approval"] = None
         answers[item.item_id] = answer
     apply_case_record(record, answers)
+    if not blocked:
+        # WR-009: a filled client questionnaire in the packet fills the slots
+        # evidence could not, cited and marked client-provided. Evidence-backed
+        # and attorney-edited answers are never overwritten (see questionnaire.py).
+        apply_questionnaire(answers, segments, documents)
     if blocked:
         for answer in answers.values():
             answer["candidate_passages"] = answer.get("supporting_citations", []) or answer.get("candidate_passages", [])
