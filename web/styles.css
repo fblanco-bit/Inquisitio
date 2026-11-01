@@ -212,3 +212,6 @@ input:focus, textarea:focus, select:focus { outline: 2px solid rgba(8,127,91,.22
 .doc-action { border: 1px solid #c9ccc9; background: #fff; border-radius: 6px; padding: 4px 11px; font-size: 12.5px; cursor: pointer; }
 .doc-action:hover { background: #f1f3f0; }
 .doc-edit textarea { width: 100%; margin-top: 7px; font: inherit; padding: 7px; border: 1px solid #c9ccc9; border-radius: 6px; box-sizing: border-box; }
+
+/* D-007: the hidden attribute must always win over display rules. */
+[hidden] { display: none !important; }

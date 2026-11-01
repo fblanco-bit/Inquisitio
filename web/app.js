@@ -14,6 +14,17 @@ const labels = {
 };
 
 const byId = id => document.getElementById(id);
+window.addEventListener("error", event => {
+  // D-007: a blank workspace with no message is undebuggable from a screenshot.
+  let banner = document.getElementById("fatalBanner");
+  if (!banner) {
+    banner = document.createElement("div"); banner.id = "fatalBanner";
+    banner.style.cssText = "background:#8b1e1e;color:#fff;padding:10px 16px;font:13px/1.4 monospace;white-space:pre-wrap;";
+    document.body.prepend(banner);
+  }
+  banner.textContent = "Something went wrong on this screen - send this line to Claude:\n" +
+    event.message + " @" + String(event.filename || "").split("/").pop() + ":" + event.lineno;
+});
 const escapeHtml = value => String(value ?? "").replace(/[&<>'"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]));
 
 function toast(message) {
@@ -124,8 +135,8 @@ byId("intakeForm").addEventListener("submit", async event => {
   }
 });
 
-function answerEntries() { return Object.entries(state.case.answers); }
-function formItems() { return state.case.form.items; }
+function answerEntries() { return Object.entries(state.case.answers || {}); }
+function formItems() { return (state.case.form || {}).items || []; }
 function itemById(id) { return formItems().find(item => item.item_id === id); }
 
 function renderWorkspace() {
@@ -136,8 +147,8 @@ function renderWorkspace() {
   byId("formTabs").hidden = !paired;
   if (!paired) state.view = "202";
   setActiveView();
-  byId("formTitle").textContent = state.case.form.title;
-  const summary = state.case.summary;
+  byId("formTitle").textContent = (state.case.form || {}).title || "";
+  const summary = state.case.summary || {};
   byId("matterStats").innerHTML = [["Documents", summary.documents], ["Pages", summary.pages], ["Facts", summary.facts || 0], ["Responses", summary.items], ["Approved", summary.approved || 0]]
     .map(([k,v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("");
   const integrity = state.case.matter_integrity || {status: "WARNING", message: "Matter identity has not been evaluated."};
@@ -414,7 +425,7 @@ function markDirty() {
 }
 function updateProgress() {
   const complete = answerEntries().filter(([, answer]) => answer.status === "APPROVED").length;
-  byId("progressBar").style.width = `${Math.round(complete / formItems().length * 100)}%`;
+  byId("progressBar").style.width = `${formItems().length ? Math.round(complete / formItems().length * 100) : 0}%`;
 }
 
 async function saveResponses(showConfirmation = true) {

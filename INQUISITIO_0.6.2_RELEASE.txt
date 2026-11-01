@@ -1,4 +1,4 @@
-Inquisitio 0.6.1 (questionnaire reader + save-counter fix)
+Inquisitio 0.6.2 (hardened workspace rendering)
 Built: 2026-11-01
 Source revision: 75e397a (branch wr-005-firm-export)
 Changes: WR-005 firm-format Word export; WR-006 completed-form review view with inline approval; WR-007 fix for D-002 (reprocess saves pending edits first); WR-008 intake name check; WR-009 client questionnaire reader: a filled Client_Questionnaire_Form202 uploaded with the evidence fills the slots evidence cannot, cited and marked client-provided; evidence answers are never overwritten; disagreements become conflicts. Blank questionnaire ships in questionnaire/.
@@ -6,3 +6,4 @@ Format data: data/firm_profile_202.json (edit wording there; delete file to rest
 Recovery: run the previous zip (baseline 64de937), or git checkout 64de937
 Verified before packaging: exporter tests 6/6 pass (Linux build environment); Mac launch not yet verified - that is this deliverys test.
 WR-010 (D-006): rapid consecutive edits no longer strand the page on a stale revision; the false "another browser tab" save failures are gone.
+WR-011 (D-007): opening an older matter no longer leaves a blank screen; missing stored fields render with defaults, and any future screen error prints itself in a red banner to send to Claude.
