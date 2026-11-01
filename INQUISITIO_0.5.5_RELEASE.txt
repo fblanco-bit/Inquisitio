@@ -1,6 +1,6 @@
 Inquisitio 0.5.5 (firm-format export + completed-form view + reprocess fix)
 Built: 2026-11-01
-Source revision: 22e2fe3 (branch wr-005-firm-export)
+Source revision: 6c2336a (branch wr-005-firm-export)
 Changes: WR-005 firm-format Word export; WR-006 completed-form review view with inline approval; WR-007 fix for D-002 (Upload and reprocess now saves pending edits first, ending the one-tab revision conflict).
 Format data: data/firm_profile_202.json (edit wording there; delete file to restore generic export)
 Recovery: run the previous zip (baseline 64de937), or git checkout 64de937
