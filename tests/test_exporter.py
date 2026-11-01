@@ -25,12 +25,34 @@ class ExportTests(unittest.TestCase):
         }
         document = Document(BytesIO(export_case(record)))
         text = "\n".join(paragraph.text for paragraph in document.paragraphs)
-        self.assertIn("Form 202", text)
         self.assertIn("cell phone", text)
         self.assertEqual(text.count("ANSWER:"), 81)
         self.assertEqual(text.count("REQUESTS FOR PRODUCTION"), 2)
         self.assertNotIn("[NO_RESPONSIVE_EVIDENCE]", text)
+        # Firm profile installed (data/firm_profile_202.json): unfilled slots carry
+        # the firm's Filevine merge fields and stock answers, never the generic bracket.
+        self.assertIn("Practice Book", text)
+        self.assertIn("{{client.birthDate}}", text)
+        self.assertIn("Keith Anthony Esq., 426171", text)
+        self.assertNotIn("[No response entered - attorney review required.]", text)
+
+    def test_export_without_firm_profile_keeps_generic_fallback(self) -> None:
+        import inquisitio.exporter as exporter_module
+        form = load_form(str(ROOT / "assets" / "CT_Practice_Book_2026.pdf"), "202").to_dict()
+        record = {
+            "case_name": "Test Matter", "form_id": "202", "form": form, "answers": {},
+            "metadata": {"docket_number": "CV-123", "plaintiff": "A", "defendant": "B"},
+        }
+        original = exporter_module._load_firm_profile
+        exporter_module._load_firm_profile = lambda form_id: None
+        try:
+            document = Document(BytesIO(export_case(record)))
+        finally:
+            exporter_module._load_firm_profile = original
+        text = "\n".join(paragraph.text for paragraph in document.paragraphs)
+        self.assertIn("Form 202", text)
         self.assertIn("[No response entered - attorney review required.]", text)
+        self.assertNotIn("{{client.birthDate}}", text)
 
     def test_non_string_metadata_does_not_break_export(self) -> None:
         form = load_form(str(ROOT / "assets" / "CT_Practice_Book_2026.pdf"), "207").to_dict()

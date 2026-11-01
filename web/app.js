@@ -1,4 +1,4 @@
-const state = { case: null, filter: "ALL", search: "", selected: null, dirty: false, editGeneration: 0, view: "202" };
+const state = { case: null, filter: "ALL", search: "", selected: null, dirty: false, editGeneration: 0, view: "202", docView: "form" };
 let autosaveTimer = null;
 let savingPromise = null;
 const statuses = [
@@ -14,6 +14,17 @@ const labels = {
 };
 
 const byId = id => document.getElementById(id);
+window.addEventListener("error", event => {
+  // D-007: a blank workspace with no message is undebuggable from a screenshot.
+  let banner = document.getElementById("fatalBanner");
+  if (!banner) {
+    banner = document.createElement("div"); banner.id = "fatalBanner";
+    banner.style.cssText = "background:#8b1e1e;color:#fff;padding:10px 16px;font:13px/1.4 monospace;white-space:pre-wrap;";
+    document.body.prepend(banner);
+  }
+  banner.textContent = "Something went wrong on this screen - send this line to Claude:\n" +
+    event.message + " @" + String(event.filename || "").split("/").pop() + ":" + event.lineno;
+});
 const escapeHtml = value => String(value ?? "").replace(/[&<>'"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]));
 
 function toast(message) {
@@ -86,6 +97,15 @@ byId("intakeForm").addEventListener("submit", async event => {
   const button = byId("buildButton");
   const files = [...stagedEvidence.initial];
   if (!files.length) return toast("Add at least one evidence PDF.");
+  // WR-008: catch non-names before upload; the server enforces the same rule.
+  const intake = new FormData(form);
+  const intakeRole = String(intake.get("responding_party_role") || "").toLowerCase();
+  const respondentName = String(intake.get(intakeRole) || "").trim();
+  const placeholderWords = ["plaintiff", "defendant", "respondent", "client", "party", "name", "unknown", "n/a", "na", "tbd"];
+  if (respondentName && placeholderWords.includes(respondentName.toLowerCase()))
+    return toast(`Enter the ${intakeRole}'s actual name, not the word "${respondentName}".`);
+  if (respondentName && respondentName.split(/\s+/).length < 2)
+    return toast(`Enter the ${intakeRole}'s FULL name, first and last. One word cannot be matched to the evidence.`);
   button.disabled = true; button.textContent = "Reading evidence...";
   const started = Date.now();
   const progressTimer = setInterval(() => {
@@ -115,8 +135,8 @@ byId("intakeForm").addEventListener("submit", async event => {
   }
 });
 
-function answerEntries() { return Object.entries(state.case.answers); }
-function formItems() { return state.case.form.items; }
+function answerEntries() { return Object.entries(state.case.answers || {}); }
+function formItems() { return (state.case.form || {}).items || []; }
 function itemById(id) { return formItems().find(item => item.item_id === id); }
 
 function renderWorkspace() {
@@ -127,14 +147,14 @@ function renderWorkspace() {
   byId("formTabs").hidden = !paired;
   if (!paired) state.view = "202";
   setActiveView();
-  byId("formTitle").textContent = state.case.form.title;
-  const summary = state.case.summary;
+  byId("formTitle").textContent = (state.case.form || {}).title || "";
+  const summary = state.case.summary || {};
   byId("matterStats").innerHTML = [["Documents", summary.documents], ["Pages", summary.pages], ["Facts", summary.facts || 0], ["Responses", summary.items], ["Approved", summary.approved || 0]]
     .map(([k,v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("");
   const integrity = state.case.matter_integrity || {status: "WARNING", message: "Matter identity has not been evaluated."};
   byId("integrityStatus").className = `integrity-status ${integrity.status.toLowerCase()}`;
   byId("integrityStatus").innerHTML = `<b>${escapeHtml(integrity.status === "PASS" ? "Identity matched" : integrity.status === "BLOCKED" ? "Drafting blocked" : "Identity review")}</b><span>${escapeHtml(integrity.message)}</span>`;
-  renderFilters(); renderQuestions(); renderProduction(); updateProgress();
+  renderFilters(); renderQuestions(); renderFormDoc(); renderProduction(); updateProgress();
   if (summary.ocr_required?.length) toast(`${summary.ocr_required.length} document(s) require OCR.`);
 }
 
@@ -233,17 +253,129 @@ const productionStatusOptions = [
 function setActiveView() {
   const paired = state.case?.form_id === "202" && !!state.case.production;
   const production = paired && state.view === "205";
+  const formDoc = !production && state.docView === "form";
   byId("show202Tab").classList.toggle("active", !production);
   byId("show205Tab").classList.toggle("active", !!production);
   byId("questionToolbar").hidden = !!production;
+  byId("formDocTab").classList.toggle("active", formDoc);
+  byId("worksheetTab").classList.toggle("active", !formDoc);
+  byId("searchLabel").hidden = formDoc;
   byId("progressBar").parentElement.hidden = !!production;
-  byId("questionList").hidden = !!production;
+  byId("formDocView").hidden = !formDoc;
+  byId("questionList").hidden = !!production || formDoc;
   byId("productionView").hidden = !production;
-  byId("statusFilters").hidden = !!production;
+  byId("statusFilters").hidden = !!production || formDoc;
   byId("productionRailNotice").hidden = !production;
 }
 byId("show202Tab").addEventListener("click", () => { state.view = "202"; setActiveView(); });
 byId("show205Tab").addEventListener("click", () => { state.view = "205"; setActiveView(); renderProduction(); });
+byId("formDocTab").addEventListener("click", () => { state.docView = "form"; setActiveView(); renderFormDoc(); });
+byId("worksheetTab").addEventListener("click", () => { state.docView = "worksheet"; setActiveView(); renderQuestions(); });
+
+// Completed-form view: the matter rendered as the pleading itself, in export
+// order, with approval state and controls on each answer. Slots with no entered
+// answer show the firm profile's template text (merge fields / stock answers),
+// which passes through for Filevine and is never approvable.
+const BLOCKED_FOR_APPROVAL = new Set(["EMPTY", "REQUIRES_CLIENT", "POTENTIAL_CONFLICT"]);
+function renderFormDoc() {
+  const host = byId("formDocView");
+  if (!state.case) { host.innerHTML = ""; return; }
+  const meta = state.case.metadata || {};
+  const profile = state.case.firm_profile || null;
+  const fallbacks = profile?.fallback_answers || {};
+  const esc = escapeHtml;
+  const parts = [];
+  parts.push(`<div class="doc-caption">
+    <div><b>DOCKET NO.: ${esc(meta.docket_number || "")}</b><b>${esc(meta.plaintiff || "Plaintiff")}</b><b>v.</b><b>${esc(meta.defendant || "Defendant")}</b></div>
+    <div><b>SUPERIOR COURT</b><b>JUDICIAL DISTRICT OF ${esc(meta.judicial_district || "")}</b><b>AT ${esc(meta.court || "")}</b><b>${esc(meta.response_date || "")}</b></div>
+  </div>`);
+  parts.push(`<p class="doc-banner">ATTORNEY REVIEW DRAFT - NOT FOR SERVICE</p>`);
+  const intros = profile
+    ? [profile.intro, profile.definition, profile.instruction]
+    : [`The undersigned submits the following responses to Connecticut Practice Book Form ${esc(state.case.form_id)}.`];
+  intros.filter(Boolean).forEach(text => parts.push(`<p class="doc-intro">${esc(text)}</p>`));
+  let lastNumber = null;
+  for (const item of formItems()) {
+    if (item.number !== lastNumber) {
+      lastNumber = item.number;
+      if (item.prompt) parts.push(`<p class="doc-question"><b>${item.number}.</b> ${esc(item.prompt)}</p>`);
+    }
+    if (item.label) parts.push(`<p class="doc-subpart"><b>(${esc(item.label)})</b> ${esc(item.text)}</p>`);
+    else if (!item.prompt) parts.push(`<p class="doc-question"><b>${item.number}.</b> ${esc(item.text)}</p>`);
+    const answer = state.case.answers[item.item_id] || {};
+    const text = String(answer.answer || "").trim();
+    const fallback = fallbacks[item.item_id] || "";
+    const approved = answer.status === "APPROVED";
+    const blocked = BLOCKED_FOR_APPROVAL.has(answer.status);
+    const needsRevalidation = !!answer.requires_revalidation;
+    let bodyHtml, badgeHtml, controls = "";
+    if (text) {
+      bodyHtml = `<span class="doc-answer-text">${esc(text)}</span>`;
+      if (approved) {
+        badgeHtml = `<span class="doc-badge approved">Approved</span>`;
+      } else {
+        badgeHtml = `<span class="doc-badge pending">Not approved</span>`;
+        const disabled = blocked || needsRevalidation ? "" : "";
+        controls = needsRevalidation
+          ? `<button class="doc-action" data-act="revalidate" type="button">Revalidate edit</button>`
+          : blocked ? "" : `<button class="doc-action" data-act="approve" type="button">Approve</button>`;
+      }
+    } else if (fallback) {
+      bodyHtml = `<span class="doc-answer-template">${esc(fallback)}</span>`;
+      badgeHtml = `<span class="doc-badge template">Firm template - not approvable</span>`;
+    } else {
+      bodyHtml = `<span class="doc-answer-template">[No response entered - attorney review required.]</span>`;
+      badgeHtml = `<span class="doc-badge pending">Not approved</span>`;
+    }
+    const findings = [];
+    if (blocked && answer.missing_information?.length) findings.push(`Resolve before approving - missing: ${answer.missing_information.map(esc).join(", ")}`);
+    if (answer.conflicts?.length) findings.push(`Conflict: ${answer.conflicts.map(v => esc(v.description)).join("; ")}`);
+    const findingHtml = findings.length ? `<div class="doc-finding">${findings.join("<br>")}</div>` : "";
+    parts.push(`<div class="doc-answer" data-item="${item.item_id}">
+      <p><b>ANSWER:</b> ${bodyHtml}</p>
+      <div class="doc-answer-meta">${badgeHtml}${controls}<button class="doc-action secondary" data-act="edit" type="button">${text ? "Edit" : "Enter answer"}</button></div>
+      ${findingHtml}
+      <div class="doc-edit" hidden><textarea rows="3" aria-label="Edit response">${esc(answer.answer || "")}</textarea></div>
+    </div>`);
+  }
+  if (state.case.form_id === "202" && state.case.production) {
+    parts.push(`<h3 class="doc-section">REQUESTS FOR PRODUCTION</h3>`);
+    if (profile?.production_intro) parts.push(`<p class="doc-intro">${esc(profile.production_intro)}</p>`);
+    const productionFallbacks = profile?.production_fallbacks || {};
+    Object.entries(state.case.production).forEach(([id, item], index) => {
+      const response = String(item.response || "").trim();
+      const fallback = productionFallbacks[id] || "";
+      parts.push(`<p class="doc-question"><b>${index + 1}.</b> ${esc(item.request || "")}</p>
+        <div class="doc-answer"><p><b>RESPONSE:</b> ${response ? `<span class="doc-answer-text">${esc(response)}</span>` : fallback ? `<span class="doc-answer-template">${esc(fallback)}</span>` : `<span class="doc-answer-template">[Production response not verified - attorney review required.]</span>`}</p>
+        <div class="doc-answer-meta"><span class="doc-badge template">Edit production responses in the Form 205 tab</span></div></div>`);
+    });
+  }
+  host.innerHTML = parts.join("");
+  host.querySelectorAll(".doc-answer[data-item]").forEach(block => {
+    const id = block.dataset.item;
+    block.querySelectorAll(".doc-action").forEach(button => button.addEventListener("click", () => {
+      const answer = state.case.answers[id];
+      if (button.dataset.act === "edit") {
+        const editor = block.querySelector(".doc-edit");
+        editor.hidden = !editor.hidden;
+        if (!editor.hidden) editor.querySelector("textarea").focus();
+        return;
+      }
+      if (button.dataset.act === "revalidate") {
+        answer.revalidated = true; answer.requires_revalidation = false;
+      } else if (button.dataset.act === "approve") {
+        answer.status = "APPROVED"; answer.engine_status = "APPROVED";
+      }
+      markDirty(); renderFormDoc(); updateProgress();
+    }));
+    block.querySelector(".doc-edit textarea").addEventListener("change", e => {
+      const answer = state.case.answers[id];
+      answer.answer = e.target.value; answer.status = "EDITED"; answer.engine_status = "EDITED";
+      answer.approval = null; answer.requires_revalidation = answer.answer !== answer.generated_answer;
+      markDirty(); renderFormDoc(); updateProgress();
+    });
+  });
+}
 
 function renderProduction() {
   if (!state.case?.production) { byId("productionList").innerHTML = ""; return; }
@@ -293,7 +425,7 @@ function markDirty() {
 }
 function updateProgress() {
   const complete = answerEntries().filter(([, answer]) => answer.status === "APPROVED").length;
-  byId("progressBar").style.width = `${Math.round(complete / formItems().length * 100)}%`;
+  byId("progressBar").style.width = `${formItems().length ? Math.round(complete / formItems().length * 100) : 0}%`;
 }
 
 async function saveResponses(showConfirmation = true) {
@@ -320,6 +452,12 @@ async function saveResponses(showConfirmation = true) {
     if (state.editGeneration === editGeneration) {
       state.case = result; state.dirty = false; byId("saveState").textContent = "Saved locally";
       if (showConfirmation) toast("Responses saved.");
+    } else {
+      // WR-010 (D-006): edits arrived while this save was in flight. Keep the
+      // newer local edits, but ALWAYS adopt the server's new revision counter -
+      // skipping it left the page holding a stale revision, so every following
+      // save was refused as a phantom "another browser tab" conflict.
+      state.case.revision = result.revision;
     }
     return true;
    } catch (error) { byId("saveState").textContent = "Save failed"; toast(error.message); return false; }
@@ -339,6 +477,9 @@ byId("traceButton").onclick = async () => { if (!state.dirty || await saveRespon
 byId("reprocessButton").onclick = async () => {
   const files = [...stagedEvidence.update];
   if (!files.length) return toast("Select one or more additional PDFs.");
+  // D-002: flush any pending autosave first, as the export buttons do, so the
+  // upload carries the current revision instead of colliding with our own save.
+  if (state.dirty && !(await saveResponses(false))) return toast("Save your edits before reprocessing evidence.");
   const data = new FormData(); files.forEach(file => data.append("evidence", file, file.name));
   data.append("mode", byId("evidenceMode").value);
   data.append("revision", String(state.case.revision));

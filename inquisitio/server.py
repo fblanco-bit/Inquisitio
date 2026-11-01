@@ -20,10 +20,11 @@ from . import __version__
 from .case_record import apply_case_record, metadata_from_case_record, validate_case_record_bytes
 from .evidence import EvidenceSegment, extract_pdf
 from .engine import ENGINE_STATUSES, _same_person, answer_fingerprint, build_response, extract_facts, infer_metadata
-from .exporter import export_case, export_case_pdf, export_traceability
+from .exporter import _load_firm_profile, export_case, export_case_pdf, export_traceability
 from .forms import load_forms, load_form
 from .storage import CaseStore
 from .production import build_production_review, PRODUCTION_STATUSES
+from .questionnaire import apply_questionnaire
 
 
 ROOT = Path(getattr(sys, "_MEIPASS", Path(__file__).resolve().parent.parent))
@@ -187,7 +188,8 @@ def _build_workspace(record: dict, documents: list, segments: list[EvidenceSegme
         "responding_party": respondent,
         "packet_identity_found": packet_has_identity,
         "message": (
-            "Uploaded evidence identifies other people but does not identify the responding party. Automatic drafting is blocked."
+            f"The evidence names people, but none of them match '{respondent}'. Automatic drafting is blocked. "
+            f"Fix: make sure the responding party's FULL legal name is entered exactly as the documents use it, then reprocess."
             if blocked else "Responding party identity matched in the uploaded evidence."
             if packet_has_match else "No affirmative party identity was found; review the packet before approval."
         ),
@@ -215,6 +217,11 @@ def _build_workspace(record: dict, documents: list, segments: list[EvidenceSegme
         answer["approval"] = None
         answers[item.item_id] = answer
     apply_case_record(record, answers)
+    if not blocked:
+        # WR-009: a filled client questionnaire in the packet fills the slots
+        # evidence could not, cited and marked client-provided. Evidence-backed
+        # and attorney-edited answers are never overwritten (see questionnaire.py).
+        apply_questionnaire(answers, segments, documents)
     if blocked:
         for answer in answers.values():
             answer["candidate_passages"] = answer.get("supporting_citations", []) or answer.get("candidate_passages", [])
@@ -409,7 +416,21 @@ class Handler(BaseHTTPRequestHandler):
             elif action:
                 self._json(404, {"error": "Not found."})
             else:
-                self._json(200, _public_case(record))
+                payload = _public_case(record)
+                # Firm house-format profile (display only). The completed-form view
+                # shows these fallbacks where no answer exists; they are template
+                # text, never stored as answers and never approvable.
+                profile = _load_firm_profile(str(record.get("form_id", "")))
+                if profile:
+                    payload["firm_profile"] = {
+                        "intro": profile.get("intro", ""),
+                        "definition": profile.get("definition", ""),
+                        "instruction": profile.get("instruction", ""),
+                        "production_intro": profile.get("production_intro", ""),
+                        "fallback_answers": profile.get("fallback_answers", {}),
+                        "production_fallbacks": profile.get("production_fallbacks", {}),
+                    }
+                self._json(200, payload)
             return
         if path.startswith("/api/"):
             self._json(404, {"error": "API endpoint not found."})
@@ -450,6 +471,24 @@ class Handler(BaseHTTPRequestHandler):
             role = str(metadata.get("responding_party_role", "")).lower()
             if role and role not in {"plaintiff", "defendant"}:
                 raise ValueError("Responding party must be plaintiff or defendant.")
+            # WR-008: the responding party's field must hold a real person's
+            # name. A role word or a single word can never match the evidence
+            # (the matcher needs first and last name), which silently blocks
+            # all drafting, so refuse it here with a usable message.
+            respondent_name = str(metadata.get(role, "")).strip() if role else ""
+            if respondent_name:
+                placeholder_words = {"plaintiff", "defendant", "respondent", "client",
+                                     "party", "name", "unknown", "n/a", "na", "tbd"}
+                if respondent_name.lower() in placeholder_words:
+                    raise ValueError(
+                        f"Enter the {role}'s actual name, not the word '{respondent_name}'. "
+                        "Evidence can only be matched to a real name (for example: Elena Sofia Rivera)."
+                    )
+                if len(respondent_name.split()) < 2:
+                    raise ValueError(
+                        f"Enter the {role}'s FULL name, first and last (for example: Elena Sofia Rivera). "
+                        "A single word cannot be matched against the evidence and would block all drafting."
+                    )
             if form_id == "202" and role != "plaintiff":
                 if role:
                     raise ValueError("Form 202 is the defendant's interrogatories to the plaintiff; confirm the plaintiff as responding party.")
@@ -558,7 +597,7 @@ class Handler(BaseHTTPRequestHandler):
             current_revision = int(record.get("revision", 1))
             if expected_revision != current_revision:
                 self._json(409, {
-                    "error": "This matter changed in another browser tab. Reload before reprocessing evidence.",
+                    "error": "This matter was saved more recently than this page knows (another window, or a save that was still landing). Reload the matter, then reprocess.",
                     "current_revision": current_revision,
                 })
                 return
@@ -653,7 +692,7 @@ class Handler(BaseHTTPRequestHandler):
                 current_revision = int(record.get("revision", 1))
                 if expected_revision != current_revision:
                     self._json(409, {
-                        "error": "This matter changed in another browser tab. Reload before saving.",
+                        "error": "This matter was saved more recently than this page knows (another window, or a save that was still landing). Reload the matter, then save again.",
                         "current_revision": current_revision,
                     })
                     return

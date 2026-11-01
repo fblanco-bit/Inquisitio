@@ -39,8 +39,8 @@
           <label class="wide">Matter name<input name="case_name" required maxlength="160" placeholder="Moss v. Brightline"></label>
           <label>Docket number<input name="docket_number" placeholder="CV-"></label>
           <label>Response date<input name="response_date" type="date"></label>
-          <label>Plaintiff<input name="plaintiff"></label>
-          <label>Defendant<input name="defendant"></label>
+          <label>Plaintiff's full name (first and last)<input name="plaintiff" placeholder="Elena Sofia Rivera"></label>
+          <label>Defendant (person or company)<input name="defendant" placeholder="Meridian Cargo Services LLC"></label>
           <label>Responding party<select name="responding_party_role" required><option value="">Select party</option><option value="plaintiff">Plaintiff</option><option value="defendant">Defendant</option></select></label>
           <label>Interrogating party<input name="interrogating_party" required></label>
           <label class="wide">Court<input name="court" value="Superior Court"></label>
@@ -98,9 +98,14 @@
         </nav>
         <div class="list-toolbar" id="questionToolbar">
           <div><p class="eyebrow">Responses</p><h2 id="formTitle"></h2></div>
-          <label class="search-label">Search<input id="questionSearch" type="search" placeholder="Question or answer"></label>
+          <div class="doc-toggle" role="group" aria-label="Response view">
+            <button type="button" id="formDocTab" class="active">Completed form</button>
+            <button type="button" id="worksheetTab">Worksheet</button>
+          </div>
+          <label class="search-label" id="searchLabel">Search<input id="questionSearch" type="search" placeholder="Question or answer"></label>
         </div>
         <div class="progress-track"><span id="progressBar"></span></div>
+        <div id="formDocView" class="form-doc" hidden></div>
         <div id="questionList"></div>
         <div id="productionView" hidden>
           <p class="production-notice"><strong>Attorney-review work product only.</strong> The tool surfaces possible evidence, but does not determine privilege or whether any PDF was served. Only a reviewer can confirm production and Bates ranges. Never use this workspace as proof of delivery.</p>
