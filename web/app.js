@@ -451,6 +451,9 @@ byId("traceButton").onclick = async () => { if (!state.dirty || await saveRespon
 byId("reprocessButton").onclick = async () => {
   const files = [...stagedEvidence.update];
   if (!files.length) return toast("Select one or more additional PDFs.");
+  // D-002: flush any pending autosave first, as the export buttons do, so the
+  // upload carries the current revision instead of colliding with our own save.
+  if (state.dirty && !(await saveResponses(false))) return toast("Save your edits before reprocessing evidence.");
   const data = new FormData(); files.forEach(file => data.append("evidence", file, file.name));
   data.append("mode", byId("evidenceMode").value);
   data.append("revision", String(state.case.revision));
