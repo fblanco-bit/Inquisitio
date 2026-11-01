@@ -93,6 +93,14 @@ def _norm_label(text: str) -> str:
     return text.replace("’", "'").strip()
 
 
+def _label_key(text: str) -> str:
+    """Matching form of a label: case-insensitive, inner whitespace collapsed."""
+    return re.sub(r"\s+", " ", _norm_label(text)).lower()
+
+
+_LABELS_BY_KEY = {_label_key(label): key for label, key in LABELS.items()}
+
+
 def _clean_value(value: str) -> str:
     value = re.sub(r"\s+", " ", value).strip()
     if not value:
@@ -133,7 +141,7 @@ def parse_questionnaire(segments, documents) -> dict:
             matched = False
             if ":" in line:
                 label, _, value = line.partition(":")
-                key = LABELS.get(_norm_label(label))
+                key = _LABELS_BY_KEY.get(_label_key(label))
                 if key:
                     fields[key] = {
                         "value": value.strip(), "source_id": source_id,

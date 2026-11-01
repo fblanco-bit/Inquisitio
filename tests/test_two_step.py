@@ -98,3 +98,42 @@ class TwoStepTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+@unittest.skipIf(server is None, _skip_reason)
+class ContaminationGuardTests(unittest.TestCase):
+    def test_a_reupload_of_the_forms_questions_is_excluded_from_drafting(self) -> None:
+        evidence_segments = _segments(EVIDENCE, "E-001")
+        questionnaire_segments = _segments(QUESTIONNAIRE, "E-002")
+        form = server.FORMS["202"]
+        # A document quoting several of the form's own questions, like an
+        # exported responses PDF fed back in (Freddy's D-005 and the
+        # 'forceful' junk drafts).
+        poison_text = " ".join(item.text for item in form.items[:8]) + " forceful. NO RESPONSE GENERATED - ATTORNEY REVIEW REQUIRED"
+        poison_segments = [EvidenceSegment("P-1", "E-003", "old_export.pdf", 1, poison_text, "paragraph")]
+        docs = [
+            EvidenceDocument("E-001", EVIDENCE.name, "a" * 64, 31, "TEXT_OK", tuple(evidence_segments)),
+            EvidenceDocument("E-002", QUESTIONNAIRE.name, "b" * 64, 3, "TEXT_OK", tuple(questionnaire_segments)),
+            EvidenceDocument("E-003", "old_export.pdf", "c" * 64, 1, "TEXT_OK", tuple(poison_segments)),
+        ]
+        record = _record()
+        server._build_workspace(record, docs, evidence_segments + questionnaire_segments + poison_segments)
+        combined = " ".join(str(a.get("answer", "")) for a in record["answers"].values())
+        self.assertNotIn("forceful", combined)                       # junk never reaches a draft
+        self.assertNotIn("as a result of the incidents alleged in the;", combined)
+        answered = sum(1 for a in record["answers"].values() if str(a.get("answer", "")).strip())
+        self.assertGreaterEqual(answered, 65)                        # good sources still fill the form
+        poisoned_summary = next(d for d in record["documents"] if d["source_id"] == "E-003")
+        self.assertIn("excluded from drafting", poisoned_summary.get("review_warning", ""))
+        clean_summary = next(d for d in record["documents"] if d["source_id"] == "E-002")
+        self.assertNotIn("excluded", str(clean_summary.get("review_warning", "")))
+
+    def test_lowercase_questionnaire_labels_still_parse(self) -> None:
+        from inquisitio.questionnaire import parse_questionnaire
+        from inquisitio.questionnaire import HEADER
+        text = HEADER + "\ndate of birth: 01/02/1980\nHOME ADDRESS: 1 Test Street, New Haven CT"
+        segs = [EvidenceSegment("Q-1", "E-009", "q.pdf", 1, text, "paragraph")]
+        docs = [EvidenceDocument("E-009", "q.pdf", "d" * 64, 1, "TEXT_OK", tuple(segs))]
+        fields = parse_questionnaire(segs, docs)
+        self.assertEqual(fields["dob"]["value"], "01/02/1980")
+        self.assertEqual(fields["home_address"]["value"], "1 Test Street, New Haven CT")

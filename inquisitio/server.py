@@ -159,14 +159,52 @@ def _document_summary(document, uploaded_at: str, party_names: list[str] | None 
     }
 
 
+
+def _contaminated_source_ids(segments, form_items) -> set[str]:
+    """Sources that quote the form's own questions or an Inquisitio export.
+
+    WR-013 (D-005/D-008): feeding the app a copy of the form's questions, or
+    one of its own exported response documents, poisons fact extraction into
+    junk drafts built from question fragments. A source is excluded from
+    drafting when its text carries an Inquisitio export marker or quotes
+    three or more of the form's questions. The client questionnaire is
+    unaffected: its labels are short and never quote full question text.
+    """
+    markers = ("NO RESPONSE GENERATED - ATTORNEY REVIEW REQUIRED",
+               "ATTORNEY REVIEW DRAFT - NOT FOR SERVICE",
+               "Attorney Review Draft")
+    probes = []
+    for item in form_items:
+        text = re.sub(r"\s+", " ", str(getattr(item, "text", "") or "")).strip()
+        if len(text) >= 45:
+            probes.append(text[:45].lower())
+        if len(probes) >= 12:
+            break
+    text_by_source: dict[str, list[str]] = {}
+    for segment in segments:
+        text_by_source.setdefault(segment.source_id, []).append(segment.text)
+    contaminated = set()
+    for source_id, texts in text_by_source.items():
+        joined = re.sub(r"\s+", " ", "\n".join(texts))
+        if any(marker in joined for marker in markers):
+            contaminated.add(source_id)
+            continue
+        hits = sum(1 for probe in probes if probe in joined.lower())
+        if hits >= 3:
+            contaminated.add(source_id)
+    return contaminated
+
+
 def _build_workspace(record: dict, documents: list, segments: list[EvidenceSegment], previous: dict | None = None) -> None:
     old_documents = {item.get("sha256"): item for item in (previous or {}).get("documents", [])}
     provisional = [
         _document_summary(document, old_documents.get(document.sha256, {}).get("uploaded_at", utc_now()))
         for document in documents
     ]
-    record["metadata"] = infer_metadata(segments, record["metadata"], record["form_id"])
-    facts = extract_facts(segments, record["metadata"], provisional, FORMS[record["form_id"]].items)
+    contaminated = _contaminated_source_ids(segments, FORMS[record["form_id"]].items)
+    drafting_segments = [segment for segment in segments if segment.source_id not in contaminated]
+    record["metadata"] = infer_metadata(drafting_segments, record["metadata"], record["form_id"])
+    facts = extract_facts(drafting_segments, record["metadata"], provisional, FORMS[record["form_id"]].items)
     respondent = str(record["metadata"].get(record["metadata"].get("responding_party_role", ""), "")).strip()
     names_by_source: dict[str, list[str]] = {}
     for fact in facts:
@@ -181,7 +219,11 @@ def _build_workspace(record: dict, documents: list, segments: list[EvidenceSegme
         packet_has_match = packet_has_match or matched
         packet_has_identity = packet_has_identity or bool(names)
         identity_status = "MATCHED_RESPONDING_PARTY" if matched else "NO_RESPONDING_PARTY_MATCH" if names else "IDENTITY_NOT_FOUND"
-        summaries.append(_document_summary(document, summary["uploaded_at"], names, identity_status))
+        doc_summary = _document_summary(document, summary["uploaded_at"], names, identity_status)
+        if document.source_id in contaminated:
+            doc_summary["review_warning"] = ("This file quotes the form's own questions or is an Inquisitio export. "
+                                             "It was excluded from drafting; remove it from the packet.")
+        summaries.append(doc_summary)
     blocked = bool(respondent and packet_has_identity and not packet_has_match)
     record["matter_integrity"] = {
         "status": "BLOCKED" if blocked else "PASS" if packet_has_match else "WARNING",
@@ -221,7 +263,7 @@ def _build_workspace(record: dict, documents: list, segments: list[EvidenceSegme
         # WR-009: a filled client questionnaire in the packet fills the slots
         # evidence could not, cited and marked client-provided. Evidence-backed
         # and attorney-edited answers are never overwritten (see questionnaire.py).
-        apply_questionnaire(answers, segments, documents)
+        apply_questionnaire(answers, drafting_segments, documents)
     if blocked:
         for answer in answers.values():
             answer["candidate_passages"] = answer.get("supporting_citations", []) or answer.get("candidate_passages", [])
