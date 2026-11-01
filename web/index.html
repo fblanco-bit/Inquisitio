@@ -98,9 +98,14 @@
         </nav>
         <div class="list-toolbar" id="questionToolbar">
           <div><p class="eyebrow">Responses</p><h2 id="formTitle"></h2></div>
-          <label class="search-label">Search<input id="questionSearch" type="search" placeholder="Question or answer"></label>
+          <div class="doc-toggle" role="group" aria-label="Response view">
+            <button type="button" id="formDocTab" class="active">Completed form</button>
+            <button type="button" id="worksheetTab">Worksheet</button>
+          </div>
+          <label class="search-label" id="searchLabel">Search<input id="questionSearch" type="search" placeholder="Question or answer"></label>
         </div>
         <div class="progress-track"><span id="progressBar"></span></div>
+        <div id="formDocView" class="form-doc" hidden></div>
         <div id="questionList"></div>
         <div id="productionView" hidden>
           <p class="production-notice"><strong>Attorney-review work product only.</strong> The tool surfaces possible evidence, but does not determine privilege or whether any PDF was served. Only a reviewer can confirm production and Bates ranges. Never use this workspace as proof of delivery.</p>

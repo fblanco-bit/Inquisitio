@@ -20,7 +20,7 @@ from . import __version__
 from .case_record import apply_case_record, metadata_from_case_record, validate_case_record_bytes
 from .evidence import EvidenceSegment, extract_pdf
 from .engine import ENGINE_STATUSES, _same_person, answer_fingerprint, build_response, extract_facts, infer_metadata
-from .exporter import export_case, export_case_pdf, export_traceability
+from .exporter import _load_firm_profile, export_case, export_case_pdf, export_traceability
 from .forms import load_forms, load_form
 from .storage import CaseStore
 from .production import build_production_review, PRODUCTION_STATUSES
@@ -409,7 +409,21 @@ class Handler(BaseHTTPRequestHandler):
             elif action:
                 self._json(404, {"error": "Not found."})
             else:
-                self._json(200, _public_case(record))
+                payload = _public_case(record)
+                # Firm house-format profile (display only). The completed-form view
+                # shows these fallbacks where no answer exists; they are template
+                # text, never stored as answers and never approvable.
+                profile = _load_firm_profile(str(record.get("form_id", "")))
+                if profile:
+                    payload["firm_profile"] = {
+                        "intro": profile.get("intro", ""),
+                        "definition": profile.get("definition", ""),
+                        "instruction": profile.get("instruction", ""),
+                        "production_intro": profile.get("production_intro", ""),
+                        "fallback_answers": profile.get("fallback_answers", {}),
+                        "production_fallbacks": profile.get("production_fallbacks", {}),
+                    }
+                self._json(200, payload)
             return
         if path.startswith("/api/"):
             self._json(404, {"error": "API endpoint not found."})
