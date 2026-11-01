@@ -86,6 +86,15 @@ byId("intakeForm").addEventListener("submit", async event => {
   const button = byId("buildButton");
   const files = [...stagedEvidence.initial];
   if (!files.length) return toast("Add at least one evidence PDF.");
+  // WR-008: catch non-names before upload; the server enforces the same rule.
+  const intake = new FormData(form);
+  const intakeRole = String(intake.get("responding_party_role") || "").toLowerCase();
+  const respondentName = String(intake.get(intakeRole) || "").trim();
+  const placeholderWords = ["plaintiff", "defendant", "respondent", "client", "party", "name", "unknown", "n/a", "na", "tbd"];
+  if (respondentName && placeholderWords.includes(respondentName.toLowerCase()))
+    return toast(`Enter the ${intakeRole}'s actual name, not the word "${respondentName}".`);
+  if (respondentName && respondentName.split(/\s+/).length < 2)
+    return toast(`Enter the ${intakeRole}'s FULL name, first and last. One word cannot be matched to the evidence.`);
   button.disabled = true; button.textContent = "Reading evidence...";
   const started = Date.now();
   const progressTimer = setInterval(() => {
