@@ -1,0 +1,7 @@
+Inquisitio 0.5.3 (firm-format export)
+Built: 2026-11-01
+Source revision: 99a841e (branch wr-005-firm-export)
+Change: WR-005, Form 202/205 Word export in Mission Focus Legal Group house format.
+Format data: data/firm_profile_202.json (edit wording there; delete file to restore generic export)
+Recovery: run the previous zip (baseline 64de937), or git checkout 64de937
+Verified before packaging: exporter tests 6/6 pass (Linux build environment); Mac launch not yet verified - that is this deliverys test.
