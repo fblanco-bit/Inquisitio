@@ -441,6 +441,12 @@ async function saveResponses(showConfirmation = true) {
     if (state.editGeneration === editGeneration) {
       state.case = result; state.dirty = false; byId("saveState").textContent = "Saved locally";
       if (showConfirmation) toast("Responses saved.");
+    } else {
+      // WR-010 (D-006): edits arrived while this save was in flight. Keep the
+      // newer local edits, but ALWAYS adopt the server's new revision counter -
+      // skipping it left the page holding a stale revision, so every following
+      // save was refused as a phantom "another browser tab" conflict.
+      state.case.revision = result.revision;
     }
     return true;
    } catch (error) { byId("saveState").textContent = "Save failed"; toast(error.message); return false; }

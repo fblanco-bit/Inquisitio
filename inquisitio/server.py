@@ -597,7 +597,7 @@ class Handler(BaseHTTPRequestHandler):
             current_revision = int(record.get("revision", 1))
             if expected_revision != current_revision:
                 self._json(409, {
-                    "error": "This matter changed in another browser tab. Reload before reprocessing evidence.",
+                    "error": "This matter was saved more recently than this page knows (another window, or a save that was still landing). Reload the matter, then reprocess.",
                     "current_revision": current_revision,
                 })
                 return
@@ -692,7 +692,7 @@ class Handler(BaseHTTPRequestHandler):
                 current_revision = int(record.get("revision", 1))
                 if expected_revision != current_revision:
                     self._json(409, {
-                        "error": "This matter changed in another browser tab. Reload before saving.",
+                        "error": "This matter was saved more recently than this page knows (another window, or a save that was still landing). Reload the matter, then save again.",
                         "current_revision": current_revision,
                     })
                     return
