@@ -1,0 +1,128 @@
+[
+  {
+    "file": "README.md",
+    "change": "modified",
+    "sha256": "a4368b6ee0d3508c535d4f302c09c46f3e7fb16416a4f34bb581a8f45a5f5c48",
+    "size_bytes": 6346
+  },
+  {
+    "file": "RELEASE_NOTES.md",
+    "change": "modified",
+    "sha256": "b5a838d35d8f7c7a2e5dd7ad745734311763128f7fa6880f0ffc0bc75ab50565",
+    "size_bytes": 1647
+  },
+  {
+    "file": "START_INQUISITIO_MAC.command",
+    "change": "executable permission",
+    "sha256": "b90ad79ac3a8ca0c08ac5165b89209b69240905ef3159a33d9cb3b5adf49e33e",
+    "size_bytes": 238
+  },
+  {
+    "file": "TEST_REPORT.md",
+    "change": "modified",
+    "sha256": "fc6ecd7061d0ac31cae66297c4591714b3501edfc377834e6f4a9f73ef3a59c5",
+    "size_bytes": 2897
+  },
+  {
+    "file": "inquisitio/__init__.py",
+    "change": "modified",
+    "sha256": "6bbdf0e26e150cfe61ea59da855cc4d54c8d048d1f024ff0f8436a2724f77503",
+    "size_bytes": 93
+  },
+  {
+    "file": "inquisitio/engine.py",
+    "change": "modified",
+    "sha256": "855a0c360414750cf51044bb2e4bcaf184189bfbe4bf68ceb299dd60c8aa8042",
+    "size_bytes": 60334
+  },
+  {
+    "file": "inquisitio/evidence.py",
+    "change": "modified",
+    "sha256": "b4709060ae6c4cf52fff04c30625f842c3c8655fcf48915512b548c607ccea00",
+    "size_bytes": 10548
+  },
+  {
+    "file": "inquisitio/exporter.py",
+    "change": "modified",
+    "sha256": "922775133b70e48a60022be94ecd4bbb748e18573fd760bdc4e2fb6b7c2d37da",
+    "size_bytes": 18964
+  },
+  {
+    "file": "inquisitio/server.py",
+    "change": "modified",
+    "sha256": "fa0f5645109a6d41353d0523d3e37c7af76d564098e8412e2bac09e7f9d92b49",
+    "size_bytes": 28111
+  },
+  {
+    "file": "package.json",
+    "change": "modified",
+    "sha256": "c8999ddee7534b0d559bb8037bb29f5ff441499f6fdd70817a5bd4ae04dc97b6",
+    "size_bytes": 216
+  },
+  {
+    "file": "packaging/Inquisitio.spec",
+    "change": "modified",
+    "sha256": "49608a848ba9169ed0017700d9f1c439d594c8482f45a085ac5b9abbeef7c01a",
+    "size_bytes": 1624
+  },
+  {
+    "file": "requirements-dev.txt",
+    "change": "modified",
+    "sha256": "1438527233ce7beb1cdf4a046b8b5d38f140bd77217ef4df17d5592989d3ec15",
+    "size_bytes": 34
+  },
+  {
+    "file": "requirements.txt",
+    "change": "modified",
+    "sha256": "85014d467e7896880d1ef1bc54ecb1d0a16998080fddf81af83e5eda0902178a",
+    "size_bytes": 185
+  },
+  {
+    "file": "tests/fixtures/form207_validation.pdf",
+    "change": "added",
+    "sha256": "77d3f2abad33f75bee93da5e8e182f28ec32a5968d2c8387b4a4b44fc1306125",
+    "size_bytes": 2593
+  },
+  {
+    "file": "tests/fixtures/okonkwo/DEV_Evidence_1_Complaint_and_Crash_Report.pdf",
+    "change": "added",
+    "sha256": "a8fbeff96e38287d1b71f576d2d4e0e38b2cc5d83cc54058502f86d741c05e59",
+    "size_bytes": 7147
+  },
+  {
+    "file": "tests/fixtures/okonkwo/DEV_Evidence_2_Medical_and_Employer_Records.pdf",
+    "change": "added",
+    "sha256": "810b92317098292b0fed63966b37e897d4eff0a1f69da746959353c451d7a538",
+    "size_bytes": 7517
+  },
+  {
+    "file": "tests/test_engine.py",
+    "change": "modified",
+    "sha256": "8d6a1633be883cdeec8271233030f34f3665497ac75486876ea01b32478c06d5",
+    "size_bytes": 8223
+  },
+  {
+    "file": "tests/test_extraction_pipeline.py",
+    "change": "added",
+    "sha256": "77419f3c40c21f32fe2eb7ff0dc6272b509bf7286916f4c2f1e710450ad1756e",
+    "size_bytes": 15447
+  },
+  {
+    "file": "verification/run_validation.py",
+    "change": "added",
+    "sha256": "80694c729580eb8c9657c2edecff2772a65a58bd0429cc591288223a87d7d968",
+    "size_bytes": 8818
+  },
+  {
+    "file": "web/app.js",
+    "change": "modified",
+    "sha256": "7b5e9aa79417e5d243c5a1c0215e0aa01ce6ca4e981655f757f06195b52c9fe8",
+    "size_bytes": 14977
+  },
+  {
+    "file": "web/index.html",
+    "change": "modified",
+    "sha256": "3c8c7d5bbfcdb950efca9d3072449bc8c0400ebc86796bb26007e59e2b095579",
+    "size_bytes": 5122
+  }
+]

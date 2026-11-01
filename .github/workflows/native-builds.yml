@@ -1,0 +1,72 @@
+name: Native application builds
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  browser-uat:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          package-manager-cache: false
+      - name: Run browser UAT
+        run: bash packaging/run_browser_uat.sh
+
+  build:
+    needs: browser-uat
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            artifact: Inquisitio-Windows-x64
+            command: powershell -ExecutionPolicy Bypass -File packaging/build_windows.ps1
+            path: artifacts/Inquisitio-Windows-x64.zip
+          - os: macos-15-intel
+            artifact: Inquisitio-macOS-x86_64
+            command: bash packaging/build_macos.sh
+            path: artifacts/Inquisitio-macOS-x86_64.zip
+          - os: macos-26
+            artifact: Inquisitio-macOS-arm64
+            command: bash packaging/build_macos.sh
+            path: artifacts/Inquisitio-macOS-arm64.zip
+    runs-on: ${{ matrix.os }}
+    env:
+      MACOS_CERTIFICATE_P12_BASE64: ${{ secrets.MACOS_CERTIFICATE_P12_BASE64 }}
+      MACOS_CERTIFICATE_PASSWORD: ${{ secrets.MACOS_CERTIFICATE_PASSWORD }}
+      MACOS_SIGNING_IDENTITY: ${{ secrets.MACOS_SIGNING_IDENTITY }}
+      APPLE_ID: ${{ secrets.APPLE_ID }}
+      APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+      APPLE_APP_PASSWORD: ${{ secrets.APPLE_APP_PASSWORD }}
+      WINDOWS_CERTIFICATE_PFX_BASE64: ${{ secrets.WINDOWS_CERTIFICATE_PFX_BASE64 }}
+      WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Import Apple signing certificate
+        if: runner.os == 'macOS'
+        run: bash packaging/import_macos_certificate.sh
+      - name: Build and smoke test native application
+        run: ${{ matrix.command }}
+      - uses: actions/upload-artifact@v7
+        with:
+          name: ${{ matrix.artifact }}
+          path: ${{ matrix.path }}
+          if-no-files-found: error
+          compression-level: 0

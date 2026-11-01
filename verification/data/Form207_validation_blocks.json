@@ -1,0 +1,943 @@
+[
+  {
+    "source_id": "E-001",
+    "document": "form207_validation.pdf",
+    "page": 1,
+    "segment_id": "E-001:p1:s1",
+    "text": "FORM 207 VALIDATION MATTER - FICTIONAL",
+    "method": "pdfplumber",
+    "ocr_sourced": false,
+    "facts": [],
+    "decision": "NO_TARGET_FACT",
+    "reason": "No explicit selected-question fact established in this block; raw text retained",
+    "accepted_into_responses": []
+  },
+  {
+    "source_id": "E-001",
+    "document": "form207_validation.pdf",
+    "page": 1,
+    "segment_id": "E-001:p1:s2",
+    "text": "Plaintiff: Mira Chen",
+    "method": "pdfplumber",
+    "ocr_sourced": false,
+    "facts": [],
+    "decision": "NO_TARGET_FACT",
+    "reason": "No explicit selected-question fact established in this block; raw text retained",
+    "accepted_into_responses": []
+  },
+  {
+    "source_id": "E-001",
+    "document": "form207_validation.pdf",
+    "page": 1,
+    "segment_id": "E-001:p1:s3",
+    "text": "Defendant: Luca Torres",
+    "method": "pdfplumber",
+    "ocr_sourced": false,
+    "facts": [],
+    "decision": "NO_TARGET_FACT",
+    "reason": "No explicit selected-question fact established in this block; raw text retained",
+    "accepted_into_responses": []
+  },
+  {
+    "source_id": "E-001",
+    "document": "form207_validation.pdf",
+    "page": 1,
+    "segment_id": "E-001:p1:s4",
+    "text": "COURT ORDER",
+    "method": "pdfplumber",
+    "ocr_sourced": false,
+    "facts": [],
+    "decision": "NO_TARGET_FACT",
+    "reason": "No explicit selected-question fact established in this block; raw text retained",
+    "accepted_into_responses": []
+  },
+  {
+    "source_id": "E-001",
+    "document": "form207_validation.pdf",
+    "page": 1,
+    "segment_id": "E-001:p1:s5",
+    "text": "ORDERED: Defendant Luca Torres shall answer Form 207 interrogatories.",
+    "method": "pdfplumber",
+    "ocr_sourced": false,
+    "facts": [],
+    "decision": "NO_TARGET_FACT",
+    "reason": "No explicit selected-question fact established in this block; raw text retained",
+    "accepted_into_responses": []
+  },
+  {
+    "source_id": "E-001",
+    "document": "form207_validation.pdf",
+    "page": 1,
+    "segment_id": "E-001:p1:s6",
+    "text": "Existing support order: $225 per week effective 01/01/2026.",
+    "method": "pdfplumber",
+    "ocr_sourced": false,
+    "facts": [
+      {
+        "fact_id": "F-e74508dc9b5a895f",
+        "subject": "Luca Torres",
+        "attribute": "existing_support_order",
+        "value": "$225 per week effective 01/01/2026.",
+        "unit": "",
+        "period": "unspecified",
+        "source_id": "E-001",
+        "filename": "form207_validation.pdf",
+        "document_sha256": "77d3f2abad33f75bee93da5e8e182f28ec32a5968d2c8387b4a4b44fc1306125",
+        "page": 1,
+        "quote": "Existing support order: $225 per week effective 01/01/2026.",
+        "segment_id": "E-001:p1:s6",
+        "evidence_classification": "REPORTED_FACT",
+        "verification_status": "VERIFIED_SOURCE",
+        "original_value": "$225 per week effective 01/01/2026.",
+        "normalized_value": "225perweekeffective01012026",
+        "extraction_method": "pdfplumber",
+        "ocr_sourced": false,
+        "confidence": 0.85,
+        "attribution_quote": "ORDERED: Defendant Luca Torres shall answer Form 207 interrogatories.",
+        "attribution_segment_id": "E-001:p1:s5",
+        "source_segment_ids": [
+          "E-001:p1:s6"
+        ],
+        "record_group": ""
+      }
+    ],
+    "decision": "NOT_INSERTED",
+    "reason": "Supporting context only: existing_support_order",
+    "accepted_into_responses": []
+  },
+  {
+    "source_id": "E-001",
+    "document": "form207_validation.pdf",
+    "page": 2,
+    "segment_id": "E-001:p2:s1",
+    "text": "DECLARATION UNDER OATH",
+    "method": "pdfplumber",
+    "ocr_sourced": false,
+    "facts": [],
+    "decision": "NO_TARGET_FACT",
+    "reason": "No explicit selected-question fact established in this block; raw text retained",
+    "accepted_into_responses": []
+  },
+  {
+    "source_id": "E-001",
+    "document": "form207_validation.pdf",
+    "page": 2,
+    "segment_id": "E-001:p2:s2",
+    "text": "Full name: Luca Torres",
+    "method": "pdfplumber",
+    "ocr_sourced": false,
+    "facts": [],
+    "decision": "ACCEPTED",
+    "reason": "Validated source or party attribution for 207-1-a, 207-1-b, 207-1-c, 207-1-d, 207-1-e, 207-3-a",
+    "accepted_into_responses": [
+      "207-1-a",
+      "207-1-b",
+      "207-1-c",
+      "207-1-d",
+      "207-1-e",
+      "207-3-a"
+    ]
+  },
+  {
+    "source_id": "E-001",
+    "document": "form207_validation.pdf",
+    "page": 2,
+    "segment_id": "E-001:p2:s3",
+    "text": "Address: 15 Oak Street, Hartford CT 06106",
+    "method": "pdfplumber",
+    "ocr_sourced": false,
+    "facts": [
+      {
+        "fact_id": "F-263b7676d3cea45a",
+        "subject": "Luca Torres",
+        "attribute": "home_address",
+        "value": "15 Oak Street, Hartford CT 06106",
+        "unit": "",
+        "period": "unspecified",
+        "source_id": "E-001",
+        "filename": "form207_validation.pdf",
+        "document_sha256": "77d3f2abad33f75bee93da5e8e182f28ec32a5968d2c8387b4a4b44fc1306125",
+        "page": 2,
+        "quote": "Address: 15 Oak Street, Hartford CT 06106",
+        "segment_id": "E-001:p2:s3",
+        "evidence_classification": "REPORTED_FACT",
+        "verification_status": "VERIFIED_SOURCE",
+        "original_value": "15 Oak Street, Hartford CT 06106",
+        "normalized_value": "15oaksthartfordct06106",
+        "extraction_method": "pdfplumber",
+        "ocr_sourced": false,
+        "confidence": 0.85,
+        "attribution_quote": "Full name: Luca Torres",
+        "attribution_segment_id": "E-001:p2:s2",
+        "source_segment_ids": [
+          "E-001:p2:s3"
+        ],
+        "record_group": ""
+      }
+    ],
+    "decision": "ACCEPTED",
+    "reason": "Validated source or party attribution for 207-1-a",
+    "accepted_into_responses": [
+      "207-1-a"
+    ]
+  },
+  {
+    "source_id": "E-001",
+    "document": "form207_validation.pdf",
+    "page": 2,
+    "segment_id": "E-001:p2:s4",
+    "text": "Residence type: Apartment",
+    "method": "pdfplumber",
+    "ocr_sourced": false,
+    "facts": [
+      {
+        "fact_id": "F-1bbb1ddd05edf11e",
+        "subject": "Luca Torres",
+        "attribute": "residence_type",
+        "value": "Apartment",
+        "unit": "",
+        "period": "unspecified",
+        "source_id": "E-001",
+        "filename": "form207_validation.pdf",
+        "document_sha256": "77d3f2abad33f75bee93da5e8e182f28ec32a5968d2c8387b4a4b44fc1306125",
+        "page": 2,
+        "quote": "Residence type: Apartment",
+        "segment_id": "E-001:p2:s4",
+        "evidence_classification": "REPORTED_FACT",
+        "verification_status": "VERIFIED_SOURCE",
+        "original_value": "Apartment",
+        "normalized_value": "apartment",
+        "extraction_method": "pdfplumber",
+        "ocr_sourced": false,
+        "confidence": 0.85,
+        "attribution_quote": "Full name: Luca Torres",
+        "attribution_segment_id": "E-001:p2:s2",
+        "source_segment_ids": [
+          "E-001:p2:s4"
+        ],
+        "record_group": ""
+      }
+    ],
+    "decision": "ACCEPTED",
+    "reason": "Validated source or party attribution for 207-1-b",
+    "accepted_into_responses": [
+      "207-1-b"
+    ]
+  },
+  {
+    "source_id": "E-001",
+    "document": "form207_validation.pdf",
+    "page": 2,
+    "segment_id": "E-001:p2:s5",
+    "text": "Residence owner: Nora Pike",
+    "method": "pdfplumber",
+    "ocr_sourced": false,
+    "facts": [
+      {
+        "fact_id": "F-08fd4111a140e9da",
+        "subject": "Luca Torres",
+        "attribute": "residence_owner",
+        "value": "Nora Pike",
+        "unit": "",
+        "period": "unspecified",
+        "source_id": "E-001",
+        "filename": "form207_validation.pdf",
+        "document_sha256": "77d3f2abad33f75bee93da5e8e182f28ec32a5968d2c8387b4a4b44fc1306125",
+        "page": 2,
+        "quote": "Residence owner: Nora Pike",
+        "segment_id": "E-001:p2:s5",
+        "evidence_classification": "REPORTED_FACT",
+        "verification_status": "VERIFIED_SOURCE",
+        "original_value": "Nora Pike",
+        "normalized_value": "norapike",
+        "extraction_method": "pdfplumber",
+        "ocr_sourced": false,
+        "confidence": 0.85,
+        "attribution_quote": "Full name: Luca Torres",
+        "attribution_segment_id": "E-001:p2:s2",
+        "source_segment_ids": [
+          "E-001:p2:s5"
+        ],
+        "record_group": ""
+      }
+    ],
+    "decision": "ACCEPTED",
+    "reason": "Validated source or party attribution for 207-1-c",
+    "accepted_into_responses": [
+      "207-1-c"
+    ]
+  },
+  {
+    "source_id": "E-001",
+    "document": "form207_validation.pdf",
+    "page": 2,
+    "segment_id": "E-001:p2:s6",
+    "text": "Relationship to owner: Landlord",
+    "method": "pdfplumber",
+    "ocr_sourced": false,
+    "facts": [
+      {
+        "fact_id": "F-d339f9d0457c50a9",
+        "subject": "Luca Torres",
+        "attribute": "residence_owner_relationship",
+        "value": "Landlord",
+        "unit": "",
+        "period": "unspecified",
+        "source_id": "E-001",
+        "filename": "form207_validation.pdf",
+        "document_sha256": "77d3f2abad33f75bee93da5e8e182f28ec32a5968d2c8387b4a4b44fc1306125",
+        "page": 2,
+        "quote": "Relationship to owner: Landlord",
+        "segment_id": "E-001:p2:s6",
+        "evidence_classification": "REPORTED_FACT",
+        "verification_status": "VERIFIED_SOURCE",
+        "original_value": "Landlord",
+        "normalized_value": "landlord",
+        "extraction_method": "pdfplumber",
+        "ocr_sourced": false,
+        "confidence": 0.85,
+        "attribution_quote": "Full name: Luca Torres",
+        "attribution_segment_id": "E-001:p2:s2",
+        "source_segment_ids": [
+          "E-001:p2:s6"
+        ],
+        "record_group": ""
+      }
+    ],
+    "decision": "ACCEPTED",
+    "reason": "Validated source or party attribution for 207-1-d",
+    "accepted_into_responses": [
+      "207-1-d"
+    ]
+  },
+  {
+    "source_id": "E-001",
+    "document": "form207_validation.pdf",
+    "page": 2,
+    "segment_id": "E-001:p2:s7",
+    "text": "Residence start date: 02/01/2024",
+    "method": "pdfplumber",
+    "ocr_sourced": false,
+    "facts": [
+      {
+        "fact_id": "F-0265675aa32d29a5",
+        "subject": "Luca Torres",
+        "attribute": "residence_start_date",
+        "value": "02/01/2024",
+        "unit": "",
+        "period": "unspecified",
+        "source_id": "E-001",
+        "filename": "form207_validation.pdf",
+        "document_sha256": "77d3f2abad33f75bee93da5e8e182f28ec32a5968d2c8387b4a4b44fc1306125",
+        "page": 2,
+        "quote": "Residence start date: 02/01/2024",
+        "segment_id": "E-001:p2:s7",
+        "evidence_classification": "REPORTED_FACT",
+        "verification_status": "VERIFIED_SOURCE",
+        "original_value": "02/01/2024",
+        "normalized_value": "2024-02-01",
+        "extraction_method": "pdfplumber",
+        "ocr_sourced": false,
+        "confidence": 0.85,
+        "attribution_quote": "Full name: Luca Torres",
+        "attribution_segment_id": "E-001:p2:s2",
+        "source_segment_ids": [
+          "E-001:p2:s7"
+        ],
+        "record_group": ""
+      }
+    ],
+    "decision": "ACCEPTED",
+    "reason": "Validated source or party attribution for 207-1-e",
+    "accepted_into_responses": [
+      "207-1-e"
+    ]
+  },
+  {
+    "source_id": "E-001",
+    "document": "form207_validation.pdf",
+    "page": 2,
+    "segment_id": "E-001:p2:s8",
+    "text": "Employer name: Harbor Machine LLC",
+    "method": "pdfplumber",
+    "ocr_sourced": false,
+    "facts": [
+      {
+        "fact_id": "F-2ac5ea7f3d112d09",
+        "subject": "Luca Torres",
+        "attribute": "employer_name",
+        "value": "Harbor Machine LLC",
+        "unit": "",
+        "period": "unspecified",
+        "source_id": "E-001",
+        "filename": "form207_validation.pdf",
+        "document_sha256": "77d3f2abad33f75bee93da5e8e182f28ec32a5968d2c8387b4a4b44fc1306125",
+        "page": 2,
+        "quote": "Employer name: Harbor Machine LLC",
+        "segment_id": "E-001:p2:s8",
+        "evidence_classification": "REPORTED_FACT",
+        "verification_status": "VERIFIED_SOURCE",
+        "original_value": "Harbor Machine LLC",
+        "normalized_value": "harbormachinellc",
+        "extraction_method": "pdfplumber",
+        "ocr_sourced": false,
+        "confidence": 0.85,
+        "attribution_quote": "Full name: Luca Torres",
+        "attribution_segment_id": "E-001:p2:s2",
+        "source_segment_ids": [
+          "E-001:p2:s8"
+        ],
+        "record_group": ""
+      }
+    ],
+    "decision": "ACCEPTED",
+    "reason": "Validated source or party attribution for 207-3-a",
+    "accepted_into_responses": [
+      "207-3-a"
+    ]
+  },
+  {
+    "source_id": "E-001",
+    "document": "form207_validation.pdf",
+    "page": 2,
+    "segment_id": "E-001:p2:s9",
+    "text": "Employer address: 180 Quarry Road, Hartford CT 06106",
+    "method": "pdfplumber",
+    "ocr_sourced": false,
+    "facts": [
+      {
+        "fact_id": "F-9d41a00a154f22da",
+        "subject": "Luca Torres",
+        "attribute": "employer_address",
+        "value": "180 Quarry Road, Hartford CT 06106",
+        "unit": "",
+        "period": "unspecified",
+        "source_id": "E-001",
+        "filename": "form207_validation.pdf",
+        "document_sha256": "77d3f2abad33f75bee93da5e8e182f28ec32a5968d2c8387b4a4b44fc1306125",
+        "page": 2,
+        "quote": "Employer address: 180 Quarry Road, Hartford CT 06106",
+        "segment_id": "E-001:p2:s9",
+        "evidence_classification": "REPORTED_FACT",
+        "verification_status": "VERIFIED_SOURCE",
+        "original_value": "180 Quarry Road, Hartford CT 06106",
+        "normalized_value": "180quarryrdhartfordct06106",
+        "extraction_method": "pdfplumber",
+        "ocr_sourced": false,
+        "confidence": 0.85,
+        "attribution_quote": "Full name: Luca Torres",
+        "attribution_segment_id": "E-001:p2:s2",
+        "source_segment_ids": [
+          "E-001:p2:s9"
+        ],
+        "record_group": ""
+      }
+    ],
+    "decision": "ACCEPTED",
+    "reason": "Validated source or party attribution for 207-3-a",
+    "accepted_into_responses": [
+      "207-3-a"
+    ]
+  },
+  {
+    "source_id": "E-001",
+    "document": "form207_validation.pdf",
+    "page": 2,
+    "segment_id": "E-001:p2:s10",
+    "text": "Employment status: Full-time employee",
+    "method": "pdfplumber",
+    "ocr_sourced": false,
+    "facts": [
+      {
+        "fact_id": "F-4cbdbbd59de3602a",
+        "subject": "Luca Torres",
+        "attribute": "employment_status",
+        "value": "Full-time employee",
+        "unit": "",
+        "period": "unspecified",
+        "source_id": "E-001",
+        "filename": "form207_validation.pdf",
+        "document_sha256": "77d3f2abad33f75bee93da5e8e182f28ec32a5968d2c8387b4a4b44fc1306125",
+        "page": 2,
+        "quote": "Employment status: Full-time employee",
+        "segment_id": "E-001:p2:s10",
+        "evidence_classification": "REPORTED_FACT",
+        "verification_status": "VERIFIED_SOURCE",
+        "original_value": "Full-time employee",
+        "normalized_value": "fulltimeemployee",
+        "extraction_method": "pdfplumber",
+        "ocr_sourced": false,
+        "confidence": 0.85,
+        "attribution_quote": "Full name: Luca Torres",
+        "attribution_segment_id": "E-001:p2:s2",
+        "source_segment_ids": [
+          "E-001:p2:s10"
+        ],
+        "record_group": ""
+      }
+    ],
+    "decision": "ACCEPTED",
+    "reason": "Validated source or party attribution for 207-3-a",
+    "accepted_into_responses": [
+      "207-3-a"
+    ]
+  },
+  {
+    "source_id": "E-001",
+    "document": "form207_validation.pdf",
+    "page": 2,
+    "segment_id": "E-001:p2:s11",
+    "text": "Luca Torres is not self-employed.",
+    "method": "pdfplumber",
+    "ocr_sourced": false,
+    "facts": [
+      {
+        "fact_id": "F-1da3d50fe8cb3804",
+        "subject": "Luca Torres",
+        "attribute": "self_employed",
+        "value": "false",
+        "unit": "boolean",
+        "period": "unspecified",
+        "source_id": "E-001",
+        "filename": "form207_validation.pdf",
+        "document_sha256": "77d3f2abad33f75bee93da5e8e182f28ec32a5968d2c8387b4a4b44fc1306125",
+        "page": 2,
+        "quote": "Luca Torres is not self-employed.",
+        "segment_id": "E-001:p2:s11",
+        "evidence_classification": "REPORTED_FACT",
+        "verification_status": "VERIFIED_SOURCE",
+        "original_value": "false",
+        "normalized_value": "false",
+        "extraction_method": "pdfplumber",
+        "ocr_sourced": false,
+        "confidence": 0.85,
+        "attribution_quote": "Luca Torres is not self-employed.",
+        "attribution_segment_id": "E-001:p2:s11",
+        "source_segment_ids": [
+          "E-001:p2:s11"
+        ],
+        "record_group": ""
+      }
+    ],
+    "decision": "ACCEPTED",
+    "reason": "Validated source or party attribution for 207-3-b, 207-3-c, 207-3-d, 207-3-f, 207-3-g, 207-3-h, 207-4-a, 207-4-b, 207-4-c, 207-4-d, 207-4-e, 207-4-f, 207-4-g, 207-4-h, 207-4-i, 207-4-j, 207-4-k, 207-4-l",
+    "accepted_into_responses": [
+      "207-3-b",
+      "207-3-c",
+      "207-3-d",
+      "207-3-f",
+      "207-3-g",
+      "207-3-h",
+      "207-4-a",
+      "207-4-b",
+      "207-4-c",
+      "207-4-d",
+      "207-4-e",
+      "207-4-f",
+      "207-4-g",
+      "207-4-h",
+      "207-4-i",
+      "207-4-j",
+      "207-4-k",
+      "207-4-l"
+    ]
+  },
+  {
+    "source_id": "E-001",
+    "document": "form207_validation.pdf",
+    "page": 2,
+    "segment_id": "E-001:p2:s12",
+    "text": "Pay basis: Hourly",
+    "method": "pdfplumber",
+    "ocr_sourced": false,
+    "facts": [
+      {
+        "fact_id": "F-1439880b1729e22f",
+        "subject": "Luca Torres",
+        "attribute": "pay_basis",
+        "value": "Hourly",
+        "unit": "",
+        "period": "unspecified",
+        "source_id": "E-001",
+        "filename": "form207_validation.pdf",
+        "document_sha256": "77d3f2abad33f75bee93da5e8e182f28ec32a5968d2c8387b4a4b44fc1306125",
+        "page": 2,
+        "quote": "Pay basis: Hourly",
+        "segment_id": "E-001:p2:s12",
+        "evidence_classification": "REPORTED_FACT",
+        "verification_status": "VERIFIED_SOURCE",
+        "original_value": "Hourly",
+        "normalized_value": "hourly",
+        "extraction_method": "pdfplumber",
+        "ocr_sourced": false,
+        "confidence": 0.85,
+        "attribution_quote": "Luca Torres is not self-employed.",
+        "attribution_segment_id": "E-001:p2:s11",
+        "source_segment_ids": [
+          "E-001:p2:s12"
+        ],
+        "record_group": ""
+      }
+    ],
+    "decision": "ACCEPTED",
+    "reason": "Validated source or party attribution for 207-3-b",
+    "accepted_into_responses": [
+      "207-3-b"
+    ]
+  },
+  {
+    "source_id": "E-001",
+    "document": "form207_validation.pdf",
+    "page": 2,
+    "segment_id": "E-001:p2:s13",
+    "text": "Current gross weekly income: $1,200.00",
+    "method": "pdfplumber",
+    "ocr_sourced": false,
+    "facts": [
+      {
+        "fact_id": "F-12296c34ad165e3e",
+        "subject": "Luca Torres",
+        "attribute": "current_gross_weekly_income",
+        "value": "$1,200.00",
+        "unit": "",
+        "period": "unspecified",
+        "source_id": "E-001",
+        "filename": "form207_validation.pdf",
+        "document_sha256": "77d3f2abad33f75bee93da5e8e182f28ec32a5968d2c8387b4a4b44fc1306125",
+        "page": 2,
+        "quote": "Current gross weekly income: $1,200.00",
+        "segment_id": "E-001:p2:s13",
+        "evidence_classification": "REPORTED_FACT",
+        "verification_status": "VERIFIED_SOURCE",
+        "original_value": "$1,200.00",
+        "normalized_value": "120000",
+        "extraction_method": "pdfplumber",
+        "ocr_sourced": false,
+        "confidence": 0.85,
+        "attribution_quote": "Luca Torres is not self-employed.",
+        "attribution_segment_id": "E-001:p2:s11",
+        "source_segment_ids": [
+          "E-001:p2:s13"
+        ],
+        "record_group": ""
+      }
+    ],
+    "decision": "ACCEPTED",
+    "reason": "Validated source or party attribution for 207-3-c",
+    "accepted_into_responses": [
+      "207-3-c"
+    ]
+  },
+  {
+    "source_id": "E-001",
+    "document": "form207_validation.pdf",
+    "page": 2,
+    "segment_id": "E-001:p2:s14",
+    "text": "Hours per week: 40",
+    "method": "pdfplumber",
+    "ocr_sourced": false,
+    "facts": [
+      {
+        "fact_id": "F-8bd94e6e76043264",
+        "subject": "Luca Torres",
+        "attribute": "current_weekly_hours",
+        "value": "40",
+        "unit": "",
+        "period": "unspecified",
+        "source_id": "E-001",
+        "filename": "form207_validation.pdf",
+        "document_sha256": "77d3f2abad33f75bee93da5e8e182f28ec32a5968d2c8387b4a4b44fc1306125",
+        "page": 2,
+        "quote": "Hours per week: 40",
+        "segment_id": "E-001:p2:s14",
+        "evidence_classification": "REPORTED_FACT",
+        "verification_status": "VERIFIED_SOURCE",
+        "original_value": "40",
+        "normalized_value": "40",
+        "extraction_method": "pdfplumber",
+        "ocr_sourced": false,
+        "confidence": 0.85,
+        "attribution_quote": "Luca Torres is not self-employed.",
+        "attribution_segment_id": "E-001:p2:s11",
+        "source_segment_ids": [
+          "E-001:p2:s14"
+        ],
+        "record_group": ""
+      }
+    ],
+    "decision": "ACCEPTED",
+    "reason": "Validated source or party attribution for 207-3-d",
+    "accepted_into_responses": [
+      "207-3-d"
+    ]
+  },
+  {
+    "source_id": "E-001",
+    "document": "form207_validation.pdf",
+    "page": 2,
+    "segment_id": "E-001:p2:s15",
+    "text": "Bonus income: No bonuses received.",
+    "method": "pdfplumber",
+    "ocr_sourced": false,
+    "facts": [
+      {
+        "fact_id": "F-3e9975981ec586e7",
+        "subject": "Luca Torres",
+        "attribute": "bonus_income",
+        "value": "No bonuses received.",
+        "unit": "",
+        "period": "unspecified",
+        "source_id": "E-001",
+        "filename": "form207_validation.pdf",
+        "document_sha256": "77d3f2abad33f75bee93da5e8e182f28ec32a5968d2c8387b4a4b44fc1306125",
+        "page": 2,
+        "quote": "Bonus income: No bonuses received.",
+        "segment_id": "E-001:p2:s15",
+        "evidence_classification": "REPORTED_FACT",
+        "verification_status": "VERIFIED_SOURCE",
+        "original_value": "No bonuses received.",
+        "normalized_value": "nobonusesreceived",
+        "extraction_method": "pdfplumber",
+        "ocr_sourced": false,
+        "confidence": 0.85,
+        "attribution_quote": "Luca Torres is not self-employed.",
+        "attribution_segment_id": "E-001:p2:s11",
+        "source_segment_ids": [
+          "E-001:p2:s15"
+        ],
+        "record_group": ""
+      }
+    ],
+    "decision": "ACCEPTED",
+    "reason": "Validated source or party attribution for 207-3-f",
+    "accepted_into_responses": [
+      "207-3-f"
+    ]
+  },
+  {
+    "source_id": "E-001",
+    "document": "form207_validation.pdf",
+    "page": 2,
+    "segment_id": "E-001:p2:s16",
+    "text": "Payroll deductions: Federal and state taxes and Medicare withheld.",
+    "method": "pdfplumber",
+    "ocr_sourced": false,
+    "facts": [
+      {
+        "fact_id": "F-041a64aceb3d0470",
+        "subject": "Luca Torres",
+        "attribute": "payroll_deductions",
+        "value": "Federal and state taxes and Medicare withheld.",
+        "unit": "",
+        "period": "unspecified",
+        "source_id": "E-001",
+        "filename": "form207_validation.pdf",
+        "document_sha256": "77d3f2abad33f75bee93da5e8e182f28ec32a5968d2c8387b4a4b44fc1306125",
+        "page": 2,
+        "quote": "Payroll deductions: Federal and state taxes and Medicare withheld.",
+        "segment_id": "E-001:p2:s16",
+        "evidence_classification": "THIRD_PARTY_RECORD",
+        "verification_status": "VERIFIED_SOURCE",
+        "original_value": "Federal and state taxes and Medicare withheld.",
+        "normalized_value": "federalandstatetaxesandmedicarewithheld",
+        "extraction_method": "pdfplumber",
+        "ocr_sourced": false,
+        "confidence": 1.0,
+        "attribution_quote": "Luca Torres is not self-employed.",
+        "attribution_segment_id": "E-001:p2:s11",
+        "source_segment_ids": [
+          "E-001:p2:s16"
+        ],
+        "record_group": ""
+      }
+    ],
+    "decision": "ACCEPTED",
+    "reason": "Validated source or party attribution for 207-3-g",
+    "accepted_into_responses": [
+      "207-3-g"
+    ]
+  },
+  {
+    "source_id": "E-001",
+    "document": "form207_validation.pdf",
+    "page": 2,
+    "segment_id": "E-001:p2:s17",
+    "text": "Second employment: None.",
+    "method": "pdfplumber",
+    "ocr_sourced": false,
+    "facts": [
+      {
+        "fact_id": "F-289ecbe0c3dc8a4d",
+        "subject": "Luca Torres",
+        "attribute": "second_employment",
+        "value": "None.",
+        "unit": "",
+        "period": "unspecified",
+        "source_id": "E-001",
+        "filename": "form207_validation.pdf",
+        "document_sha256": "77d3f2abad33f75bee93da5e8e182f28ec32a5968d2c8387b4a4b44fc1306125",
+        "page": 2,
+        "quote": "Second employment: None.",
+        "segment_id": "E-001:p2:s17",
+        "evidence_classification": "REPORTED_FACT",
+        "verification_status": "VERIFIED_SOURCE",
+        "original_value": "None.",
+        "normalized_value": "none",
+        "extraction_method": "pdfplumber",
+        "ocr_sourced": false,
+        "confidence": 0.85,
+        "attribution_quote": "Luca Torres is not self-employed.",
+        "attribution_segment_id": "E-001:p2:s11",
+        "source_segment_ids": [
+          "E-001:p2:s17"
+        ],
+        "record_group": ""
+      }
+    ],
+    "decision": "ACCEPTED",
+    "reason": "Validated source or party attribution for 207-3-h",
+    "accepted_into_responses": [
+      "207-3-h"
+    ]
+  },
+  {
+    "source_id": "E-001",
+    "document": "form207_validation.pdf",
+    "page": 2,
+    "segment_id": "E-001:p2:s18",
+    "text": "Luca Torres does not own any rental property.",
+    "method": "pdfplumber",
+    "ocr_sourced": false,
+    "facts": [
+      {
+        "fact_id": "F-3106db253851c6e0",
+        "subject": "Luca Torres",
+        "attribute": "owns_rental_property",
+        "value": "false",
+        "unit": "boolean",
+        "period": "unspecified",
+        "source_id": "E-001",
+        "filename": "form207_validation.pdf",
+        "document_sha256": "77d3f2abad33f75bee93da5e8e182f28ec32a5968d2c8387b4a4b44fc1306125",
+        "page": 2,
+        "quote": "Luca Torres does not own any rental property.",
+        "segment_id": "E-001:p2:s18",
+        "evidence_classification": "REPORTED_FACT",
+        "verification_status": "VERIFIED_SOURCE",
+        "original_value": "false",
+        "normalized_value": "false",
+        "extraction_method": "pdfplumber",
+        "ocr_sourced": false,
+        "confidence": 0.85,
+        "attribution_quote": "Luca Torres does not own any rental property.",
+        "attribution_segment_id": "E-001:p2:s18",
+        "source_segment_ids": [
+          "E-001:p2:s18"
+        ],
+        "record_group": ""
+      }
+    ],
+    "decision": "ACCEPTED",
+    "reason": "Validated source or party attribution for 207-11-a, 207-11-b, 207-11-c, 207-11-d, 207-11-e",
+    "accepted_into_responses": [
+      "207-11-a",
+      "207-11-b",
+      "207-11-c",
+      "207-11-d",
+      "207-11-e"
+    ]
+  },
+  {
+    "source_id": "E-001",
+    "document": "form207_validation.pdf",
+    "page": 2,
+    "segment_id": "E-001:p2:s19",
+    "text": "Luca Torres is not a beneficiary of a trust.",
+    "method": "pdfplumber",
+    "ocr_sourced": false,
+    "facts": [
+      {
+        "fact_id": "F-b8b698dc6659db00",
+        "subject": "Luca Torres",
+        "attribute": "trust_party",
+        "value": "false",
+        "unit": "boolean",
+        "period": "unspecified",
+        "source_id": "E-001",
+        "filename": "form207_validation.pdf",
+        "document_sha256": "77d3f2abad33f75bee93da5e8e182f28ec32a5968d2c8387b4a4b44fc1306125",
+        "page": 2,
+        "quote": "Luca Torres is not a beneficiary of a trust.",
+        "segment_id": "E-001:p2:s19",
+        "evidence_classification": "REPORTED_FACT",
+        "verification_status": "VERIFIED_SOURCE",
+        "original_value": "false",
+        "normalized_value": "false",
+        "extraction_method": "pdfplumber",
+        "ocr_sourced": false,
+        "confidence": 0.85,
+        "attribution_quote": "Luca Torres is not a beneficiary of a trust.",
+        "attribution_segment_id": "E-001:p2:s19",
+        "source_segment_ids": [
+          "E-001:p2:s19"
+        ],
+        "record_group": ""
+      }
+    ],
+    "decision": "ACCEPTED",
+    "reason": "Validated source or party attribution for 207-12-a, 207-12-b",
+    "accepted_into_responses": [
+      "207-12-a",
+      "207-12-b"
+    ]
+  },
+  {
+    "source_id": "E-001",
+    "document": "form207_validation.pdf",
+    "page": 2,
+    "segment_id": "E-001:p2:s20",
+    "text": "Luca Torres can work.",
+    "method": "pdfplumber",
+    "ocr_sourced": false,
+    "facts": [
+      {
+        "fact_id": "F-a6fdb44828079723",
+        "subject": "Luca Torres",
+        "attribute": "unable_to_work_disability",
+        "value": "false",
+        "unit": "boolean",
+        "period": "unspecified",
+        "source_id": "E-001",
+        "filename": "form207_validation.pdf",
+        "document_sha256": "77d3f2abad33f75bee93da5e8e182f28ec32a5968d2c8387b4a4b44fc1306125",
+        "page": 2,
+        "quote": "Luca Torres can work.",
+        "segment_id": "E-001:p2:s20",
+        "evidence_classification": "REPORTED_FACT",
+        "verification_status": "VERIFIED_SOURCE",
+        "original_value": "false",
+        "normalized_value": "false",
+        "extraction_method": "pdfplumber",
+        "ocr_sourced": false,
+        "confidence": 0.85,
+        "attribution_quote": "Luca Torres can work.",
+        "attribution_segment_id": "E-001:p2:s20",
+        "source_segment_ids": [
+          "E-001:p2:s20"
+        ],
+        "record_group": ""
+      }
+    ],
+    "decision": "ACCEPTED",
+    "reason": "Validated source or party attribution for 207-6-a, 207-6-b, 207-6-c, 207-6-d, 207-6-e, 207-6-f, 207-6-g",
+    "accepted_into_responses": [
+      "207-6-a",
+      "207-6-b",
+      "207-6-c",
+      "207-6-d",
+      "207-6-e",
+      "207-6-f",
+      "207-6-g"
+    ]
+  }
+]

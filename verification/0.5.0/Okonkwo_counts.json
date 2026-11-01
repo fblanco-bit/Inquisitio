@@ -1,0 +1,21 @@
+{
+  "documents": 2,
+  "pages": 9,
+  "facts_extracted": 116,
+  "responses_populated": 31,
+  "citation_references_validated": 85,
+  "distinct_source_passages_validated": 47,
+  "questions_left_for_review": 81,
+  "status_counts": {
+    "DRAFT": 31,
+    "POTENTIAL_CONFLICT": 1,
+    "EMPTY": 49
+  },
+  "evidence_outcomes": {
+    "SUPPORTED_DRAFT": 14,
+    "EVIDENCE_CONFLICT": 1,
+    "SUPPORTED_NOT_APPLICABLE": 1,
+    "PARTIAL_DRAFT": 16,
+    "NO_RESPONSIVE_EVIDENCE": 49
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "documents": 2,
+  "pages": 9,
+  "segments": 159,
+  "facts": 3,
+  "items": 81,
+  "status_counts": {
+    "NO_RESPONSIVE_EVIDENCE": 57,
+    "CLIENT_CONFIRMATION": 24
+  },
+  "approved": 0,
+  "ocr_required": [],
+  "responses_populated": 0,
+  "citation_references": 0,
+  "questions_left_for_review": 81
+}

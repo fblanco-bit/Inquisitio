@@ -1,0 +1,56 @@
+﻿question_id,question,expected_engine_status,expected_answer_facts_or_boundary,source_record_ids
+1a,What is the address?,SUPPORTED_DRAFT,"188 Sample Orchard Road, Apartment 4, Hartford CT 06103",CS-A01
+1b,"What type of property is it (apartment, condominium, single-family home)?",SUPPORTED_DRAFT,Rental apartment in three-unit residential building,CS-A01
+1c,Who is the owner of the property?,SUPPORTED_DRAFT,West Ward Properties LLC,CS-A01
+1d,"What is your relationship to the owner (landlord, parents, spouse)?",SUPPORTED_DRAFT,Landlord/tenant relationship,CS-A01
+1e,When did you start living at this residence?,SUPPORTED_DRAFT,Moved 04/01/2024,CS-A01
+2a,"For each adult you live with, what is your relationship to them (spouse, sibling, roommate, parent, girlfriend or boyfriend)?",SUPPORTED_DRAFT,Adult cohabitant Leah Monroe is Nolan's sister,CS-A01
+2b,"For each adult you live with, what is their financial contribution to the household (who pays the rent, who pays the utilities, who buys the groceries)?",SUPPORTED_DRAFT,Leah pays 400 monthly groceries; Nolan pays 1600 rent and 210 utilities,CS-A01
+3a,"Are you employed full-time or part-time? Are you self-employed? If you are self-employed, do not answer (b) through (h) and go directly to Interrogatory #4.",SUPPORTED_DRAFT,Full-time W-2 employment as logistics dispatcher at Hawthorn Supply; not self-employed,CS-B02;CS-E05
+3b,"Are you paid a salary, on an hourly basis, or do you work on commission or tips?",SUPPORTED_DRAFT,"Hourly 30 regular, 45 overtime; no commission or tips",CS-B02
+3c,What is your income per week?,SUPPORTED_DRAFT,Regular gross weekly 1200; illustrative with four hours overtime 1380,CS-B02
+3d,How many hours per week do you usually work?,SUPPORTED_DRAFT,40 regular hours weekly,CS-B02
+3e,"Is overtime available, and if it is, how many hours per week do you work overtime and what are you paid?",SUPPORTED_DRAFT,Overtime typically available four weekly hours at 45/hour,CS-B02
+3f,"Do you receive, or have you ever received, bonus income from your employment and what is the basis for the bonus?",SUPPORTED_DRAFT,Annual performance bonus conditional; 2000 received Dec 2025,CS-B02
+3g,"Does your employer deduct federal and state taxes and Medicare from your wages or are you responsible for filing your own deductions? If you file, provide a copy of your most recent tax returns.",SUPPORTED_DRAFT,"Employer withholds federal, CT income tax, Medicare and Social Security",CS-B02
+3h,"Do you have a second source of employment? If so, please provide the same information as requested in (a) through (g).",SUPPORTED_DRAFT,No second employment,CS-B02;CS-E05
+4a,"Are you part of a partnership, corporation or LLC, and if you are, give the name of the business and your role in it?",NOT_APPLICABLE,Not self-employed; conditional self-employment section inapplicable,CS-E05
+4b,Name the other people involved in your business and their roles.,NOT_APPLICABLE,Not self-employed,CS-E05
+4c,"Does the business file taxes (if so, bring copies of the last two tax returns filed to your next court date)?",NOT_APPLICABLE,Not self-employed,CS-E05
+4d,Describe the work you do.,NOT_APPLICABLE,Not self-employed,CS-E05
+4e,"How many hours per week do you work, on average?",NOT_APPLICABLE,Not self-employed,CS-E05
+4f,How much do you typically earn per hour?,NOT_APPLICABLE,Not self-employed,CS-E05
+4g,"List your business expenses, and what they cost per week.",NOT_APPLICABLE,Not self-employed,CS-E05
+4h,State how you are typically paid (check or cash).,NOT_APPLICABLE,Not self-employed,CS-E05
+4i,Name the five people or companies you did most of your work for in the last year.,NOT_APPLICABLE,Not self-employed,CS-E05
+4j,"If you have a business account, what bank is it at (bring copies of the last six months of bank statements to your next court date)?",NOT_APPLICABLE,Not self-employed,CS-E05
+4k,"Do you work alone or do you employ anyone and pay them wages? If you employ anyone, please identify them, their relationship to you, if any, and the amount you pay them.",NOT_APPLICABLE,Not self-employed,CS-E05
+4l,"How do you keep your payment and expense records? Do you employ an accountant, and if so, please give the name and address of the accountant responsible for your records?",NOT_APPLICABLE,Not self-employed,CS-E05
+5,"Except for your current job, list all the places you have worked for in the last three years. For each place, list the address, the type of work you did, the dates you worked there and how much you were paid at each job.",SUPPORTED_DRAFT,Cape Valley Warehouse 07/15/2021-09/15/2023 $24 hourly; Hawthorn since 10/02/2023,CS-B02
+6a,What is the date you became disabled?,NOT_APPLICABLE,No work-prohibiting disability or onset date,CS-E05
+6b,Is this disability permanent or temporary?,NOT_APPLICABLE,No disability status,CS-E05
+6c,"If a doctor has told you that you cannot work, what is the name of the doctor and his or her office (bring a note from this doctor stating that you cannot work to your next court date)?",NOT_APPLICABLE,No physician restrictions or disability doctor's note,CS-E05
+6d,"If a doctor has told you that you cannot work, did he or she say you cannot work full-time or part-time?",NOT_APPLICABLE,No inability to work imposed by doctor,CS-E05
+6e,"If you have a partial or permanent disability, please provide the percentage rating.",NOT_APPLICABLE,No percentage disability rating,CS-E05
+6f,"Is your disability the result of an automobile accident, an accident at work, an accident at home or otherwise? Please give the date and details of the incident and state whether you have filed a lawsuit or workers’ compensation claim as a result.",NOT_APPLICABLE,No disability-causing incident or associated lawsuit/workers compensation,CS-E05
+6g,"Have you had any children since the incident? If so, list their dates of birth.",NOT_APPLICABLE,No disability-causing incident; question condition not met,CS-E05
+7a,"If you did, when did you apply and where are you in the application process?",NOT_APPLICABLE,No SSD/SSI application to date,CS-E05
+7b,"Have you been told if or when you will receive benefits? If so, who told you and what is the date they gave you?",NOT_APPLICABLE,No SSD/SSI benefit award expected,CS-E05
+7c,"If your application for SSD and/or SSI has been denied, did you appeal? If you appealed, what is the status of the appeal and what lawyer, if any, represents you?",NOT_APPLICABLE,No SSD/SSI denial or appeal,CS-E05
+7d,Have you applied for or are you receiving state assistance?,SUPPORTED_DRAFT,No state assistance applied for or received,CS-E05
+7e,"Are you a recipient of the state supplement program, medical assistance program, temporary family assistance program or state-administered general assistance program (SAGA medical or cash)? If so, state the source of the benefit, the effective date of the benefit and the date when your eligibility for benefits will be redetermined by the Department of Social Services.",SUPPORTED_DRAFT,"Not recipient of state supplement, medical assistance, TFA or SAGA",CS-E05
+8a,"If you do, what type of case is it?",SUPPORTED_DRAFT,Pending contract breach lawsuit against Orbit Repair Group LLC,CS-D04
+8b,"Give the name, address, email address and phone number of the lawyer handling the case for you.",SUPPORTED_DRAFT,Attorney Imogen Hale 64 Practice Plaza Hartford; imogen.hale@example.test; (860) 555-0134,CS-D04
+8c,What amount do you expect to recover and when do you expect to receive it?,PARTIAL_DRAFT,Claim demand 12000; actual recovery and date unknown; never represent demand as guaranteed recovery,CS-D04
+8d,"If you have already settled the case, please provide a copy of the settlement statement.",NOT_APPLICABLE,Case not settled; no settlement statement,CS-D04;CS-E05
+9a,"If you do, who do you expect to inherit from and where do they or where did they live?",SUPPORTED_DRAFT,"Possible inheritance from aunt Marisol Monroe, 21 Hypothetical Drive Hartford",CS-D04
+9b,"What do you expect to inherit, what is its value and when do you expect to inherit it?",PARTIAL_DRAFT,"Conditional anticipated cash approx 14000; tentative Jan-Mar 2027, no fixed amount/date",CS-D04
+9c,What is the name and address of the person or lawyer handling the estate and where is the Probate Court in which the action is filed?,SUPPORTED_DRAFT,"Estate attorney Helen Soto, 18 Template Plaza; Hartford Probate Court",CS-D04
+10,"Is anyone holding any money for you? If so, name the person, their relationship to you, their address and the amount of money they are holding.",SUPPORTED_DRAFT,No separate person holding money except identified trust arrangement; list that exception,CS-C03;CS-E05
+11a,Is the property residential or commercial?,SUPPORTED_DRAFT,Residential single-family rental,CS-C03
+11b,"Please identify the location of the property or properties, include the address and identify your ownership interest.",SUPPORTED_DRAFT,"74 Example Grove, Manchester CT 06040; Nolan owns 50 percent",CS-C03
+11c,"Do you derive any income from the property? Do you calculate your net income from the property on a weekly, monthly or yearly basis?",SUPPORTED_DRAFT,Total rent 1800 monthly; Nolan 900 gross and 160 monthly net after share of expense,CS-C03
+11d,"What are your expenses relating to the property or properties? Please state the amount of your mortgage payment, if any, and the amount of your taxes, insurance and utility payments, if any, and your method of payment of these expenses.",SUPPORTED_DRAFT,"Property mortgage 980, tax 280, insurance 120, utilities 100 monthly; Nolan half; autopay",CS-C03
+11e,"Did you have to apply for a loan to finance any part of the real property or to finance the purchase of any personal property? If so, identify the item, state the amount of the loan and give a copy of the loan application.",SUPPORTED_DRAFT,Original mortgage 132000 with Mock State Bank; joint loan application 04/20/2022,CS-C03
+12a,"If so, please identify the trust, the type of trust, the date of the creation of the trust, the name and address of the trustee and how the trust is funded.",SUPPORTED_DRAFT,"Rowan Monroe Testamentary Support Trust, created 08/20/2019; trustee Sloane Keene; funded 32000",CS-D04
+12b,How often do you receive a distribution from the trust and from whom and in what amounts are the distributions?,SUPPORTED_DRAFT,"Discretionary 160 monthly payments from Sloane Keene, three latest months paid",CS-D04

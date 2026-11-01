@@ -1,0 +1,14 @@
+{
+  "documents": 1,
+  "pages": 2,
+  "facts_extracted": 19,
+  "responses_populated": 38,
+  "citation_references_validated": 40,
+  "distinct_source_passages_validated": 18,
+  "questions_left_for_review": 17,
+  "status_counts": {
+    "SUPPORTED_DRAFT": 12,
+    "NO_RESPONSIVE_EVIDENCE": 17,
+    "NOT_APPLICABLE": 26
+  }
+}

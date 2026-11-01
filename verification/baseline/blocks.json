@@ -1,0 +1,1745 @@
+[
+  {
+    "document": "DEV_Evidence_1_Complaint_and_Crash_Report.pdf",
+    "page": 1,
+    "raw_extracted_text": "                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                        DOCKET NO. NNH-CV26-6023871-S : SUPERIOR COURT              \n                                                                                    \n                           TERRENCE OKONKWO : J.D. OF NEW HAVEN                     \n                                    V. : AT NEW HAVEN                               \n                                                                                    \n                   BRIGHTLINE LOGISTICS, INC. AND SOFIA MARQUES : APRIL 21, 2026    \n                                                                                    \n                                                                                    \n           COMPLAINT                                                                \n                                                                                    \n           1. The Plaintiff, Terrence Okonkwo, resides at 312 Quinnipiac Avenue, Apartment 3B, New Haven,\n           Connecticut 06513.                                                       \n           2. The Defendant Brightline Logistics, Inc. is a Connecticut corporation with a principal place of\n                                                                                    \n           business at 900 Boston Post Road, Milford, Connecticut 06460, and at all relevant times owned the box\n           truck operated by the Defendant Sofia Marques, its employee.             \n           3. On January 9, 2026, at approximately 7:15 a.m., the Plaintiff was operating his own 2017 Toyota\n           Camry northbound on Interstate 91 near Exit 8 in New Haven, slowing for congested traffic.\n                                                                                    \n           4. The Defendant Marques, operating the Brightline box truck northbound behind the Plaintiff, failed to\n           slow and struck the rear of the Plaintiff's vehicle, pushing it into the vehicle ahead.\n           5. As a result the Plaintiff sustained a concussion with loss of consciousness; a fracture of the left\n           clavicle; a lumbar strain with L4-L5 disc bulge; lacerations to the scalp requiring sutures; and bilateral\n                                                                                    \n           knee contusions.                                                         \n           6. The Plaintiff was transported by ambulance to Yale New Haven Hospital, where he was admitted and\n           remained hospitalized from January 9 through January 11, 2026.           \n                                                                                    \n           7. The Plaintiff has treated with Dr. Helena Voss, M.D., orthopaedic surgeon, of Shoreline\n           Orthopaedics, 2200 Whitney Avenue, Hamden, CT 06518; with Dr. Samuel Reyes-Okafor, M.D.,\n           neurologist, of New Haven Neurology Group, 60 Temple Street, Suite 5C, New Haven, CT 06510; and\n           with Elm City Rehabilitation, 455 State Street, New Haven, CT 06510.     \n           8. The Plaintiff continues to suffer headaches, difficulty concentrating, low back pain, and reduced\n                                                                                    \n           range of motion of the left shoulder, and has not recovered.             \n                                                                                    \n           WHEREFORE, the Plaintiff claims money damages in excess of $15,000.      \n                                                                                    \n           THE PLAINTIFF, TERRENCE OKONKWO                                          \n           By: Attorney Dana L. Whitcomb, Juris No. 433108                          \n           Whitcomb Law Group LLC, 59 Elm Street, New Haven, CT 06510               \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    ",
+    "blocks": [
+      {
+        "text": "DOCKET NO. NNH-CV26-6023871-S : SUPERIOR COURT",
+        "kind": "heading",
+        "segment_id": "E-001:p1:s1",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "TERRENCE OKONKWO : J.D. OF NEW HAVEN",
+        "kind": "heading",
+        "segment_id": "E-001:p1:s2",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "V. : AT NEW HAVEN",
+        "kind": "heading",
+        "segment_id": "E-001:p1:s3",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "BRIGHTLINE LOGISTICS, INC. AND SOFIA MARQUES : APRIL 21, 2026",
+        "kind": "heading",
+        "segment_id": "E-001:p1:s4",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "COMPLAINT",
+        "kind": "heading",
+        "segment_id": null,
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "Too short (<12 characters); discarded by extraction"
+      },
+      {
+        "text": "1.",
+        "kind": "text",
+        "segment_id": null,
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "Too short (<12 characters); discarded by extraction"
+      },
+      {
+        "text": "The Plaintiff, Terrence Okonkwo, resides at 312 Quinnipiac Avenue, Apartment 3B, New Haven, Connecticut 06513.",
+        "kind": "text",
+        "segment_id": "E-001:p1:s5",
+        "facts": [
+          {
+            "fact_id": "F-ca97d1468d9abf59",
+            "subject": "Terrence Okonkwo",
+            "attribute": "home_address",
+            "value": "312 Quinnipiac Avenue, Apartment 3B, New Haven, Connecticut 06513",
+            "unit": "address",
+            "period": "unspecified",
+            "source_id": "E-001",
+            "filename": "DEV_Evidence_1_Complaint_and_Crash_Report.pdf",
+            "document_sha256": "a8fbeff96e38287d1b71f576d2d4e0e38b2cc5d83cc54058502f86d741c05e59",
+            "page": 1,
+            "quote": "The Plaintiff, Terrence Okonkwo, resides at 312 Quinnipiac Avenue, Apartment 3B, New Haven, Connecticut 06513.",
+            "segment_id": "E-001:p1:s5",
+            "evidence_classification": "ALLEGATION",
+            "verification_status": "REVIEW_REQUIRED"
+          }
+        ],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "Document classification excluded"
+      },
+      {
+        "text": "2.",
+        "kind": "text",
+        "segment_id": null,
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "Too short (<12 characters); discarded by extraction"
+      },
+      {
+        "text": "The Defendant Brightline Logistics, Inc. is a Connecticut corporation with a principal place of",
+        "kind": "text",
+        "segment_id": "E-001:p1:s6",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "business at 900 Boston Post Road, Milford, Connecticut 06460, and at all relevant times owned the box truck operated by the Defendant Sofia Marques, its employee.",
+        "kind": "text",
+        "segment_id": "E-001:p1:s7",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "3.",
+        "kind": "text",
+        "segment_id": null,
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "Too short (<12 characters); discarded by extraction"
+      },
+      {
+        "text": "On January 9, 2026, at approximately 7:15 a.m., the Plaintiff was operating his own 2017 Toyota Camry northbound on Interstate 91 near Exit 8 in New Haven, slowing for congested traffic.",
+        "kind": "text",
+        "segment_id": "E-001:p1:s8",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "4.",
+        "kind": "text",
+        "segment_id": null,
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "Too short (<12 characters); discarded by extraction"
+      },
+      {
+        "text": "The Defendant Marques, operating the Brightline box truck northbound behind the Plaintiff, failed to slow and struck the rear of the Plaintiff's vehicle, pushing it into the vehicle ahead.",
+        "kind": "text",
+        "segment_id": "E-001:p1:s9",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "5.",
+        "kind": "text",
+        "segment_id": null,
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "Too short (<12 characters); discarded by extraction"
+      },
+      {
+        "text": "As a result the Plaintiff sustained a concussion with loss of consciousness; a fracture of the left clavicle; a lumbar strain with L4-L5 disc bulge; lacerations to the scalp requiring sutures; and bilateral",
+        "kind": "text",
+        "segment_id": "E-001:p1:s10",
+        "facts": [
+          {
+            "fact_id": "F-1b88657c24ca2142",
+            "subject": "Terrence Okonkwo",
+            "attribute": "incident_injury",
+            "value": "concussion with loss of consciousness",
+            "unit": "",
+            "period": "unspecified",
+            "source_id": "E-001",
+            "filename": "DEV_Evidence_1_Complaint_and_Crash_Report.pdf",
+            "document_sha256": "a8fbeff96e38287d1b71f576d2d4e0e38b2cc5d83cc54058502f86d741c05e59",
+            "page": 1,
+            "quote": "As a result the Plaintiff sustained a concussion with loss of consciousness; a fracture of the left clavicle; a lumbar strain with L4-L5 disc bulge; lacerations to the scalp requiring sutures; and bilateral",
+            "segment_id": "E-001:p1:s10",
+            "evidence_classification": "ALLEGATION",
+            "verification_status": "REVIEW_REQUIRED"
+          }
+        ],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "Document classification excluded"
+      },
+      {
+        "text": "knee contusions.",
+        "kind": "text",
+        "segment_id": "E-001:p1:s11",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "6.",
+        "kind": "text",
+        "segment_id": null,
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "Too short (<12 characters); discarded by extraction"
+      },
+      {
+        "text": "The Plaintiff was transported by ambulance to Yale New Haven Hospital, where he was admitted and remained hospitalized from January 9 through January 11, 2026.",
+        "kind": "text",
+        "segment_id": "E-001:p1:s12",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "7.",
+        "kind": "text",
+        "segment_id": null,
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "Too short (<12 characters); discarded by extraction"
+      },
+      {
+        "text": "The Plaintiff has treated with Dr. Helena Voss, M.D., orthopaedic surgeon, of Shoreline",
+        "kind": "text",
+        "segment_id": "E-001:p1:s13",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Orthopaedics, 2200 Whitney Avenue, Hamden, CT 06518; with Dr. Samuel Reyes-Okafor, M.D., neurologist, of New Haven Neurology Group, 60 Temple Street, Suite 5C, New Haven, CT 06510; and with Elm City Rehabilitation, 455 State Street, New Haven, CT 06510.",
+        "kind": "text",
+        "segment_id": "E-001:p1:s14",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "8.",
+        "kind": "text",
+        "segment_id": null,
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "Too short (<12 characters); discarded by extraction"
+      },
+      {
+        "text": "The Plaintiff continues to suffer headaches, difficulty concentrating, low back pain, and reduced",
+        "kind": "text",
+        "segment_id": "E-001:p1:s15",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "range of motion of the left shoulder, and has not recovered.",
+        "kind": "text",
+        "segment_id": "E-001:p1:s16",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "WHEREFORE, the Plaintiff claims money damages in excess of $15,000.",
+        "kind": "text",
+        "segment_id": "E-001:p1:s17",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "THE PLAINTIFF, TERRENCE OKONKWO",
+        "kind": "heading",
+        "segment_id": "E-001:p1:s18",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "By: Attorney Dana L. Whitcomb, Juris No. 433108",
+        "kind": "heading",
+        "segment_id": "E-001:p1:s19",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Whitcomb Law Group LLC, 59 Elm Street, New Haven, CT 06510",
+        "kind": "heading",
+        "segment_id": "E-001:p1:s20",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      }
+    ]
+  },
+  {
+    "document": "DEV_Evidence_1_Complaint_and_Crash_Report.pdf",
+    "page": 2,
+    "raw_extracted_text": "                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                         CONNECTICUT STATE POLICE, TROOP I, BETHANY                 \n                                                                                    \n                                 UNIFORM CRASH REPORT                               \n                                                                                    \n           Report No.            CSP-I-26-000418                                    \n           Date                  01/09/2026                                         \n                                                                                    \n           Time                  07:15                                              \n           Location              I-91 NB, 0.3 mi south of Exit 8, New Haven         \n           Investigating Trooper TFC R. Delacroix, #1142                            \n                                                                                    \n           Weather / Road        Clear / Dry                                        \n           Vehicles Involved     3                                                  \n                                                                                    \n                                                                                    \n           VEHICLE  1                                                               \n                                                                                    \n           Operator Name         OKONKWO, TERRENCE JAMES                            \n           Other Names Used      T.J. Okonkwo                                       \n                                                                                    \n           DOB                   05/30/1979                                         \n           License               CT 071-442-8830, Class D                           \n                                                                                    \n           Residence             312 Quinnipiac Ave Apt 3B, New Haven CT 06513      \n           Telephone             (203) 555-0216                                     \n           Vehicle               2017 Toyota Camry, silver, CT reg. 8KLM42          \n                                                                                    \n           Owner                 Same as operator                                   \n           Injury Status         Incapacitating; unresponsive on trooper arrival, regained consciousness; transported AMR to Yale New Haven Hospital\n                                                                                    \n                                                                                    \n           VEHICLE  2                                                               \n                                                                                    \n           Operator Name         MARQUES, SOFIA                                     \n           DOB                   11/02/1994                                         \n                                                                                    \n           License               CT 155-019-7702, Class B                           \n           Residence             14 Wheelers Farms Rd, Milford CT 06461             \n                                                                                    \n           Vehicle               2022 Isuzu NPR box truck, white, CT reg. commercial 4421-CX\n           Owner                 Brightline Logistics Inc, 900 Boston Post Rd, Milford CT 06460\n           Injury Status         None                                               \n                                                                                    \n                                                                                    \n           VEHICLE  3                                                               \n                                                                                    \n           Operator Name         LINDQVIST, ANNA                                    \n                                                                                    \n           Vehicle               2020 Subaru Outback, CT reg. 2FPH91                \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    ",
+    "blocks": [
+      {
+        "text": "CONNECTICUT STATE POLICE, TROOP I, BETHANY",
+        "kind": "heading",
+        "segment_id": "E-001:p2:s1",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "UNIFORM CRASH REPORT",
+        "kind": "heading",
+        "segment_id": "E-001:p2:s2",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Report No. CSP-I-26-000418",
+        "kind": "heading",
+        "segment_id": "E-001:p2:s3",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Date 01/09/2026",
+        "kind": "heading",
+        "segment_id": "E-001:p2:s4",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Time 07:15",
+        "kind": "heading",
+        "segment_id": null,
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "Too short (<12 characters); discarded by extraction"
+      },
+      {
+        "text": "Location I-91 NB, 0.3 mi south of Exit 8, New Haven",
+        "kind": "heading",
+        "segment_id": "E-001:p2:s5",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Investigating Trooper TFC R. Delacroix, #1142",
+        "kind": "heading",
+        "segment_id": "E-001:p2:s6",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Weather / Road Clear / Dry",
+        "kind": "heading",
+        "segment_id": "E-001:p2:s7",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Vehicles Involved 3",
+        "kind": "heading",
+        "segment_id": "E-001:p2:s8",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "VEHICLE 1",
+        "kind": "heading",
+        "segment_id": null,
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "Too short (<12 characters); discarded by extraction"
+      },
+      {
+        "text": "Operator Name OKONKWO, TERRENCE JAMES",
+        "kind": "heading",
+        "segment_id": "E-001:p2:s9",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Other Names Used T.J. Okonkwo",
+        "kind": "heading",
+        "segment_id": "E-001:p2:s10",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "DOB 05/30/1979",
+        "kind": "heading",
+        "segment_id": "E-001:p2:s11",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "License CT 071-442-8830, Class D",
+        "kind": "heading",
+        "segment_id": "E-001:p2:s12",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Residence 312 Quinnipiac Ave Apt 3B, New Haven CT 06513",
+        "kind": "heading",
+        "segment_id": "E-001:p2:s13",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Telephone (203) 555-0216",
+        "kind": "heading",
+        "segment_id": "E-001:p2:s14",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Vehicle 2017 Toyota Camry, silver, CT reg. 8KLM42",
+        "kind": "heading",
+        "segment_id": "E-001:p2:s15",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Owner Same as operator Injury Status Incapacitating; unresponsive on trooper arrival, regained consciousness; transported AMR to Yale New Haven Hospital",
+        "kind": "text",
+        "segment_id": "E-001:p2:s16",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "VEHICLE 2",
+        "kind": "heading",
+        "segment_id": null,
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "Too short (<12 characters); discarded by extraction"
+      },
+      {
+        "text": "Operator Name MARQUES, SOFIA",
+        "kind": "heading",
+        "segment_id": "E-001:p2:s17",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "DOB 11/02/1994",
+        "kind": "heading",
+        "segment_id": "E-001:p2:s18",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "License CT 155-019-7702, Class B",
+        "kind": "heading",
+        "segment_id": "E-001:p2:s19",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Residence 14 Wheelers Farms Rd, Milford CT 06461",
+        "kind": "heading",
+        "segment_id": "E-001:p2:s20",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Vehicle 2022 Isuzu NPR box truck, white, CT reg. commercial 4421-CX",
+        "kind": "heading",
+        "segment_id": "E-001:p2:s21",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Owner Brightline Logistics Inc, 900 Boston Post Rd, Milford CT 06460",
+        "kind": "heading",
+        "segment_id": "E-001:p2:s22",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Injury Status None",
+        "kind": "heading",
+        "segment_id": "E-001:p2:s23",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "VEHICLE 3",
+        "kind": "heading",
+        "segment_id": null,
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "Too short (<12 characters); discarded by extraction"
+      },
+      {
+        "text": "Operator Name LINDQVIST, ANNA",
+        "kind": "heading",
+        "segment_id": "E-001:p2:s24",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Vehicle 2020 Subaru Outback, CT reg. 2FPH91",
+        "kind": "heading",
+        "segment_id": "E-001:p2:s25",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      }
+    ]
+  },
+  {
+    "document": "DEV_Evidence_1_Complaint_and_Crash_Report.pdf",
+    "page": 3,
+    "raw_extracted_text": "                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n           Injury Status         Minor, refused transport                           \n                                                                                    \n                                                                                    \n           NARRATIVE                                                                \n                                                                                    \n           V1 and V3 were slowing in the center lane for congestion. V2 failed to reduce speed and struck V1 in\n           the rear, propelling V1 into V3. V2 operator stated she was checking a delivery route on a mounted\n           tablet. V2 operator cited for Failure to Drive a Reasonable Distance Apart, CGS 14-240(a). V1 towed by\n           Nolan's Towing. Witness: LINDQVIST, ANNA, 88 Fountain St, New Haven CT 06515, (203) 555-0391.\n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    ",
+    "blocks": [
+      {
+        "text": "Injury Status Minor, refused transport",
+        "kind": "heading",
+        "segment_id": "E-001:p3:s1",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "NARRATIVE",
+        "kind": "heading",
+        "segment_id": null,
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "Too short (<12 characters); discarded by extraction"
+      },
+      {
+        "text": "V1 and V3 were slowing in the center lane for congestion.",
+        "kind": "text",
+        "segment_id": "E-001:p3:s2",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "V2 failed to reduce speed and struck V1 in the rear, propelling V1 into V3.",
+        "kind": "text",
+        "segment_id": "E-001:p3:s3",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "V2 operator stated she was checking a delivery route on a mounted tablet.",
+        "kind": "text",
+        "segment_id": "E-001:p3:s4",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "V2 operator cited for Failure to Drive a Reasonable Distance Apart, CGS 14-240(a).",
+        "kind": "text",
+        "segment_id": "E-001:p3:s5",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "V1 towed by Nolan's Towing.",
+        "kind": "text",
+        "segment_id": "E-001:p3:s6",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Witness: LINDQVIST, ANNA, 88 Fountain St, New Haven CT 06515, (203) 555-0391.",
+        "kind": "text",
+        "segment_id": "E-001:p3:s7",
+        "facts": [
+          {
+            "fact_id": "F-c30af5109456b02e",
+            "subject": "unknown",
+            "attribute": "incident_witness",
+            "value": "LINDQVIST, ANNA, 88 Fountain St, New Haven CT 06515, (203) 555-0391",
+            "unit": "",
+            "period": "unspecified",
+            "source_id": "E-001",
+            "filename": "DEV_Evidence_1_Complaint_and_Crash_Report.pdf",
+            "document_sha256": "a8fbeff96e38287d1b71f576d2d4e0e38b2cc5d83cc54058502f86d741c05e59",
+            "page": 3,
+            "quote": "Witness: LINDQVIST, ANNA, 88 Fountain St, New Haven CT 06515, (203) 555-0391.",
+            "segment_id": "E-001:p3:s7",
+            "evidence_classification": "ALLEGATION",
+            "verification_status": "REVIEW_REQUIRED"
+          }
+        ],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "Subject unresolved"
+      }
+    ]
+  },
+  {
+    "document": "DEV_Evidence_1_Complaint_and_Crash_Report.pdf",
+    "page": 4,
+    "raw_extracted_text": "                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                           AMERICAN MEDICAL RESPONSE, NEW HAVEN                     \n                                                                                    \n                                PREHOSPITAL CARE REPORT                             \n                                                                                    \n           Run No.               AMR-NH-26-01-0211                                  \n           Patient               Okonkwo, Terrence                                  \n           DOB                   05/30/1979                                         \n                                                                                    \n           Age / Sex             46 / M                                             \n           Chief Complaint       LOC approx 2 min per bystander; scalp laceration, L shoulder pain, low back pain\n                                                                                    \n           GCS                   14 on arrival, 15 en route                         \n           Interventions         C-collar, backboard, scalp pressure dressing, IV NS\n           Destination           Yale New Haven Hospital ED, arrived 07:52          \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    ",
+    "blocks": [
+      {
+        "text": "AMERICAN MEDICAL RESPONSE, NEW HAVEN",
+        "kind": "heading",
+        "segment_id": "E-001:p4:s1",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "PREHOSPITAL CARE REPORT",
+        "kind": "heading",
+        "segment_id": "E-001:p4:s2",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Run No. AMR-NH-26-01-0211",
+        "kind": "heading",
+        "segment_id": "E-001:p4:s3",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Patient Okonkwo, Terrence",
+        "kind": "heading",
+        "segment_id": "E-001:p4:s4",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "DOB 05/30/1979",
+        "kind": "heading",
+        "segment_id": "E-001:p4:s5",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Age / Sex 46 / M Chief Complaint LOC approx 2 min per bystander; scalp laceration, L shoulder pain, low back pain",
+        "kind": "text",
+        "segment_id": "E-001:p4:s6",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "GCS 14 on arrival, 15 en route",
+        "kind": "heading",
+        "segment_id": "E-001:p4:s7",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Interventions C-collar, backboard, scalp pressure dressing, IV NS",
+        "kind": "heading",
+        "segment_id": "E-001:p4:s8",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Destination Yale New Haven Hospital ED, arrived 07:52",
+        "kind": "heading",
+        "segment_id": "E-001:p4:s9",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      }
+    ]
+  },
+  {
+    "document": "DEV_Evidence_2_Medical_and_Employer_Records.pdf",
+    "page": 1,
+    "raw_extracted_text": "                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                YALE NEW HAVEN HOSPITAL                             \n                                                                                    \n                                  DISCHARGE SUMMARY                                 \n                                                                                    \n           Patient               Okonkwo, Terrence J.                               \n           MRN                   YNH-4408127                                        \n           Date of Birth         05/30/1979                                         \n                                                                                    \n           Address               312 Quinnipiac Avenue, Apt 3B, New Haven, CT 06513 \n           Admission             01/09/2026 07:52 via ED                            \n                                                                                    \n           Discharge             01/11/2026 14:10                                   \n           Attending             Marcus Feldstein, M.D., Trauma Surgery             \n           Consults              Neurology (Reyes-Okafor), Orthopaedics (Voss)      \n                                                                                    \n                                                                                    \n           HISTORY  OF PRESENT   ILLNESS                                            \n                                                                                    \n           46-year-old male, restrained driver, rear-ended on I-91 by a commercial truck. Brief LOC at scene.\n           Employed as a forklift operator at a warehouse in North Haven.           \n                                                                                    \n           IMAGING                                                                  \n                                                                                    \n           CT head: no intracranial hemorrhage. X-ray left clavicle: midshaft fracture, displaced 1 cm. MRI lumbar\n           spine 01/10/2026: broad-based disc bulge L4-L5 without nerve root compression. X-ray bilateral knees:\n           no fracture.                                                             \n                                                                                    \n           DISCHARGE   DIAGNOSES                                                    \n                                                                                    \n           1. Concussion with loss of consciousness. 2. Displaced midshaft fracture, left clavicle. 3. Lumbar strain\n           with L4-L5 disc bulge. 4. Scalp laceration, 6 cm, repaired with 9 sutures. 5. Bilateral knee contusions.\n                                                                                    \n           DISCHARGE   PLAN                                                         \n                                                                                    \n           Sling for left arm. No lifting over 5 lb. Suture removal in 10 days. Follow up Shoreline Orthopaedics 1\n           week, New Haven Neurology Group 2 weeks. Out of work until cleared.      \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    ",
+    "blocks": [
+      {
+        "text": "YALE NEW HAVEN HOSPITAL",
+        "kind": "heading",
+        "segment_id": "E-002:p1:s1",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "DISCHARGE SUMMARY",
+        "kind": "heading",
+        "segment_id": "E-002:p1:s2",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Patient Okonkwo, Terrence J.",
+        "kind": "text",
+        "segment_id": "E-002:p1:s3",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "MRN YNH-4408127",
+        "kind": "heading",
+        "segment_id": "E-002:p1:s4",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Date of Birth 05/30/1979",
+        "kind": "heading",
+        "segment_id": "E-002:p1:s5",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Address 312 Quinnipiac Avenue, Apt 3B, New Haven, CT 06513",
+        "kind": "heading",
+        "segment_id": "E-002:p1:s6",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Admission 01/09/2026 07:52 via ED",
+        "kind": "heading",
+        "segment_id": "E-002:p1:s7",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Discharge 01/11/2026 14:10",
+        "kind": "heading",
+        "segment_id": "E-002:p1:s8",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Attending Marcus Feldstein, M.D., Trauma Surgery",
+        "kind": "heading",
+        "segment_id": "E-002:p1:s9",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Consults Neurology (Reyes-Okafor), Orthopaedics (Voss)",
+        "kind": "heading",
+        "segment_id": "E-002:p1:s10",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "HISTORY OF PRESENT ILLNESS",
+        "kind": "heading",
+        "segment_id": "E-002:p1:s11",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "46-year-old male, restrained driver, rear-ended on I-91 by a commercial truck.",
+        "kind": "text",
+        "segment_id": "E-002:p1:s12",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Brief LOC at scene.",
+        "kind": "text",
+        "segment_id": "E-002:p1:s13",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Employed as a forklift operator at a warehouse in North Haven.",
+        "kind": "text",
+        "segment_id": "E-002:p1:s14",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "IMAGING",
+        "kind": "heading",
+        "segment_id": null,
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "Too short (<12 characters); discarded by extraction"
+      },
+      {
+        "text": "CT head: no intracranial hemorrhage.",
+        "kind": "text",
+        "segment_id": "E-002:p1:s15",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "X-ray left clavicle: midshaft fracture, displaced 1 cm.",
+        "kind": "text",
+        "segment_id": "E-002:p1:s16",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "MRI lumbar spine 01/10/2026: broad-based disc bulge L4-L5 without nerve root compression.",
+        "kind": "text",
+        "segment_id": "E-002:p1:s17",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "X-ray bilateral knees: no fracture.",
+        "kind": "text",
+        "segment_id": "E-002:p1:s18",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "DISCHARGE DIAGNOSES",
+        "kind": "heading",
+        "segment_id": "E-002:p1:s19",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "1.",
+        "kind": "text",
+        "segment_id": null,
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "Too short (<12 characters); discarded by extraction"
+      },
+      {
+        "text": "Concussion with loss of consciousness.",
+        "kind": "text",
+        "segment_id": "E-002:p1:s20",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "2.",
+        "kind": "text",
+        "segment_id": null,
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "Too short (<12 characters); discarded by extraction"
+      },
+      {
+        "text": "Displaced midshaft fracture, left clavicle.",
+        "kind": "text",
+        "segment_id": "E-002:p1:s21",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "3.",
+        "kind": "text",
+        "segment_id": null,
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "Too short (<12 characters); discarded by extraction"
+      },
+      {
+        "text": "Lumbar strain with L4-L5 disc bulge.",
+        "kind": "text",
+        "segment_id": "E-002:p1:s22",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "4.",
+        "kind": "text",
+        "segment_id": null,
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "Too short (<12 characters); discarded by extraction"
+      },
+      {
+        "text": "Scalp laceration, 6 cm, repaired with 9 sutures.",
+        "kind": "text",
+        "segment_id": "E-002:p1:s23",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "5.",
+        "kind": "text",
+        "segment_id": null,
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "Too short (<12 characters); discarded by extraction"
+      },
+      {
+        "text": "Bilateral knee contusions.",
+        "kind": "text",
+        "segment_id": "E-002:p1:s24",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "DISCHARGE PLAN",
+        "kind": "heading",
+        "segment_id": "E-002:p1:s25",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Sling for left arm.",
+        "kind": "text",
+        "segment_id": "E-002:p1:s26",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "No lifting over 5 lb.",
+        "kind": "text",
+        "segment_id": "E-002:p1:s27",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Suture removal in 10 days.",
+        "kind": "text",
+        "segment_id": "E-002:p1:s28",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Follow up Shoreline Orthopaedics 1 week, New Haven Neurology Group 2 weeks.",
+        "kind": "text",
+        "segment_id": "E-002:p1:s29",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Out of work until cleared.",
+        "kind": "text",
+        "segment_id": "E-002:p1:s30",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      }
+    ]
+  },
+  {
+    "document": "DEV_Evidence_2_Medical_and_Employer_Records.pdf",
+    "page": 2,
+    "raw_extracted_text": "                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                 SHORELINE ORTHOPAEDICS                             \n                                                                                    \n                        2200 Whitney Avenue, Hamden, CT 06518, (203) 555-0160       \n                                                                                    \n           INITIAL CONSULTATION                                                     \n                                                                                    \n                                                                                    \n           Patient Name          Terrence Okonkwo                                   \n           Date of Birth         05/03/1979                                         \n           Visit Date            01/16/2026                                         \n                                                                                    \n           Physician             Helena Voss, M.D.                                  \n           S/p MVC 01/09/26 with displaced L clavicle fx. Discussed operative vs nonoperative management; pt\n           elects ORIF. Scheduled 01/23/2026.                                       \n                                                                                    \n                                                                                    \n           OPERATIVE  NOTE,  01/23/2026                                             \n                                                                                    \n           Open reduction internal fixation, left clavicle, precontoured plate. No complications. Discharged same\n           day.                                                                     \n                                                                                    \n                                                                                    \n           POST-OP  VISIT, 03/06/2026                                               \n                                                                                    \n           Incision healed. X-ray: hardware intact, early callus. L shoulder forward flexion 120 degrees\n           (contralateral 170). Begin formal PT. Remains out of work; forklift operation not permitted. Permanency\n           to be assessed at 12 months.                                             \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    ",
+    "blocks": [
+      {
+        "text": "SHORELINE ORTHOPAEDICS",
+        "kind": "heading",
+        "segment_id": "E-002:p2:s1",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "2200 Whitney Avenue, Hamden, CT 06518, (203) 555-0160",
+        "kind": "heading",
+        "segment_id": "E-002:p2:s2",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "INITIAL CONSULTATION",
+        "kind": "heading",
+        "segment_id": "E-002:p2:s3",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Patient Name Terrence Okonkwo",
+        "kind": "heading",
+        "segment_id": "E-002:p2:s4",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Date of Birth 05/03/1979",
+        "kind": "heading",
+        "segment_id": "E-002:p2:s5",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Visit Date 01/16/2026",
+        "kind": "heading",
+        "segment_id": "E-002:p2:s6",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Physician Helena Voss, M.D.",
+        "kind": "text",
+        "segment_id": "E-002:p2:s7",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "S/p MVC 01/09/26 with displaced L clavicle fx.",
+        "kind": "text",
+        "segment_id": "E-002:p2:s8",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Discussed operative vs nonoperative management; pt elects ORIF.",
+        "kind": "text",
+        "segment_id": "E-002:p2:s9",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Scheduled 01/23/2026.",
+        "kind": "text",
+        "segment_id": "E-002:p2:s10",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "OPERATIVE NOTE, 01/23/2026",
+        "kind": "heading",
+        "segment_id": "E-002:p2:s11",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Open reduction internal fixation, left clavicle, precontoured plate.",
+        "kind": "text",
+        "segment_id": "E-002:p2:s12",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "No complications.",
+        "kind": "text",
+        "segment_id": "E-002:p2:s13",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Discharged same day.",
+        "kind": "text",
+        "segment_id": "E-002:p2:s14",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "POST-OP VISIT, 03/06/2026",
+        "kind": "heading",
+        "segment_id": "E-002:p2:s15",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Incision healed.",
+        "kind": "text",
+        "segment_id": "E-002:p2:s16",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "X-ray: hardware intact, early callus.",
+        "kind": "text",
+        "segment_id": "E-002:p2:s17",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "L shoulder forward flexion 120 degrees (contralateral 170).",
+        "kind": "text",
+        "segment_id": "E-002:p2:s18",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Begin formal PT.",
+        "kind": "text",
+        "segment_id": "E-002:p2:s19",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Remains out of work; forklift operation not permitted.",
+        "kind": "text",
+        "segment_id": "E-002:p2:s20",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Permanency to be assessed at 12 months.",
+        "kind": "text",
+        "segment_id": "E-002:p2:s21",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      }
+    ]
+  },
+  {
+    "document": "DEV_Evidence_2_Medical_and_Employer_Records.pdf",
+    "page": 3,
+    "raw_extracted_text": "                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                               NEW HAVEN NEUROLOGY GROUP                            \n                                                                                    \n                           60 Temple Street, Suite 5C, New Haven, CT 06510          \n                                                                                    \n           Patient               Okonkwo, Terrence                                  \n           DOB                   05/30/1979                                         \n           Date of Visit         01/27/2026                                         \n                                                                                    \n           Provider              Samuel Reyes-Okafor, M.D.                          \n           Post-concussion syndrome. Daily headaches, photophobia, difficulty concentrating, sleep disturbance.\n           Neuro exam nonfocal. Started amitriptyline 10 mg nightly. Cognitive rest. Return 6 weeks.\n                                                                                    \n                                                                                    \n           FOLLOW-UP,   03/10/2026                                                  \n                                                                                    \n           Headaches reduced to 3 to 4 per week. Concentration improving. Continue medication. Not cleared for\n           equipment operation. Return 3 months.                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    ",
+    "blocks": [
+      {
+        "text": "NEW HAVEN NEUROLOGY GROUP",
+        "kind": "heading",
+        "segment_id": "E-002:p3:s1",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "60 Temple Street, Suite 5C, New Haven, CT 06510",
+        "kind": "heading",
+        "segment_id": "E-002:p3:s2",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Patient Okonkwo, Terrence",
+        "kind": "heading",
+        "segment_id": "E-002:p3:s3",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "DOB 05/30/1979",
+        "kind": "heading",
+        "segment_id": "E-002:p3:s4",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Date of Visit 01/27/2026",
+        "kind": "heading",
+        "segment_id": "E-002:p3:s5",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Provider Samuel Reyes-Okafor, M.D.",
+        "kind": "text",
+        "segment_id": "E-002:p3:s6",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Post-concussion syndrome.",
+        "kind": "text",
+        "segment_id": "E-002:p3:s7",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Daily headaches, photophobia, difficulty concentrating, sleep disturbance.",
+        "kind": "text",
+        "segment_id": "E-002:p3:s8",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Neuro exam nonfocal.",
+        "kind": "text",
+        "segment_id": "E-002:p3:s9",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Started amitriptyline 10 mg nightly.",
+        "kind": "text",
+        "segment_id": "E-002:p3:s10",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Cognitive rest.",
+        "kind": "text",
+        "segment_id": "E-002:p3:s11",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Return 6 weeks.",
+        "kind": "text",
+        "segment_id": "E-002:p3:s12",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "FOLLOW-UP, 03/10/2026",
+        "kind": "heading",
+        "segment_id": "E-002:p3:s13",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Headaches reduced to 3 to 4 per week.",
+        "kind": "text",
+        "segment_id": "E-002:p3:s14",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Concentration improving.",
+        "kind": "text",
+        "segment_id": "E-002:p3:s15",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Continue medication.",
+        "kind": "text",
+        "segment_id": "E-002:p3:s16",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Not cleared for equipment operation.",
+        "kind": "text",
+        "segment_id": "E-002:p3:s17",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Return 3 months.",
+        "kind": "text",
+        "segment_id": "E-002:p3:s18",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      }
+    ]
+  },
+  {
+    "document": "DEV_Evidence_2_Medical_and_Employer_Records.pdf",
+    "page": 4,
+    "raw_extracted_text": "                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                 ELM CITY REHABILITATION                            \n                                                                                    \n                              455 State Street, New Haven, CT 06510                 \n                                                                                    \n           Patient               Okonkwo, T.                                        \n           DOB                   05/30/1979                                         \n           Referring             H. Voss MD                                         \n                                                                                    \n           Diagnosis             s/p ORIF L clavicle; lumbar strain L4-5            \n           Therapist             Devin Castellano, PT                               \n                                                                                    \n                                                                                    \n           VISIT LOG                                                                \n                                                                                    \n           Date        Note                                                         \n           03/12/2026  Eval. L shoulder flex 118. Lumbar flexion 50 percent. Pain 6/10.\n                                                                                    \n           03/26/2026  Visit 4. Shoulder flex 130. Back pain 5/10.                  \n           04/09/2026  Visit 8. Shoulder flex 142. Back pain 4/10. Began light lifting program.\n                                                                                    \n           04/16/2026  Visit 10. Last visit to date. Continuing 2x/week. Not discharged.\n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    ",
+    "blocks": [
+      {
+        "text": "ELM CITY REHABILITATION",
+        "kind": "heading",
+        "segment_id": "E-002:p4:s1",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "455 State Street, New Haven, CT 06510",
+        "kind": "heading",
+        "segment_id": "E-002:p4:s2",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Patient Okonkwo, T.",
+        "kind": "text",
+        "segment_id": "E-002:p4:s3",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "DOB 05/30/1979",
+        "kind": "heading",
+        "segment_id": "E-002:p4:s4",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Referring H. Voss MD",
+        "kind": "heading",
+        "segment_id": "E-002:p4:s5",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Diagnosis s/p ORIF L clavicle; lumbar strain L4-5",
+        "kind": "heading",
+        "segment_id": "E-002:p4:s6",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Therapist Devin Castellano, PT",
+        "kind": "heading",
+        "segment_id": "E-002:p4:s7",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "VISIT LOG",
+        "kind": "heading",
+        "segment_id": null,
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "Too short (<12 characters); discarded by extraction"
+      },
+      {
+        "text": "Date Note 03/12/2026 Eval.",
+        "kind": "text",
+        "segment_id": "E-002:p4:s8",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "L shoulder flex 118.",
+        "kind": "text",
+        "segment_id": "E-002:p4:s9",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Lumbar flexion 50 percent.",
+        "kind": "text",
+        "segment_id": "E-002:p4:s10",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Pain 6/10.",
+        "kind": "text",
+        "segment_id": null,
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "Too short (<12 characters); discarded by extraction"
+      },
+      {
+        "text": "03/26/2026 Visit 4.",
+        "kind": "text",
+        "segment_id": "E-002:p4:s11",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Shoulder flex 130.",
+        "kind": "text",
+        "segment_id": "E-002:p4:s12",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Back pain 5/10.",
+        "kind": "text",
+        "segment_id": "E-002:p4:s13",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "04/09/2026 Visit 8.",
+        "kind": "text",
+        "segment_id": "E-002:p4:s14",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Shoulder flex 142.",
+        "kind": "text",
+        "segment_id": "E-002:p4:s15",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Back pain 4/10.",
+        "kind": "text",
+        "segment_id": "E-002:p4:s16",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Began light lifting program.",
+        "kind": "text",
+        "segment_id": "E-002:p4:s17",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "04/16/2026 Visit 10.",
+        "kind": "text",
+        "segment_id": "E-002:p4:s18",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Last visit to date.",
+        "kind": "text",
+        "segment_id": "E-002:p4:s19",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Continuing 2x/week.",
+        "kind": "text",
+        "segment_id": "E-002:p4:s20",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Not discharged.",
+        "kind": "text",
+        "segment_id": "E-002:p4:s21",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      }
+    ]
+  },
+  {
+    "document": "DEV_Evidence_2_Medical_and_Employer_Records.pdf",
+    "page": 5,
+    "raw_extracted_text": "                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                           NORTH HAVEN DISTRIBUTION CENTER, LLC                     \n                                                                                    \n                            1500 Universal Drive, North Haven, CT 06473             \n                                                                                    \n           April 2, 2026                                                            \n           Re: Terrence Okonkwo, Employee ID 20144                                  \n                                                                                    \n           Mr. Okonkwo has been employed as a forklift operator at this facility since March 2021, working 40\n           hours per week at $26.50 per hour. He has been unable to work since January 9, 2026 and has not\n           returned as of this date. His supervisor is Carla Mendes. Signed, Robert Yun, Human Resources\n           Manager.                                                                 \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    \n                                                                                    ",
+    "blocks": [
+      {
+        "text": "NORTH HAVEN DISTRIBUTION CENTER, LLC",
+        "kind": "heading",
+        "segment_id": "E-002:p5:s1",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "1500 Universal Drive, North Haven, CT 06473",
+        "kind": "heading",
+        "segment_id": "E-002:p5:s2",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "April 2, 2026",
+        "kind": "heading",
+        "segment_id": "E-002:p5:s3",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Re: Terrence Okonkwo, Employee ID 20144",
+        "kind": "heading",
+        "segment_id": "E-002:p5:s4",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Mr. Okonkwo has been employed as a forklift operator at this facility since March 2021, working 40 hours per week at $26.50 per hour.",
+        "kind": "text",
+        "segment_id": "E-002:p5:s5",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "He has been unable to work since January 9, 2026 and has not returned as of this date.",
+        "kind": "text",
+        "segment_id": "E-002:p5:s6",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "His supervisor is Carla Mendes.",
+        "kind": "text",
+        "segment_id": "E-002:p5:s7",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      },
+      {
+        "text": "Signed, Robert Yun, Human Resources Manager.",
+        "kind": "text",
+        "segment_id": "E-002:p5:s8",
+        "facts": [],
+        "accepted_into_responses": [],
+        "decision": "REJECTED",
+        "reason": "No configured fact pattern matched"
+      }
+    ]
+  }
+]

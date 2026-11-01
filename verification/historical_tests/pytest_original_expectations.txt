@@ -1,0 +1,109 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.7.0 -- /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python
+rootdir: /workspace/scratch/8de3951dd833/work/Inquisitio_0.4.2_EXTRACTION_FIX
+collecting ... collected 42 items
+
+tests/test_engine.py::EvidenceEngineTests::test_affirmative_reliable_negative_can_establish_nonapplicability FAILED [  2%]
+tests/test_engine.py::EvidenceEngineTests::test_correct_party_current_gross_weekly_income_is_drafted PASSED [  4%]
+tests/test_engine.py::EvidenceEngineTests::test_corroborating_sources_are_both_cited PASSED [  7%]
+tests/test_engine.py::EvidenceEngineTests::test_current_conflict_preserves_both_sources PASSED [  9%]
+tests/test_engine.py::EvidenceEngineTests::test_drafting_engine_operates_with_outbound_network_disabled PASSED [ 11%]
+tests/test_engine.py::EvidenceEngineTests::test_every_form_item_has_an_internal_requirement_and_valid_status PASSED [ 14%]
+tests/test_engine.py::EvidenceEngineTests::test_missing_responding_party_blocks_party_dependent_draft PASSED [ 16%]
+tests/test_engine.py::EvidenceEngineTests::test_narrative_injury_is_drafted_but_complaint_allegation_is_not FAILED [ 19%]
+tests/test_engine.py::EvidenceEngineTests::test_partial_answer_lists_each_missing_component PASSED [ 21%]
+tests/test_engine.py::EvidenceEngineTests::test_reported_negative_without_reliable_classification_is_not_used FAILED [ 23%]
+tests/test_engine.py::EvidenceEngineTests::test_silence_never_proves_nonapplicability FAILED [ 26%]
+tests/test_engine.py::EvidenceEngineTests::test_wrong_party_net_and_historical_income_do_not_answer PASSED [ 28%]
+tests/test_binding.py::BindingTests::test_distinct_values_from_two_sources_are_flagged PASSED [ 30%]
+tests/test_binding.py::BindingTests::test_explicit_weekly_income_drafted_with_page_citation PASSED [ 33%]
+tests/test_binding.py::BindingTests::test_medical_evidence_is_suggested_but_not_inserted PASSED [ 35%]
+tests/test_binding.py::BindingTests::test_no_evidence_never_creates_factual_answer PASSED [ 38%]
+tests/test_binding.py::BindingTests::test_relevant_match_survives_large_repetitive_corpus PASSED [ 40%]
+tests/test_binding.py::BindingTests::test_unattributed_income_is_not_drafted PASSED [ 42%]
+tests/test_binding.py::BindingTests::test_unrelated_single_word_match_is_not_suggested PASSED [ 45%]
+tests/test_evidence.py::EvidenceExtractionTests::test_page_and_exact_text_are_retained PASSED [ 47%]
+tests/test_forms.py::FormExtractionTests::test_every_item_has_exact_text_and_unique_id PASSED [ 50%]
+tests/test_forms.py::FormExtractionTests::test_form_202_is_complete PASSED [ 52%]
+tests/test_forms.py::FormExtractionTests::test_form_207_is_complete PASSED [ 54%]
+tests/test_forms.py::FormExtractionTests::test_line_break_hyphenation_is_removed PASSED [ 57%]
+tests/test_server.py::ServerSecurityTests::test_delete_removes_case_and_returns_json PASSED [ 59%]
+tests/test_server.py::ServerSecurityTests::test_foreign_host_is_rejected PASSED [ 61%]
+tests/test_server.py::ServerSecurityTests::test_image_only_pdf_is_flagged_and_never_drafted PASSED [ 64%]
+tests/test_server.py::ServerSecurityTests::test_rejected_append_does_not_change_evidence_packet PASSED [ 66%]
+tests/test_server.py::ServerSecurityTests::test_rejected_uploads_leave_no_case_directory PASSED [ 69%]
+tests/test_server.py::ServerSecurityTests::test_reprocessing_new_conflicting_evidence_clears_approval PASSED [ 71%]
+tests/test_server.py::ServerSecurityTests::test_supported_draft_requires_explicit_approval_and_edits_invalidate_it PASSED [ 73%]
+tests/test_server.py::ServerSecurityTests::test_valid_upload_is_private_and_only_suggests_evidence PASSED [ 76%]
+tests/test_server.py::PlatformDataPathTests::test_explicit_data_directory_wins PASSED [ 78%]
+tests/test_server.py::PlatformDataPathTests::test_macos_uses_application_support PASSED [ 80%]
+tests/test_server.py::PlatformDataPathTests::test_windows_uses_local_app_data PASSED [ 83%]
+tests/test_storage.py::StorageTests::test_case_records_are_isolated_and_persisted PASSED [ 85%]
+tests/test_storage.py::StorageTests::test_path_traversal_is_rejected PASSED [ 88%]
+tests/test_storage.py::StorageTests::test_records_are_private_and_case_can_be_deleted PASSED [ 90%]
+tests/test_exporter.py::ExportTests::test_completed_form_pdf_contains_caption_questions_responses_and_verification PASSED [ 92%]
+tests/test_exporter.py::ExportTests::test_export_contains_every_form_202_item PASSED [ 95%]
+tests/test_exporter.py::ExportTests::test_non_string_metadata_does_not_break_export PASSED [ 97%]
+tests/test_exporter.py::ExportTests::test_review_export_and_traceability_preserve_status_and_exact_citation PASSED [100%]
+
+=================================== FAILURES ===================================
+_ EvidenceEngineTests.test_affirmative_reliable_negative_can_establish_nonapplicability _
+
+self = <test_engine.EvidenceEngineTests testMethod=test_affirmative_reliable_negative_can_establish_nonapplicability>
+
+    def test_affirmative_reliable_negative_can_establish_nonapplicability(self) -> None:
+        value = segment("Jordan Moss does not own any rental property.", filename="sworn_affidavit.pdf")
+        result = response("207-11-a", "If rental property is owned, identify its type.", [value])
+        self.assertEqual(result["engine_status"], "NOT_APPLICABLE")
+>       self.assertEqual(result["answer"], "")
+E       AssertionError: 'Not applicable: the cited record expressl[35 chars]lse.' != ''
+E       - Not applicable: the cited record expressly states owns rental property is false.
+
+tests/test_engine.py:105: AssertionError
+_ EvidenceEngineTests.test_narrative_injury_is_drafted_but_complaint_allegation_is_not _
+
+self = <test_engine.EvidenceEngineTests testMethod=test_narrative_injury_is_drafted_but_complaint_allegation_is_not>
+
+    def test_narrative_injury_is_drafted_but_complaint_allegation_is_not(self) -> None:
+        medical = segment("Jordan Moss sustained a cervical strain as a result of the incident.", filename="medical_record.pdf")
+        result = response("202-2", "Identify each injury sustained in the incident.", [medical])
+        self.assertEqual(result["engine_status"], "SUPPORTED_DRAFT")
+        self.assertIn("cervical strain", result["answer"])
+        allegation = segment("Jordan Moss sustained a concussion as a result of the incident.", filename="complaint.pdf")
+        result = response("202-2", "Identify each injury sustained in the incident.", [allegation])
+>       self.assertEqual(result["answer"], "")
+E       AssertionError: 'concussion.' != ''
+E       - concussion.
+
+tests/test_engine.py:87: AssertionError
+_ EvidenceEngineTests.test_reported_negative_without_reliable_classification_is_not_used _
+
+self = <test_engine.EvidenceEngineTests testMethod=test_reported_negative_without_reliable_classification_is_not_used>
+
+    def test_reported_negative_without_reliable_classification_is_not_used(self) -> None:
+        value = segment("Jordan Moss does not own any rental property.", filename="notes.pdf")
+        result = response("207-11-a", "If rental property is owned, identify its type.", [value])
+>       self.assertEqual(result["engine_status"], "CLIENT_CONFIRMATION")
+E       AssertionError: 'NOT_APPLICABLE' != 'CLIENT_CONFIRMATION'
+E       - NOT_APPLICABLE
+E       + CLIENT_CONFIRMATION
+
+tests/test_engine.py:111: AssertionError
+________ EvidenceEngineTests.test_silence_never_proves_nonapplicability ________
+
+self = <test_engine.EvidenceEngineTests testMethod=test_silence_never_proves_nonapplicability>
+
+    def test_silence_never_proves_nonapplicability(self) -> None:
+        result = response("207-11-a", "If rental property is owned, identify its type.", [])
+>       self.assertEqual(result["engine_status"], "CLIENT_CONFIRMATION")
+E       AssertionError: 'NO_RESPONSIVE_EVIDENCE' != 'CLIENT_CONFIRMATION'
+E       - NO_RESPONSIVE_EVIDENCE
+E       + CLIENT_CONFIRMATION
+
+tests/test_engine.py:98: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_engine.py::EvidenceEngineTests::test_affirmative_reliable_negative_can_establish_nonapplicability
+FAILED tests/test_engine.py::EvidenceEngineTests::test_narrative_injury_is_drafted_but_complaint_allegation_is_not
+FAILED tests/test_engine.py::EvidenceEngineTests::test_reported_negative_without_reliable_classification_is_not_used
+FAILED tests/test_engine.py::EvidenceEngineTests::test_silence_never_proves_nonapplicability
+======================== 4 failed, 38 passed in 12.14s =========================

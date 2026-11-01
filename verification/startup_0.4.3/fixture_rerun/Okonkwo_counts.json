@@ -1,0 +1,16 @@
+{
+  "documents": 2,
+  "pages": 9,
+  "facts_extracted": 116,
+  "responses_populated": 23,
+  "citation_references_validated": 71,
+  "distinct_source_passages_validated": 47,
+  "questions_left_for_review": 66,
+  "status_counts": {
+    "SUPPORTED_DRAFT": 14,
+    "EVIDENCE_CONFLICT": 1,
+    "NOT_APPLICABLE": 1,
+    "PARTIAL_DRAFT": 8,
+    "NO_RESPONSIVE_EVIDENCE": 57
+  }
+}

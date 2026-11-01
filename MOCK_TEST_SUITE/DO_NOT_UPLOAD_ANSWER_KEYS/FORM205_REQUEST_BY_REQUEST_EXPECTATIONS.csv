@@ -1,0 +1,14 @@
+Form205_Request,Topic,Potential_files,Acceptance_expectation
+1,Hospital records,"205_A, 202_B",Candidate only; unexecuted HIPAA authorization not proof of release
+2,Doctor/treatment records,"205_A, 202_C",Check exclusion of psychiatric records
+3,Wage/employment records,"205_B, 202_D",Employer verification is not full 3-year file
+4,Income tax returns,205_B,Inventory ONLY - filed tax returns absent; must remain unresolved
+5,Property damage bills,205_C,Repair invoice fictional; no service evidence
+6,Medical bills,205_D,Itemized hospital bill test data
+7,Other expenses,"205_C, 202_D",Receipts and claimed expenses - verify overlap
+8,Third-party payer documentation,205_D,EOB and potential lien only
+9,Settlement/release documents,202_E,Prior settlement document not necessarily responsive to 202-26
+10,Nonprivileged statements,"205_G, 202_E",Check parties and dates; no privileged material assumed
+11,Photos/recordings,"205_E, 205_F, 202_E",Images are synthetic illustrations; do not claim authentic photos
+12,Alcohol/drug screens,"205_G, 202_B",No actual toxicology test or authorization - remain unresolved
+13,Surveillance,205_G,No video in evidence; do not assume comprehensive search

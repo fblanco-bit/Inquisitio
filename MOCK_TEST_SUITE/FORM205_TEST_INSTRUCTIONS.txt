@@ -1,0 +1,29 @@
+INQUISITIO FORMS 202 + 205 + 207 - FICTIONAL ACCEPTANCE TEST (25 October 2026)
+
+For the combined personal injury case select "Forms 202 + 205".
+Matter: Rivera v. Meridian Cargo Services
+Docket: CV-TEST-202-0042
+Response date: 10/12/2026 (or a test date selected by the reviewer)
+Plaintiff/responding party: Elena Sofia Rivera
+Defendant: Meridian Cargo Services LLC and Parker Moss
+Interrogating party: Meridian Cargo Services LLC and Parker Moss
+Court: Superior Court; Judicial district: New Haven at New Haven
+
+Upload PDF evidence from BOTH FORM202_UPLOAD_ONLY and FORM205_UPLOAD_ONLY.
+For a quick test, upload only ONE_FILE_PER_CASE_QUICK_TEST/FORM_202_PLUS_205_ALL_EVIDENCE_COMBINED.pdf.
+Do not upload answer keys or this instruction document as evidence.
+
+Acceptance:
+- The Form 202 interrogatory workspace still has 81 item slots.
+- A separate Form 205 tab has exactly 13 requests from the official 2026 Connecticut Practice Book.
+- Possible responsive PDF suggestions include filename, exact extracted passage and PDF page.
+- No Form 205 request starts with a claim that anything has been produced, or with a Bates range.
+- The fictional draft Bates inventory does not prove actual service.
+- Request 205-4 has no complete filed tax return; 205-12 no actual toxicology test; 205-13 no surveillance recording.
+- Requests 205-11's included graphics are synthetic diagrams, not authentic accident photographs.
+- Reviewer must enter a production response, identify actual PDFs and Bates references before confirming PRODUCED.
+- Replacing/reprocessing evidence resets production confirmation, preserves reviewer notes for reconsideration.
+- Word/PDF drafts contain 13 production RESPONSE lines and clear attorney-review warnings.
+- Original Form 207 employed and self-employed tests remain unchanged.
+
+ALERT: All data, individuals, hospitals, companies, evidence and images are fabricated solely for local acceptance testing. These documents are NOT legal filings, authentic medical records, or production certificates.

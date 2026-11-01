@@ -1,0 +1,9 @@
+Included dependencies are ready.
+Starting Inquisitio 0.4.3. Keep this window open while working.
+INQUISITIO 127.0.0.1 "GET /api/health HTTP/1.1" 200 -
+Inquisitio 0.4.3 is ready at http://127.0.0.1:8766
+INQUISITIO 127.0.0.1 "GET /api/health HTTP/1.1" 200 -
+INQUISITIO 127.0.0.1 "GET / HTTP/1.1" 200 -
+INQUISITIO 127.0.0.1 "GET /api/forms HTTP/1.1" 200 -
+INQUISITIO 127.0.0.1 "GET /api/health HTTP/1.1" 200 -
+Inquisitio stopped.

@@ -1,0 +1,2411 @@
+diff -ruN '--exclude=vendor' '--exclude=assets' '--exclude=verification' '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/CHANGE_RECORD.md /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/CHANGE_RECORD.md
+--- /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/CHANGE_RECORD.md	1970-01-01 08:00:00.000000000 +0800
++++ /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/CHANGE_RECORD.md	2026-10-21 10:47:25.188427568 +0800
+@@ -0,0 +1,17 @@
++# Change record: 0.4.3 to 0.5.0
++
++| Area | Before | 0.5.0 |
++| --- | --- | --- |
++| Intake | PDF-only; no record overlay | Transactional PDF packet plus optional strict `case_record.json` |
++| Matter integrity | No packet-level identity gate | Per-document party names and PASS/WARNING/BLOCKED decision |
++| Replacement | Append-oriented | Explicit add or replace; replacement invalidates old generated answers |
++| Reviewer state | Split legacy engine statuses | Exactly six required statuses with safe migration |
++| Concurrent edits | Last write silently won | Revision precondition and visible HTTP 409 conflict |
++| Source traceability | PDF citations | PDF citations plus named case-record field citations |
++| Form 202 baseline | 23 populated, 71 citation references | 31 populated, 85 citation references, same 116 facts and DOB conflict |
++| Exports | Form responses only | 81 response slots followed by 13 production requests |
++| Launch | `.command` entry point | Finder `Inquisitio.app` wrapper plus retained fallback |
++
++The eight added Okonkwo drafts are qualified partials for questions 11, 12, 14(a-e), and 23(e). They state only what the cited record establishes, explicitly identify the unresolved conclusion or amount, and do not calculate a lost-wage total or assert permanent disability.
++
++Readable unified source changes are in `verification/source_changes_0.5.0.diff`. The full corrected evidence-to-response output is in `verification/0.5.0-final/Okonkwo_all_fields.csv`; it includes every Form 202 slot, answer, status, source, page, quotation, and remaining-gap reason.
+diff -ruN '--exclude=vendor' '--exclude=assets' '--exclude=verification' '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/Inquisitio.app/Contents/Info.plist /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/Inquisitio.app/Contents/Info.plist
+--- /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/Inquisitio.app/Contents/Info.plist	1970-01-01 08:00:00.000000000 +0800
++++ /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/Inquisitio.app/Contents/Info.plist	2026-10-21 10:46:26.127104315 +0800
+@@ -0,0 +1,26 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
++<plist version="1.0">
++<dict>
++  <key>CFBundleDisplayName</key>
++  <string>Inquisitio</string>
++  <key>CFBundleExecutable</key>
++  <string>Inquisitio</string>
++  <key>CFBundleIdentifier</key>
++  <string>com.inquisitio.desktop</string>
++  <key>CFBundleInfoDictionaryVersion</key>
++  <string>6.0</string>
++  <key>CFBundleName</key>
++  <string>Inquisitio</string>
++  <key>CFBundlePackageType</key>
++  <string>APPL</string>
++  <key>CFBundleShortVersionString</key>
++  <string>0.5.0</string>
++  <key>CFBundleVersion</key>
++  <string>0.5.0</string>
++  <key>LSMinimumSystemVersion</key>
++  <string>11.0</string>
++  <key>NSHighResolutionCapable</key>
++  <true/>
++</dict>
++</plist>
+diff -ruN '--exclude=vendor' '--exclude=assets' '--exclude=verification' '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/Inquisitio.app/Contents/MacOS/Inquisitio /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/Inquisitio.app/Contents/MacOS/Inquisitio
+--- /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/Inquisitio.app/Contents/MacOS/Inquisitio	1970-01-01 08:00:00.000000000 +0800
++++ /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/Inquisitio.app/Contents/MacOS/Inquisitio	2026-10-21 10:46:26.127104315 +0800
+@@ -0,0 +1,5 @@
++#!/bin/bash
++set -euo pipefail
++
++ROOT="$(cd "$(dirname "$0")/../../.." && pwd)"
++exec "$ROOT/START_INQUISITIO_MAC.command"
+diff -ruN '--exclude=vendor' '--exclude=assets' '--exclude=verification' '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/Inquisitio.app/Contents/PkgInfo /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/Inquisitio.app/Contents/PkgInfo
+--- /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/Inquisitio.app/Contents/PkgInfo	1970-01-01 08:00:00.000000000 +0800
++++ /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/Inquisitio.app/Contents/PkgInfo	2026-10-21 10:46:26.127104315 +0800
+@@ -0,0 +1 @@
++APPL????
+diff -ruN '--exclude=vendor' '--exclude=assets' '--exclude=verification' '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/README.md /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/README.md
+--- /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/README.md	2026-10-21 10:06:58.000000000 +0800
++++ /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/README.md	2026-10-21 10:47:51.729021982 +0800
+@@ -1,83 +1,40 @@
+-# Inquisitio 0.4.3 — Mac double-click launch
++# Inquisitio 0.5.0 release candidate
+ 
+-This source release corrects local PDF extraction and automatic insertion into Connecticut Practice Book Forms 202 and 207. Supported answers receive document, PDF page and exact-quotation citations. Conflicting values leave the response blank and expose every candidate. Missing and partial information remains visible for attorney review.
++Inquisitio turns a PDF evidence packet and an optional `case_record.json` into a review workspace for Connecticut Practice Book Forms 202 and 207. It drafts only from validated PDF quotations or named case-record fields, exposes conflicts and missing information, and exports editable Word and PDF work product.
+ 
+-## Start on your Apple Silicon Mac
++## Open on an Apple Silicon Mac
+ 
+-1. Download and extract the entire ZIP in Finder.
+-2. Double-click **START_INQUISITIO_MAC.command** inside the extracted folder.
+-3. Wait for the included tools to be prepared. Your browser opens automatically when Inquisitio is ready. Keep the Terminal window open while you work.
+-4. Confirm **Inquisitio 0.4.3** appears in the application header. Create a matter and upload your evidence, or use **Upload and reprocess** for an existing matter.
++1. Extract the entire ZIP in Finder.
++2. Double-click `Inquisitio.app`. If macOS asks for confirmation, choose **Open**. `START_INQUISITIO_MAC.command` remains as a fallback launcher.
++3. Wait for the browser workspace to open. Keep the launcher window open while working.
++4. Create a matter, choose Form 202 or 207, add at least one PDF, optionally select `case_record.json`, and choose **Build response workspace**.
++5. Review every draft and citation. Edited text is marked `EDITED`; only an explicit reviewer action produces `APPROVED`.
++6. Use **Replace evidence** when the packet changes, then export Word or PDF.
+ 
+-**No Terminal commands, pip commands, Python installation or launch-time downloads are required for this Mac package.** The included Python 3.12.15 and dependency wheels are installed privately in your user account. Later launches reuse them. An interrupted dependency installation is repaired automatically from the included files.
++No Python, pip, Docker, cloud service, external LLM, or Terminal command is required. The included Apple Silicon runtime and dependencies are installed privately from hash-checked local files. This package targets macOS 11 or newer. It is ad-hoc signed, not Apple-notarized.
+ 
+-After the included runtime passes its SHA-256 integrity check, the launcher removes Finder's inherited quarantine metadata from the private extracted copy and refreshes its ad hoc Mach-O signatures with macOS's built-in `codesign`. This prevents macOS from terminating the verified interpreter with `Killed: 9`; it does not change the downloaded source package or require an Apple developer certificate.
++## Evidence rules
+ 
+-The package targets Apple Silicon (M-series) Macs running macOS 11 or newer. macOS may require its normal permission to open a downloaded launcher. This is a double-click source launcher with an included runtime; it is not an Apple-signed or notarized native application.
++- The only slot statuses are `EMPTY`, `DRAFT`, `EDITED`, `APPROVED`, `POTENTIAL_CONFLICT`, and `REQUIRES_CLIENT`.
++- `NOT_IN_EVIDENCE` is a reason on an empty slot, never generated answer text.
++- A generated answer always carries a validated PDF quotation or a citation such as `[Case record: client.birthDate]`.
++- Conflicting values remain blank until a reviewer resolves them.
++- A packet that names other people but not the responding party blocks automatic drafting.
++- Replacing evidence rebuilds from the replacement packet; it does not retain an old evidence-backed answer.
++- Concurrent browser edits use record revisions. A stale tab receives a visible conflict instead of silently overwriting newer work.
+ 
+-The launcher waits for the correct application's health check before opening the browser. If an older application occupies the normal port, the corrected version selects an available local port automatically. A repeated double-click opens the already running 0.4.3 workspace. Your existing matter storage location is preserved.
+-
+-Windows retains the supplied source launcher and requires an existing Python 3.11+ installation and online dependencies. This delivery fixes the Mac launch path shown in the reported failure.
+-
+-## Scope and verification
+-
+-The question-to-evidence extraction engine from the supplied 0.4.2 package is preserved. This update changes Mac startup, bundled dependencies, the displayed version and verification of startup behavior. It does not establish acceptance on the earlier private Delgado packet, which was not attached to this request.
+-
+-Automated tests and an actual fresh-runtime offline installation are exercised on Linux. macOS wheel compatibility, dependency completeness, archive integrity and launcher syntax are checked. **A physical Mac launch and Finder/Gatekeeper behavior have not been executed in this Linux environment.** See TEST_REPORT.md for the exact results and limits.
+-
+-## Extraction
+-
+-- pdfplumber retains lines, table cells and short values. PyMuPDF layout blocks handle fragmented or out-of-order extraction.
+-- pypdf reads interactive widget values and inherited field values.
+-- A selected-form target list covers all 81 Form 202 fields and all 55 Form 207 fields. Values are linked to the responding party across nearby blocks with name-variant matching.
+-- Dates retain their original text and a normalized value. Address spelling variants are consolidated without combining different addresses.
+-- OCRmyPDF runs locally on image-only pages and missing scanned entries beside printed labels. Local pytesseract is the fallback. OCR citations are marked. OCR errors are retained in document metadata.
+-- Classification changes source confidence rather than excluding explicit facts.
+-- Medical events are linked to their provider and date; the latest visit is not replaced by a birth date or a future scheduled appointment.
+-- No LLM or cloud service is used for matter processing.
+-
+-Scanned-page OCR retains the supplied requirement for local Tesseract and, when using OCRmyPDF, Ghostscript. The Python OCR helpers are included; these separate system executables are not included in this launch fix. OCRmyPDF is installed automatically on macOS 14+; earlier supported macOS versions retain the existing pytesseract fallback. The supplied development packet contains searchable text and does not require OCR. Scanned printed text was tested; handwriting accuracy has not been established and ambiguous writing requires review.
++The optional case record must match the exact nested schema in `case_record.example.json`. Empty strings and `null` mean unknown, never not applicable. Intake rejects invalid JSON, an unsupported field, an incorrect field type, any non-PDF evidence file, or a packet with zero PDFs before creating a matter.
+ 
+ ## Verified development packet
+ 
+-The supplied Okonkwo packet contains 2 PDFs and **9 pages**. It is distinct from the earlier 7-page Delgado report and the earlier reported 42-page matter, whose source evidence was not supplied here.
+-
+-| Measure | Original 0.4.1 | Corrected 0.4.2 |
+-| --- | ---: | ---: |
+-| Extracted fact observations | 3 | 116 |
+-| Populated response fields | 0 | 23 |
+-| Validated citation references | 0 | 71 |
+-| Questions needing evidence or review | 81 | 66 |
+-
+-The 23 populated fields comprise 14 supported drafts, 8 partial drafts and 1 supported not-applicable response. There are 57 empty fields and 1 DOB conflict. The 71 citation references represent 47 distinct source passages; references are counted per answer and include conflict evidence. Fact observations include repeated corroboration, other-party facts and intermediate supporting context. Every response still requires attorney approval.
+-
+-The DOB response remains blank and flags **05/30/1979** versus **05/03/1979**. The plaintiff license is **CT 071-442-8830**. The latest documented medical attention is **04/16/2026**. Defendant-row identity values and the defendant's tablet statement are not inserted into plaintiff answers.
+-
+-The test comparison uses a response date of 2026-04-21, the complaint date, as explicit fixture context. It is not a verified legal response or service date.
+-
+-## Review before the demonstration
+-
+-- 3: EMS care is documented before hospital care, but the run sheet does not state its service date or location. The response includes EMS and the dated hospital record and flags the gap.
+-- 4 and 5: Hospital admission/discharge and the attending physician are documented. The hospital/attending office address is not supplied.
+-- 13: Permanency is to be assessed at 12 months. The response does not invent a permanent-disability finding.
+-- 16: The medical-report inventory is populated; receipt, completeness and trial-witness plans are unconfirmed.
+-- 15: Hospitalization does not establish home or bed confinement; no home/bed confinement dates are provided.
+-- 23(b): Occupation is supplied; precise job responsibilities are not.
+-- 23(c): $26.50/hour and 40 hours/week are supplied; average weekly earnings for the preceding year are not. The response does not invent that average.
+-- 23(g): The letter identifies a long-standing employer but does not certify a complete list of every employer over the preceding three years.
+-
+-No additional missed value was identified in the supplied packet's listed development targets after source review. This is bounded verification, not a claim of universal narrative or handwriting comprehension. A separate private acceptance packet has not been run. Form 207 was additionally exercised with a separate fictional validation matter, identified as such in the verification materials.
++The included nine-page Okonkwo corpus contains two PDFs. In a clean matter, v0.5.0 produced 116 fact observations, 31 cited drafts, one visible DOB conflict, 49 empty slots with reasons, 85 validated citation references, and zero generated answers without a citation. The earlier v0.4.2 reference was 23 populated fields and 71 citation references; the eight additional drafts are evidence-bounded partial responses documented in `CHANGE_RECORD.md`.
+ 
+-## Verification materials
++The DOB slot presents both `05/30/1979` and `05/03/1979` and makes no automatic choice. The generated license, residence, treatment, provider, and employment responses retain source document ID, filename, actual PDF page, exact quotation, passage ID, and SHA-256 fingerprint.
+ 
+-The original 0.4.2 extraction verification is retained for reference. Open `verification/Extraction_Verification.html` for every response field, citations, review reasons, the root cause, alternatives considered, changed files, full before/after block logs and test output. `verification/source_changes.diff` contains the source diff. The PDF and editable Word exports are included beside the report.
++Form 207 was independently exercised on a two-page fictional regression fixture: 19 facts, 38 populated responses, 40 validated citations, and 17 empty slots.
+ 
+-For a fresh local rerun:
++## Release status
+ 
+-```bash
+-python -m pip install -r requirements-dev.txt
+-python -m pytest -v
+-python verification/run_validation.py --output verification/rerun
+-```
++This is a verified release candidate, not a production-acceptance claim. Ninety automated tests and HTTP end-to-end validation passed in the Linux build environment. The required seven-page October 20 corpus was not included, so its exact 25-fact/3-draft run could not be reproduced or fingerprinted. A physical Apple Silicon Mac and browser screenshot tooling were also unavailable. Tests B and I, and the requested visual proof, therefore remain open. See `TEST_REPORT.md` and `ROOT_CAUSE_REPORT.md`.
+ 
+-Test fixtures are used only by tests or the explicit validation command. They are not preloaded into the application's matter list. Existing local data locations and attorney approval controls continue to apply.
++The detailed evidence workspaces, all-field CSV comparisons, block logs, Word/PDF exports, and counts are under `verification/0.5.0-final/`. No fixture is preloaded into a user's live matter list.
+diff -ruN '--exclude=vendor' '--exclude=assets' '--exclude=verification' '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/RELEASE_NOTES.md /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/RELEASE_NOTES.md
+--- /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/RELEASE_NOTES.md	2026-10-21 10:06:58.000000000 +0800
++++ /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/RELEASE_NOTES.md	2026-10-21 10:47:15.840222797 +0800
+@@ -1,13 +1,18 @@
+-# Inquisitio 0.4.3
++# Inquisitio 0.5.0
+ 
+-Mac startup correction for the incomplete PyMuPDF download reported with 0.4.2.
++Release candidate implementing the October 20 evidence-integrity and Form 202 prototype requirements.
+ 
+-- Includes a private Apple Silicon Python 3.12.15 runtime and exact local dependency wheels.
+-- Double-click startup installs from local files with package-index access disabled and hash checking enabled.
+-- Reuses installed dependencies and repairs interrupted installation automatically.
+-- Verifies application readiness before opening the browser; selects another local port if an older server occupies the normal one.
+-- Shows version 0.4.3 in the application header.
+-- Preserves the supplied 0.4.2 extraction engine, citations, attorney review controls and matter locations.
+-- Clears inherited Finder quarantine metadata from the checksum-verified private runtime copy and refreshes its local ad hoc signatures before first execution, correcting the reported macOS `Killed: 9` startup failure.
++- Adds transactional intake for PDFs plus an optional, strictly validated `case_record.json`.
++- Stores matter-local document IDs, filenames, page counts, upload timestamps, SHA-256 fingerprints, extracted party names, and identity results.
++- Blocks drafting on a material party mismatch and distinguishes that condition from an absent identity.
++- Replaces legacy response states with the required six-state model and safely migrates existing records.
++- Produces 31 cited evidence drafts on the supplied nine-page Okonkwo packet while retaining its visible DOB conflict.
++- Adds named-field case-record citations and case-record/evidence conflict detection.
++- Makes evidence replacement transactional and discards stale generated output.
++- Adds optimistic revision checks so stale browser tabs cannot silently overwrite edits.
++- Adds all 13 production requests after the 38 Form 202 interrogatories in Word and PDF exports.
++- Removes per-response review markers only after explicit approval.
++- Adds a double-clickable Finder `Inquisitio.app` wrapper while retaining the self-contained offline launcher.
++- Adds regression tests for schema rejection, transactional intake, identity blocking, replacement, concurrency, citations, exports, OCR fallback, and deterministic answer output.
+ 
+-Supports macOS 11+ on Apple Silicon. OCRmyPDF's Python helpers require macOS 14+; earlier supported releases retain the pytesseract fallback. Tesseract/Ghostscript system executables are outside this startup correction. This launcher is not signed or notarized by Apple. Mac execution and Finder/Gatekeeper were not available for direct testing; see TEST_REPORT.md.
++No new production library, hosted service, database, usage fee, or cloud dependency was introduced. The exact seven-page failed packet and a physical Mac were unavailable; those acceptance checks remain open.
+diff -ruN '--exclude=vendor' '--exclude=assets' '--exclude=verification' '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/ROOT_CAUSE_REPORT.md /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/ROOT_CAUSE_REPORT.md
+--- /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/ROOT_CAUSE_REPORT.md	1970-01-01 08:00:00.000000000 +0800
++++ /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/ROOT_CAUSE_REPORT.md	2026-10-21 10:47:51.729021982 +0800
+@@ -0,0 +1,50 @@
++# Root-cause report
++
++## Conclusion
++
++The precise cause of the reported v0.4.3 result (2 PDFs, 7 pages, 25 facts, 3 drafts) is **not reproducible from the delivered inputs**. The package contains a different, nine-page Okonkwo fixture. The seven-page PDFs and original matter record were not attached, so their filenames, SHA-256 fingerprints, party identities, cached state, and before/after field output cannot be truthfully reconstructed.
++
++The supplied nine-page corpus reproduces the established 116-fact baseline under both the original v0.4.3 code and corrected v0.5 path; it does not reproduce 25 facts or 3 drafts. Therefore the observed discrepancy cannot be attributed to a proven parser regression from the available evidence.
++
++## File identity established
++
++| ID | File | Pages | SHA-256 | Responding-party result |
++| --- | --- | ---: | --- | --- |
++| E-001 | `DEV_Evidence_1_Complaint_and_Crash_Report.pdf` | 4 | `a8fbeff96e38287d1b71f576d2d4e0e38b2cc5d83cc54058502f86d741c05e59` | Terrence Okonkwo matched |
++| E-002 | `DEV_Evidence_2_Medical_and_Employer_Records.pdf` | 5 | `810b92317098292b0fed63966b37e897d4eff0a1f69da746959353c451d7a538` | Terrence Okonkwo matched |
++
++Names detected in E-001 include Terrence James Okonkwo, Sofia Marques, and Anna Lindqvist. Names detected in E-002 include Terrence J. Okonkwo, Terrence Okonkwo, and T. Okonkwo. Full extraction records are in `verification/0.5.0-final/Okonkwo_workspace.json`.
++
++## Actual defects found
++
++1. Intake had no optional case-record channel, schema validation, or named-field citations.
++2. The response model used legacy outcome-like states instead of the required six reviewer states.
++3. Evidence could be appended without an explicit replace operation; replacement did not provide the required clean invalidation contract.
++4. The server had no revision precondition, allowing two stale browser tabs to overwrite one another silently.
++5. Document summaries did not expose a packet-level matter-identity decision capable of blocking generation.
++6. Exports omitted the 13 production requests required after the 38 interrogatories.
++7. Several evidence-supported partial Form 202 slots were left blank even though a precise, qualified draft could be cited without inventing missing values.
++
++Information stopped at answer composition for the last category: responsive source segments and facts were present, but the slot builder returned no draft for the qualified partial. The correction adds narrowly registered slot composition using the existing facts and citations. It does not insert fixture literals or lower citation validation.
++
++## Seven-page versus nine-page discrepancy
++
++The corpora cannot be shown to be the same. The available corpus is exactly nine pages with the two hashes above; no seven-page PDF exists in the uploaded ZIP or companion files. The report also describes injuries inconsistent with the known Okonkwo packet, which is evidence that a different packet or matter association may have been involved, but that remains an inference rather than a verified cause.
++
++Wrong-evidence defects cannot be assigned field by field without the missing corpus. The corrected application now makes such a condition observable: it records identities per PDF, warns on absent identity, blocks an affirmative mismatch, and never reuses a replaced packet's generated result.
++
++## Correction selected
++
++The smallest viable correction retained the deterministic local extraction, binding, storage, citation, and export architecture. It added integrity gates, explicit replacement, case-record overlay, canonical statuses, revision checks, and evidence-bounded slot builders. No database, framework, external model, cloud service, new production dependency, or recurring cost was introduced.
++
++## Mandatory responses
++
++1. **Exact root cause and reproduction:** the exact reported failure is indeterminate because its evidence and matter record are absent. The supplied nine-page run does not reproduce it. Concrete product defects found are listed above and are covered by tests.
++2. **Were the corpora different?** They cannot be proven identical and their page counts differ. Only the nine-page filenames and hashes above are available; seven-page fingerprints cannot be invented.
++3. **Wrong evidence versus code defects:** wrong evidence is plausible but unverified. Missing integrity controls, replacement invalidation, concurrency control, case-record support, canonical states, production export, and qualified partial mappings were verified code defects.
++4. **Simplest correction:** preserve the architecture and add narrowly scoped validation, state, mapping, and export changes.
++5. **Changed components:** `case_record`, response engine, server/intake, storage migration behavior, exporter/production inventory, web UI, launcher metadata, tests, and verification tooling.
++6. **New libraries/services/costs:** none in production.
++7. **Executed tests:** detailed individually in `TEST_REPORT.md`; 90 automated tests plus HTTP/export validation passed. Tests B, I, and browser capture were not run.
++8. **Graphical verification:** open `Inquisitio.app`, create a clean matter, select the form, choose the PDFs and optional case record, build, inspect the integrity banner and citations, resolve/approve, then export.
++9. **Code and before/after evidence:** see `CHANGE_RECORD.md`, `verification/source_changes_0.5.0.diff`, and `verification/0.5.0-final/Okonkwo_all_fields.csv`.
+diff -ruN '--exclude=vendor' '--exclude=assets' '--exclude=verification' '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/START_HERE.txt /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/START_HERE.txt
+--- /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/START_HERE.txt	2026-10-21 05:16:22.000000000 +0800
++++ /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/START_HERE.txt	2026-10-21 10:47:51.729021982 +0800
+@@ -1,12 +1,12 @@
+-INQUISITIO 0.4.3 — APPLE SILICON MAC
++INQUISITIO 0.5.0 — APPLE SILICON MAC
+ 
+ 1. Extract the entire ZIP in Finder.
+-2. Double-click START_INQUISITIO_MAC.command.
++2. Double-click Inquisitio.app. START_INQUISITIO_MAC.command is the fallback.
+ 3. Wait for the browser to open. Keep the Terminal window open while working.
+ 
+ The first launch prepares the included Python and PDF tools automatically.
+ Later launches reuse them. No commands or startup downloads are needed.
+-The application header displays Inquisitio 0.4.3.
++The application header displays Inquisitio 0.5.0.
+ 
+ Use the launcher in this new folder instead of the older extracted folder.
+ Your existing matters remain in the normal Inquisitio data location.
+diff -ruN '--exclude=vendor' '--exclude=assets' '--exclude=verification' '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/START_INQUISITIO_MAC.command /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/START_INQUISITIO_MAC.command
+--- /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/START_INQUISITIO_MAC.command	2026-10-21 10:06:58.000000000 +0800
++++ /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/START_INQUISITIO_MAC.command	2026-10-21 10:43:39.523373292 +0800
+@@ -66,8 +66,8 @@
+ trap failed ERR
+ trap 'printf "\nInquisitio stopped.\n"; exit 0' INT
+ 
+-printf '\n=== Inquisitio 0.4.3 | %s ===\n' "$(date)" >> "$LOG"
+-printf 'Starting Inquisitio 0.4.3. First launch prepares its included runtime.\n'
++printf '\n=== Inquisitio 0.5.0 | %s ===\n' "$(date)" >> "$LOG"
++printf 'Starting Inquisitio 0.5.0. First launch prepares its included runtime.\n'
+ 
+ if [ "$(uname -s)" != Darwin ]; then
+   printf 'This launcher requires an Apple Silicon Mac.\n' | tee -a "$LOG"
+diff -ruN '--exclude=vendor' '--exclude=assets' '--exclude=verification' '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/TEST_REPORT.md /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/TEST_REPORT.md
+--- /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/TEST_REPORT.md	2026-10-21 10:08:48.000000000 +0800
++++ /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/TEST_REPORT.md	2026-10-21 10:47:51.729021982 +0800
+@@ -1,37 +1,39 @@
+-# Inquisitio 0.4.3 verification — 2026-10-20
++# Inquisitio 0.5.0 verification report
+ 
+-This is the Mac startup correction to the supplied 0.4.2 extraction-fix package.
++Date: 2026-10-20 UTC  
++Decision: **REJECTED FOR FINAL ACCEPTANCE; suitable for supervised release-candidate evaluation**
+ 
+-## Results
++The application changes were executed, not merely written. Final acceptance remains blocked by missing external evidence: the exact seven-page October 20 corpus, visual browser capture, and a clean supported Apple Silicon Mac.
+ 
+-| Check | Result |
+-| --- | --- |
+-| Automated regression suite, including launch tests | 84 passed: 42 `unittest` cases and 42 function/parameter cases executed by an offline assertion harness |
+-| Mac launcher shell syntax | PASS |
+-| Reported first-launch `Killed: 9` defect | Corrected: after archive SHA-256 verification, the launcher clears inherited quarantine from the private extracted copy, refreshes every Mach-O component's local ad hoc signature, verifies each signature and only then executes Python |
+-| Original extraction, binding, citation/export, forms, storage and server code | Byte-for-byte preserved; version is supplied by the updated package initializer |
+-| Apple Silicon Python archive | Published upstream SHA-256 verified; Mach-O ARM64 executable, macOS 11 minimum, relocatable runtime library references |
+-| macOS 11 base dependency set | 19 packages; local-only resolver, wheel compatibility and complete target dependency metadata PASS |
+-| macOS 14+ full dependency set | 29 packages; local-only resolver, wheel compatibility and complete target dependency metadata PASS |
+-| Fresh private runtime installation | PASS with equivalent Linux wheels at the same package versions, local files only |
+-| Second launch | PASS; no pip installation |
+-| Missing native dependency recovery | PASS; removed rapidfuzz restored from bundled files |
+-| Browser readiness | PASS; wrong version or failed health never opens the browser |
+-| Busy normal port | PASS; live server launched on 8766 with 8765 occupied |
+-| Duplicate launch | PASS; opens the running 0.4.3 workspace |
+-| Visible build version and removed obsolete interface text | PASS |
+-| HTTP upload, extraction, citation validation, PDF and Word exports | PASS on both supplied fictional fixtures using the freshly installed tools |
+-
+-## Evidence-processing regression
+-
+-The supplied 9-page Okonkwo Form 202 fixture still yields 116 fact observations, 23 populated fields and 71 validated citation references (47 distinct passages). Its 81 fields include 14 supported drafts, 8 partial drafts, 1 supported not-applicable response, 1 conflict and 57 items without responsive evidence. There are 66 questions requiring evidence or review. These are bounded fixture results, not completion of an actual legal case.
+-
+-The separate 2-page Form 207 fixture yields 19 fact observations, 38 populated fields and 40 validated citation references. Its 55 fields include 12 supported drafts, 26 supported not-applicable responses and 17 items without responsive evidence.
+-
+-## Limits
++## Executed results
+ 
+-All executable application and installation checks were performed on Linux. The current environment could not reach PyPI and the delivery does not include its development-only `pytest` wheel, so the same Python assertions were executed with the standard-library test runner and a small offline harness; all 84 cases passed. The Mac wheelhouse was independently checked for target dependency completeness and exact platform compatibility; its contents cannot be executed here. A physical Apple Silicon Mac, Finder double-click, Apple quarantine/Gatekeeper interaction and the default Mac browser were not available for direct testing. The added local ad hoc signing step does not constitute Apple developer signing or notarization.
+-
+-The no-command launch bundle is for Apple Silicon macOS 11+. The Windows source launcher is unchanged. OCRmyPDF's Python helper set is selected on macOS 14+; earlier supported versions retain pytesseract. The existing external Tesseract/Ghostscript requirement for scanned-page OCR remains and those system executables are not bundled. The earlier private 7-page Delgado acceptance packet was not supplied or retested in this request.
++| Test | Result |
++| --- | --- |
++| Automated regression suite | PASS: 90 tests |
++| Python/source and launcher syntax | PASS |
++| Deterministic answer payload, same packet twice | PASS: byte-identical canonical answer JSON |
++| Test A, supplied nine-page Okonkwo baseline | PASS: 2 PDFs, 9 pages, 116 facts, 31 populated, 85 validated citation references, 1 DOB conflict |
++| Test B, exact seven-page October 20 failure | BLOCKED: corpus not supplied; no substituted input used |
++| Test C, contradictory values | PASS: both sources displayed, blank response, `POTENTIAL_CONFLICT` |
++| Test D, insufficient/replaced evidence | PASS: stale draft removed or downgraded; replacement is transactional |
++| Test E, cross-matter isolation | PASS: independent matter directories and replacement tests |
++| Test F, answer composition | PASS on supplied fixtures; irrelevant pleading language and wrong-party values excluded |
++| Test G, Form 202 exports | PASS: 81 response slots plus 13 production requests; Word render and PDF text/count checks passed |
++| Test H, Form 207 regression | PASS: 55 slots, 38 populated, 40 validated citations |
++| Test I, clean supported Mac double-click | NOT RUN: no physical Mac in the build environment |
++| Browser visual proof | NOT RUN: Playwright/Chromium unavailable and package download was blocked |
++
++## Development evidence
++
++The Okonkwo result contains 14 fully supported drafts, 16 supported partial drafts, one supported not-applicable draft, one conflict, and 49 empty fields. Every non-empty generated response has at least one independently validated citation. The exact field-by-field result is `verification/0.5.0-final/Okonkwo_all_fields.csv`; source blocks and validation data are in the adjacent JSON files.
++
++The final Word export was rendered to images and visually inspected across all 25 pages. Headings, response text, citations, review markers, and the transition to production requests were readable without overlap or clipping. The PDF export contains 16 letter-sized pages. Application screenshots are not represented as completed proof.
++
++## Residual risks
++
++- The seven-page failure may involve different PDFs, incorrect metadata, stale state, or another runtime-specific condition. Its exact root cause cannot be established without those files and original matter record.
++- The Finder wrapper, private runtime setup, quarantine handling, and ad-hoc code signing are syntax- and structure-checked but not executed on macOS here.
++- The package is not notarized. Organization security policy may require a signed/notarized build.
++- Local OCR helpers exist, but scanned-page accuracy depends on local Tesseract/Ghostscript availability and should be checked against the firm's actual scans.
+ 
+-Detailed regression, offline installation, relaunch, repair, health and fixture output is in verification/startup_0.4.3/. The original 0.4.2 report and evidence exports are retained as historical material. Test fixtures are not automatically loaded into the application.
++Final acceptance requires running Tests B and I and capturing the graphical workflow on the actual packet. A failure in either keeps the build rejected.
+diff -ruN '--exclude=vendor' '--exclude=assets' '--exclude=verification' '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/case_record.example.json /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/case_record.example.json
+--- /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/case_record.example.json	1970-01-01 08:00:00.000000000 +0800
++++ /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/case_record.example.json	2026-10-21 10:47:25.188427568 +0800
+@@ -0,0 +1,36 @@
++{
++  "matter": {
++    "caption": "Okonkwo v. Brightline Logistics",
++    "docket": "",
++    "court": "",
++    "incident_date": "04/02/2026"
++  },
++  "client": {
++    "name": "Terrence Okonkwo",
++    "other_names": ["Terrence J. Okonkwo"],
++    "birthDate": "",
++    "address1": "18 Blue Hills Avenue, Bloomfield, CT 06002",
++    "business_address": "",
++    "driversLicenseNumber": "CT 071-442-8830"
++  },
++  "vehicle": {
++    "client_was_owner": null,
++    "owner_name": "",
++    "owner_address": ""
++  },
++  "employment": {
++    "employer_name": "North River Distribution",
++    "employer_address": "",
++    "jobTitle": "Warehouse selector",
++    "duties": "",
++    "pay_rate": "$26.50 per hour",
++    "lostWagesStart": "04/03/2026",
++    "lostWagesEnd": ""
++  },
++  "counsel": {
++    "name": "",
++    "juris_no": "",
++    "firm": "",
++    "address": ""
++  }
++}
+diff -ruN '--exclude=vendor' '--exclude=assets' '--exclude=verification' '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/inquisitio/__init__.py /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/inquisitio/__init__.py
+--- /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/inquisitio/__init__.py	2026-10-21 05:13:06.000000000 +0800
++++ /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/inquisitio/__init__.py	2026-10-21 10:39:39.917839871 +0800
+@@ -1,3 +1,3 @@
+ """Inquisitio: deterministic Connecticut interrogatory completion."""
+ 
+-__version__ = "0.4.3"
++__version__ = "0.5.0"
+diff -ruN '--exclude=vendor' '--exclude=assets' '--exclude=verification' '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/inquisitio/case_record.py /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/inquisitio/case_record.py
+--- /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/inquisitio/case_record.py	1970-01-01 08:00:00.000000000 +0800
++++ /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/inquisitio/case_record.py	2026-10-21 10:42:35.893928069 +0800
+@@ -0,0 +1,250 @@
++from __future__ import annotations
++
++import hashlib
++import json
++import re
++from dataclasses import dataclass
++from datetime import datetime
++from typing import Any
++
++
++CASE_RECORD_SCHEMA: dict[str, dict[str, type | tuple[type, ...]]] = {
++    "matter": {"caption": str, "docket": str, "court": str, "incident_date": str},
++    "client": {
++        "name": str, "other_names": list, "birthDate": str, "address1": str,
++        "business_address": str, "driversLicenseNumber": str,
++    },
++    "vehicle": {
++        "client_was_owner": (bool, type(None)), "owner_name": str, "owner_address": str,
++    },
++    "employment": {
++        "employer_name": str, "employer_address": str, "jobTitle": str, "duties": str,
++        "pay_rate": str, "lostWagesStart": str, "lostWagesEnd": str,
++    },
++    "counsel": {"name": str, "juris_no": str, "firm": str, "address": str},
++}
++
++
++@dataclass(frozen=True)
++class RecordDraft:
++    item_id: str
++    text: str
++    paths: tuple[str, ...]
++    values: tuple[str, ...]
++    missing: tuple[str, ...] = ()
++
++
++def validate_case_record_bytes(data: bytes) -> tuple[dict[str, Any], str]:
++    try:
++        value = json.loads(data.decode("utf-8"))
++    except UnicodeDecodeError as exc:
++        raise ValueError("case_record.json must be UTF-8 encoded.") from exc
++    except json.JSONDecodeError as exc:
++        raise ValueError(f"case_record.json is invalid JSON at line {exc.lineno}, column {exc.colno}.") from exc
++    if not isinstance(value, dict):
++        raise ValueError("case_record.json: root must be an object.")
++    unknown_sections = set(value) - set(CASE_RECORD_SCHEMA)
++    if unknown_sections:
++        raise ValueError(f"case_record.json: unsupported field {sorted(unknown_sections)[0]}.")
++    for section, fields in CASE_RECORD_SCHEMA.items():
++        section_value = value.get(section)
++        if not isinstance(section_value, dict):
++            raise ValueError(f"case_record.json: {section} must be an object.")
++        unknown = set(section_value) - set(fields)
++        if unknown:
++            raise ValueError(f"case_record.json: unsupported field {section}.{sorted(unknown)[0]}.")
++        for field, expected in fields.items():
++            path = f"{section}.{field}"
++            if field not in section_value:
++                raise ValueError(f"case_record.json: missing field {path}.")
++            field_value = section_value[field]
++            if not isinstance(field_value, expected):
++                expected_name = "boolean or null" if isinstance(expected, tuple) else expected.__name__
++                raise ValueError(f"case_record.json: {path} must be {expected_name}.")
++            if isinstance(field_value, str) and len(field_value) > 2_000:
++                raise ValueError(f"case_record.json: {path} exceeds 2,000 characters.")
++            if path == "client.other_names":
++                if any(not isinstance(name, str) or len(name) > 500 for name in field_value):
++                    raise ValueError("case_record.json: client.other_names must contain strings of 500 characters or fewer.")
++    canonical = json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
++    return value, hashlib.sha256(canonical).hexdigest()
++
++
++def metadata_from_case_record(case_record: dict[str, Any]) -> dict[str, str]:
++    matter = case_record["matter"]
++    client = case_record["client"]
++    return {
++        "docket_number": matter["docket"],
++        "court": matter["court"],
++        "plaintiff": client["name"],
++        "incident_date": matter["incident_date"],
++    }
++
++
++def _present(value: Any) -> bool:
++    return value is not None and (not isinstance(value, str) or bool(value.strip()))
++
++
++def _joined(prefix: str, pairs: list[tuple[str, Any]]) -> tuple[str, tuple[str, ...], tuple[str, ...], tuple[str, ...]]:
++    parts: list[str] = []
++    paths: list[str] = []
++    values: list[str] = []
++    missing: list[str] = []
++    for label, value in pairs:
++        path = f"{prefix}.{label}"
++        if _present(value):
++            paths.append(path)
++            values.append(str(value).strip())
++            parts.append(str(value).strip())
++        else:
++            missing.append(path)
++    return "; ".join(parts), tuple(paths), tuple(values), tuple(missing)
++
++
++def form_202_record_drafts(case_record: dict[str, Any]) -> dict[str, RecordDraft]:
++    client = case_record["client"]
++    vehicle = case_record["vehicle"]
++    employment = case_record["employment"]
++    drafts: dict[str, RecordDraft] = {}
++
++    if _present(client["name"]):
++        names = [client["name"], *client["other_names"]]
++        text = f"Full name: {names[0]}."
++        paths = ["client.name"]
++        if len(names) > 1:
++            text += " Other names: " + "; ".join(names[1:]) + "."
++            paths.extend(f"client.other_names[{index}]" for index in range(len(names) - 1))
++        drafts["202-1-a"] = RecordDraft("202-1-a", text, tuple(paths), tuple(names))
++
++    simple = {
++        "202-1-b": ("client.birthDate", client["birthDate"], "Date of birth"),
++        "202-1-c": ("client.driversLicenseNumber", client["driversLicenseNumber"], "Motor vehicle operator license"),
++        "202-1-d": ("client.address1", client["address1"], "Home address"),
++        "202-1-e": ("client.business_address", client["business_address"], "Business address"),
++        "202-23-c": ("employment.pay_rate", employment["pay_rate"], "Pay rate"),
++    }
++    for item_id, (path, value, label) in simple.items():
++        if _present(value):
++            drafts[item_id] = RecordDraft(item_id, f"{label}: {str(value).strip()}.", (path,), (str(value).strip(),))
++
++    owner = vehicle["client_was_owner"]
++    if owner is True:
++        drafts["202-1-f"] = RecordDraft(
++            "202-1-f", "Not applicable: the client was the owner of the subject vehicle.",
++            ("vehicle.client_was_owner",), ("true",),
++        )
++    elif owner is False:
++        value, paths, values, missing = _joined("vehicle", [
++            ("owner_name", vehicle["owner_name"]), ("owner_address", vehicle["owner_address"]),
++        ])
++        text = "Owner or lessor: " + (value or "not identified") + "."
++        drafts["202-1-f"] = RecordDraft(
++            "202-1-f", text, ("vehicle.client_was_owner", *paths), ("false", *values), missing,
++        )
++
++    employer, paths, values, missing = _joined("employment", [
++        ("employer_name", employment["employer_name"]),
++        ("employer_address", employment["employer_address"]),
++    ])
++    if paths:
++        drafts["202-23-a"] = RecordDraft("202-23-a", "Employer: " + employer + ".", paths, values, missing)
++
++    job, paths, values, missing = _joined("employment", [
++        ("jobTitle", employment["jobTitle"]), ("duties", employment["duties"]),
++    ])
++    if paths:
++        drafts["202-23-b"] = RecordDraft("202-23-b", "Occupation and duties: " + job + ".", paths, values, missing)
++
++    dates, paths, values, missing = _joined("employment", [
++        ("lostWagesStart", employment["lostWagesStart"]),
++        ("lostWagesEnd", employment["lostWagesEnd"]),
++    ])
++    if paths:
++        drafts["202-23-f"] = RecordDraft("202-23-f", "Lost work dates: " + dates + ".", paths, values, missing)
++    return drafts
++
++
++def _normalized(value: str) -> str:
++    value = value.casefold().strip()
++    for pattern in ("%m/%d/%Y", "%m-%d-%Y", "%Y-%m-%d"):
++        try:
++            return datetime.strptime(value, pattern).date().isoformat()
++        except ValueError:
++            continue
++    return re.sub(r"[^a-z0-9]+", "", value)
++
++
++def _same_name(left: str, right: str) -> bool:
++    left_tokens = re.findall(r"[a-z]+", left.casefold())
++    right_tokens = re.findall(r"[a-z]+", right.casefold())
++    if not left_tokens or not right_tokens:
++        return False
++    return left_tokens[-1] == right_tokens[-1] and left_tokens[0][0] == right_tokens[0][0]
++
++
++def _case_record_citation(path: str, value: str, sha256: str) -> dict[str, Any]:
++    return {
++        "citation_kind": "case_record",
++        "citation_label": f"[Case record: {path}]",
++        "field_path": path,
++        "source_id": "CASE-RECORD",
++        "filename": "case_record.json",
++        "page": None,
++        "quote": value,
++        "document_sha256": sha256,
++        "segment_id": f"CASE-RECORD:{path}",
++        "fact_id": f"CASE-RECORD:{path}",
++        "citation_validated": True,
++        "evidence_classification": "CASE_RECORD",
++        "ocr_sourced": False,
++    }
++
++
++def apply_case_record(record: dict[str, Any], answers: dict[str, dict[str, Any]]) -> None:
++    case_record = record.get("case_record")
++    if not case_record or record.get("form_id") != "202":
++        return
++    sha256 = record["case_record_sha256"]
++    for item_id, draft in form_202_record_drafts(case_record).items():
++        current = answers[item_id]
++        citations = [_case_record_citation(path, value, sha256) for path, value in zip(draft.paths, draft.values)]
++        evidence_values = [
++            str(citation.get("original_value") or citation.get("normalized_value") or citation.get("quote") or "")
++            for citation in current.get("supporting_citations", [])
++            if citation.get("citation_kind") != "case_record"
++        ]
++        normalized_evidence = {_normalized(value) for value in evidence_values}
++        def supported_by_evidence(value: str) -> bool:
++            normalized = _normalized(value)
++            return any(normalized == candidate or normalized in candidate or candidate in normalized for candidate in normalized_evidence)
++        if current.get("status") == "POTENTIAL_CONFLICT":
++            conflicts = True
++        elif item_id == "202-1-a":
++            conflicts = bool(evidence_values) and not any(_same_name(draft.values[0], value) for value in evidence_values)
++        else:
++            conflicts = bool(evidence_values) and any(
++                not supported_by_evidence(value)
++                for value in draft.values if value.casefold() not in {"true", "false"}
++            )
++        if conflicts:
++            current.update(
++                status="POTENTIAL_CONFLICT", engine_status="POTENTIAL_CONFLICT",
++                evidence_outcome="CASE_RECORD_CONFLICT", answer="", generated_answer="",
++                conflicts=[*current.get("conflicts", []), {
++                    "attribute": "case_record",
++                    "description": "The case record and uploaded evidence contain different values.",
++                    "facts": citations,
++                }],
++                supporting_citations=[*current.get("supporting_citations", []), *citations],
++                evidence=[*current.get("supporting_citations", []), *citations],
++                reason_code="CONFLICTING_SOURCES",
++                required_follow_up="Resolve the case-record and evidence conflict before drafting an answer.",
++            )
++            continue
++        current.update(
++            status="DRAFT", engine_status="DRAFT",
++            evidence_outcome="CASE_RECORD_DRAFT" if not draft.missing else "PARTIAL_CASE_RECORD_DRAFT",
++            answer=draft.text, generated_answer=draft.text, supporting_citations=citations,
++            evidence=citations, missing_information=list(draft.missing), reason_code="",
++            required_follow_up="Obtain the specifically missing case-record fields." if draft.missing else "Attorney review and approval required.",
++        )
+diff -ruN '--exclude=vendor' '--exclude=assets' '--exclude=verification' '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/inquisitio/engine.py /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/inquisitio/engine.py
+--- /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/inquisitio/engine.py	2026-10-21 05:07:22.000000000 +0800
++++ /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/inquisitio/engine.py	2026-10-21 10:42:21.721591703 +0800
+@@ -7,7 +7,23 @@
+ from collections import defaultdict
+ from datetime import datetime
+ from dateutil import parser as date_parser
+-from rapidfuzz import fuzz
++try:
++    from rapidfuzz import fuzz
++except ImportError:  # Keep source checkouts runnable when only bundled Mac wheels exist.
++    from difflib import SequenceMatcher
++
++    class _Fuzz:
++        @staticmethod
++        def ratio(left: str, right: str) -> float:
++            return SequenceMatcher(None, left, right).ratio() * 100
++
++        @staticmethod
++        def token_set_ratio(left: str, right: str) -> float:
++            left_tokens = " ".join(sorted(set(left.split())))
++            right_tokens = " ".join(sorted(set(right.split())))
++            return SequenceMatcher(None, left_tokens, right_tokens).ratio() * 100
++
++    fuzz = _Fuzz()
+ 
+ from .binding import Candidate, rank_evidence
+ from .evidence import EvidenceSegment
+@@ -15,15 +31,14 @@
+ 
+ 
+ ENGINE_STATUSES = {
+-    "SUPPORTED_DRAFT",
+-    "PARTIAL_DRAFT",
+-    "EVIDENCE_CONFLICT",
+-    "CLIENT_CONFIRMATION",
+-    "NO_RESPONSIVE_EVIDENCE",
+-    "NOT_APPLICABLE",
+-    "ATTORNEY_REVIEW",
++    "EMPTY",
++    "DRAFT",
++    "EDITED",
++    "APPROVED",
++    "POTENTIAL_CONFLICT",
++    "REQUIRES_CLIENT",
+ }
+-WORKFLOW_STATUSES = {"PENDING_REVIEW", "APPROVED"}
++WORKFLOW_STATUSES = ENGINE_STATUSES
+ 
+ 
+ @dataclass(frozen=True)
+@@ -900,13 +915,13 @@
+     for c in candidates:
+         c['document_sha256'] = hashes.get(c['source_id'], '')
+         c['evidence_classification'] = _classification(c['filename'], c['quote'])
+-    base = dict(engine_status='NO_RESPONSIVE_EVIDENCE', workflow_status='PENDING_REVIEW', status='NO_RESPONSIVE_EVIDENCE',
++    base = dict(engine_status='EMPTY', status='EMPTY', evidence_outcome='NO_RESPONSIVE_EVIDENCE', reason_code='NOT_IN_EVIDENCE',
+                 answer='', generated_answer='', supporting_citations=[], evidence=candidates, candidate_passages=candidates,
+                 missing_information=[_ATTRIBUTE_LABELS.get(a,a.replace('_',' ')) for a in requirement.attributes],
+                 required_follow_up='Obtain responsive evidence or client confirmation.', conflicts=[], requirement=requirement.to_dict(),
+                 edit_history=[], requires_revalidation=False, approval=None)
+     if not context.responding_party:
+-        base.update(engine_status='CLIENT_CONFIRMATION', status='CLIENT_CONFIRMATION', required_follow_up=metadata.get('_responding_party_conflict', 'Confirm the discovery responding party from the caption and order.'))
++        base.update(engine_status='REQUIRES_CLIENT', status='REQUIRES_CLIENT', evidence_outcome='IDENTITY_UNRESOLVED', reason_code='IDENTITY_UNRESOLVED', required_follow_up=metadata.get('_responding_party_conflict', 'Confirm the discovery responding party from the caption and order.'))
+         return base
+     applicable = [f for f in facts if f.subject.casefold() == context.responding_party.casefold() and _source_valid(f, segments, hashes)]
+     condition_note = ''
+@@ -914,14 +929,14 @@
+         conditions = [f for f in applicable if f.attribute == requirement.conditional_attribute]
+         values = {f.value.lower() for f in conditions}
+         if len(values) > 1:
+-            base.update(engine_status='EVIDENCE_CONFLICT', status='EVIDENCE_CONFLICT',
++            base.update(engine_status='POTENTIAL_CONFLICT', status='POTENTIAL_CONFLICT', evidence_outcome='EVIDENCE_CONFLICT', reason_code='CONFLICTING_SOURCES',
+                 conflicts=[{'attribute': requirement.conditional_attribute, 'description': 'Conflicting applicability evidence.', 'facts': [f.to_dict() for f in conditions]}],
+                 supporting_citations=[_citation(f) for f in conditions], evidence=[_citation(f) for f in conditions],
+                 required_follow_up='Resolve conflicting applicability evidence.')
+             return base
+         if values == {'false'}:
+             text = 'Not applicable: the cited record expressly states ' + requirement.conditional_attribute.replace('_',' ') + ' is false.'
+-            base.update(engine_status='NOT_APPLICABLE', status='NOT_APPLICABLE', answer=text, generated_answer=text,
++            base.update(engine_status='DRAFT', status='DRAFT', evidence_outcome='SUPPORTED_NOT_APPLICABLE', reason_code='', answer=text, generated_answer=text,
+                 missing_information=[], supporting_citations=[_citation(f) for f in conditions], evidence=[_citation(f) for f in conditions])
+             return base
+         if not conditions:
+@@ -931,7 +946,7 @@
+         owner = [f for f in applicable if f.attribute == 'owns_subject_vehicle' and f.value == 'true']
+         if owner:
+             text = 'Not applicable: the plaintiff owned the vehicle, according to the cited records.'
+-            base.update(engine_status='NOT_APPLICABLE', status='NOT_APPLICABLE', answer=text, generated_answer=text,
++            base.update(engine_status='DRAFT', status='DRAFT', evidence_outcome='SUPPORTED_NOT_APPLICABLE', reason_code='', answer=text, generated_answer=text,
+                         supporting_citations=[_citation(f) for f in owner], evidence=[_citation(f) for f in owner], missing_information=[])
+             return base
+     matched = [f for f in applicable if f.attribute in requirement.attributes]
+@@ -954,6 +969,12 @@
+         matched = [f for f in applicable if f.attribute == 'uploaded_medical_report']
+     if q == '202-13' and not matched:
+         matched = [f for f in applicable if f.attribute == 'permanency_assessment']
++    if q in {'202-11', '202-12'} and not matched:
++        matched = [f for f in applicable if f.attribute in {'present_complaints', 'lost_work_dates', 'work_resumption_date'}]
++    if q.startswith('202-14-') and not matched:
++        matched = [f for f in applicable if f.attribute == 'permanency_assessment']
++    if q == '202-23-e' and not matched:
++        matched = [f for f in applicable if f.attribute in {'hourly_rate', 'current_weekly_hours', 'lost_work_dates'}]
+     if q == '207-3-c':
+         matched = [f for f in matched if f.period in {'current','unspecified'}]
+     # Full names may have initials or additional middle names; they are not
+@@ -971,14 +992,14 @@
+                               'facts': [f.to_dict() for g in groups.values() for f in g]})
+     if conflicts:
+         cited = _unique([Fact(**f) for c in conflicts for f in c['facts']])
+-        base.update(engine_status='EVIDENCE_CONFLICT', status='EVIDENCE_CONFLICT', conflicts=conflicts,
++        base.update(engine_status='POTENTIAL_CONFLICT', status='POTENTIAL_CONFLICT', evidence_outcome='EVIDENCE_CONFLICT', reason_code='CONFLICTING_SOURCES', conflicts=conflicts,
+                     supporting_citations=[_citation(f) for f in cited], evidence=[_citation(f) for f in cited],
+                     required_follow_up='Resolve all conflicting values before inserting or approving an answer.')
+         return base
+     direct = [f for f in applicable if f.attribute == 'answer_' + q]
+     if direct:
+         if len({_value_key('', f.value) for f in direct}) > 1:
+-            base.update(engine_status='EVIDENCE_CONFLICT',status='EVIDENCE_CONFLICT',
++            base.update(engine_status='POTENTIAL_CONFLICT',status='POTENTIAL_CONFLICT', evidence_outcome='EVIDENCE_CONFLICT', reason_code='CONFLICTING_SOURCES',
+                         conflicts=[{'description':'Conflicting numbered prior answers.','facts':[f.to_dict() for f in direct]}],
+                         supporting_citations=[_citation(f) for f in direct])
+             return base
+@@ -986,7 +1007,7 @@
+     if not matched:
+         uncertain = [f for f in facts if f.attribute in requirement.attributes and f.subject in {'unknown','ambiguous',''} and _source_valid(f,segments,hashes)]
+         if uncertain:
+-            base.update(engine_status='CLIENT_CONFIRMATION',status='CLIENT_CONFIRMATION',
++            base.update(engine_status='REQUIRES_CLIENT',status='REQUIRES_CLIENT', evidence_outcome='AMBIGUOUS_ATTRIBUTION', reason_code='CLIENT_CONFIRMATION_REQUIRED',
+                 candidate_passages=[_citation(f) for f in uncertain],evidence=[_citation(f) for f in uncertain],
+                 required_follow_up='Responsive values were found, but their attribution to the responding party is ambiguous. Confirm the party before insertion.')
+         elif condition_note:
+@@ -1012,10 +1033,35 @@
+         missing.append('Explicit service date and location of prehospital treatment')
+     if condition_note:
+         missing.append(condition_note)
+-    text = direct[0].value if direct else _compose(requirement, matched, context)
++    if q == '202-11':
++        text = ('The cited records document ongoing limitations: ' + '; '.join(_values(matched, 'present_complaints')) +
++                '. They also document: ' + '; '.join(_values(matched, 'lost_work_dates')) +
++                '. Confirm whether the plaintiff claims these limitations as a present disability.')
++        missing.append('client confirmation of a present disability claim')
++    elif q == '202-12':
++        text = ('The cited records describe the current limitations as: ' + '; '.join(_values(matched, 'present_complaints')) +
++                '. Work status: ' + '; '.join(_values(matched, 'lost_work_dates')) + '.')
++        missing.append('client confirmation that these limitations are claimed as a disability')
++    elif q.startswith('202-14-'):
++        detail = {
++            '202-14-a': 'disabled body part', '202-14-b': 'lost motion or activity',
++            '202-14-c': 'percentage of loss of use', '202-14-d': 'permanency evaluator',
++            '202-14-e': 'prognosis date',
++        }[q]
++        text = (f'No {detail} is stated in the cited evidence. The orthopaedic record states: ' +
++                '; '.join(_values(matched, 'permanency_assessment')) + '.')
++        missing.append('client and attorney confirmation after the permanency assessment')
++    elif q == '202-23-e':
++        text = ('The cited employer record provides a calculation basis of ' +
++                '; '.join(_values(matched, 'hourly_rate')) + ' per hour and ' +
++                '; '.join(_values(matched, 'current_weekly_hours')) + ' hours per week. Documented work absence: ' +
++                '; '.join(_values(matched, 'lost_work_dates')) + '. The total claimed loss is not established.')
++        missing.append('total lost-income amount and final calculation')
++    else:
++        text = direct[0].value if direct else _compose(requirement, matched, context)
+     cited = _unique(matched)
+-    status = 'PARTIAL_DRAFT' if missing else 'SUPPORTED_DRAFT'
+-    base.update(engine_status=status, status=status, answer=text, generated_answer=text,
++    outcome = 'PARTIAL_DRAFT' if missing else 'SUPPORTED_DRAFT'
++    base.update(engine_status='DRAFT', status='DRAFT', evidence_outcome=outcome, reason_code='', answer=text, generated_answer=text,
+                 supporting_citations=[_citation(f) for f in cited], evidence=[_citation(f) for f in cited],
+                 missing_information=[_ATTRIBUTE_LABELS.get(a,a.replace('_',' ')) for a in dict.fromkeys(missing)],
+                 required_follow_up='Obtain the specifically missing information.' if missing else 'Attorney review and approval required.')
+diff -ruN '--exclude=vendor' '--exclude=assets' '--exclude=verification' '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/inquisitio/exporter.py /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/inquisitio/exporter.py
+--- /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/inquisitio/exporter.py	2026-10-21 05:07:22.000000000 +0800
++++ /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/inquisitio/exporter.py	2026-10-21 10:45:10.825375053 +0800
+@@ -7,7 +7,7 @@
+ 
+ from docx import Document
+ from docx.enum.text import WD_ALIGN_PARAGRAPH
+-from docx.shared import Inches, Pt
++from docx.shared import Inches, Pt, RGBColor
+ from reportlab.lib import colors
+ from reportlab.lib.enums import TA_CENTER
+ from reportlab.lib.pagesizes import letter
+@@ -17,6 +17,8 @@
+ from reportlab.pdfbase.ttfonts import TTFont
+ from reportlab.platypus import KeepTogether, PageBreak, Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
+ 
++from .production import FORM_205_REQUESTS
++
+ 
+ def _display(value: object) -> str:
+     return value if isinstance(value, str) else "" if value is None else str(value)
+@@ -31,6 +33,8 @@
+     section.right_margin = Inches(0.8)
+     document.styles["Normal"].font.name = "Arial"
+     document.styles["Normal"].font.size = Pt(10.5)
++    for style_name in ("Title", "Heading 1", "Heading 2", "Heading 3"):
++        document.styles[style_name].font.color.rgb = RGBColor(0, 0, 0)
+     return document
+ 
+ 
+@@ -108,15 +112,16 @@
+         answer_paragraph.paragraph_format.left_indent = Inches(0.45)
+         answer_paragraph.paragraph_format.keep_with_next = True
+         answer_paragraph.add_run("Response: ").bold = True
+-        answer_paragraph.add_run(_display(answer.get("answer")) or "[No response entered - review required]")
+-        status = answer.get("engine_status", answer.get("status", "ATTORNEY_REVIEW"))
+-        workflow = answer.get("workflow_status", "PENDING_REVIEW")
++        status = answer.get("status", "EMPTY")
++        marker = "" if status == "APPROVED" else f"[REVIEW {status}] "
++        answer_paragraph.add_run(marker + (_display(answer.get("answer")) or "[No response entered - review required]"))
+         status_paragraph = document.add_paragraph()
+         status_paragraph.paragraph_format.left_indent = Inches(0.45)
+-        status_paragraph.add_run("Engine status: ").bold = True
++        status_paragraph.add_run("Slot status: ").bold = True
+         status_paragraph.add_run(_display(status))
+-        status_paragraph.add_run(" | Attorney workflow: ").bold = True
+-        status_paragraph.add_run(_display(workflow))
++        if answer.get("reason_code"):
++            status_paragraph.add_run(" | Reason: ").bold = True
++            status_paragraph.add_run(_display(answer.get("reason_code")))
+         for conflict in answer.get("conflicts", []):
+             conflict_paragraph = document.add_paragraph()
+             conflict_paragraph.paragraph_format.left_indent = Inches(0.45)
+@@ -137,7 +142,7 @@
+             seen_citations.add(key)
+             cite = document.add_paragraph()
+             cite.paragraph_format.left_indent = Inches(0.45)
+-            label = f"Source: {_display(citation.get('filename'))}, PDF page {_display(citation.get('page'))}"
++            label = _display(citation.get("citation_label")) if citation.get("citation_kind") == "case_record" else f"Source: {_display(citation.get('source_id'))} — {_display(citation.get('filename'))}, PDF page {_display(citation.get('page'))}"
+             if citation.get("ocr_sourced"):
+                 label += " [OCR-sourced]"
+             cite.add_run(label).bold = True
+@@ -145,6 +150,21 @@
+             for run in cite.runs:
+                 run.font.size = Pt(8)
+ 
++    if form.get("form_id") == "202":
++        document.add_page_break()
++        document.add_heading("Form 205 Defendant Requests for Production", level=1)
++        document.add_paragraph("Provide the requested documents, copies, or authorizations within the applicable response period. Each request remains subject to attorney review.")
++        for number, request in enumerate(FORM_205_REQUESTS, start=1):
++            if number == 7:
++                document.add_page_break()
++                document.add_heading("Form 205 Requests continued", level=1)
++            paragraph = document.add_paragraph()
++            paragraph.paragraph_format.space_before = Pt(7)
++            paragraph.paragraph_format.space_after = Pt(4)
++            paragraph.paragraph_format.keep_together = True
++            paragraph.add_run(f"({number}) ").bold = True
++            paragraph.add_run(request)
++
+     document.add_page_break()
+     document.add_heading("Verification and certification", level=1)
+     document.add_paragraph(
+@@ -189,8 +209,8 @@
+         document.add_heading(f"{item['item_id']}: {item.get('text', '')}", level=2)
+         document.add_paragraph(f"Proposed answer: {_display(answer.get('answer')) or '[Unresolved]'}")
+         document.add_paragraph(
+-            f"Engine status: {_display(answer.get('engine_status', answer.get('status', 'ATTORNEY_REVIEW')))} | "
+-            f"Attorney workflow: {_display(answer.get('workflow_status', 'PENDING_REVIEW'))}"
++            f"Slot status: {_display(answer.get('status', 'EMPTY'))} | "
++            f"Evidence outcome: {_display(answer.get('evidence_outcome', ''))}"
+         )
+         missing = answer.get("missing_information", [])
+         document.add_paragraph("Missing information: " + (", ".join(map(_display, missing)) if missing else "None identified"))
+@@ -202,10 +222,13 @@
+         for citation in citations:
+             paragraph = document.add_paragraph()
+             paragraph.add_run("Source: ").bold = True
+-            paragraph.add_run(
+-                f"{_display(citation.get('filename'))}, PDF page {_display(citation.get('page'))}; "
+-                f"source {_display(citation.get('source_id'))}; SHA-256 {_display(citation.get('document_sha256'))}" + (" [OCR-sourced]" if citation.get("ocr_sourced") else "")
+-            )
++            if citation.get("citation_kind") == "case_record":
++                paragraph.add_run(f"{_display(citation.get('citation_label'))}; SHA-256 {_display(citation.get('document_sha256'))}")
++            else:
++                paragraph.add_run(
++                    f"{_display(citation.get('filename'))}, PDF page {_display(citation.get('page'))}; "
++                    f"source {_display(citation.get('source_id'))}; SHA-256 {_display(citation.get('document_sha256'))}" + (" [OCR-sourced]" if citation.get("ocr_sourced") else "")
++                )
+             quote = document.add_paragraph()
+             quote.paragraph_format.left_indent = Inches(0.3)
+             quote.add_run(f'Exact quote: "{_display(citation.get("quote"))}"')
+@@ -314,11 +337,12 @@
+             blocks.append(Paragraph(f"<b>({item['number']})</b> {escape(_display(item.get('text')))}", question))
+ 
+         answer = answers.get(item["item_id"], {})
+-        answer_text = _display(answer.get("answer")) or "[NO RESPONSE GENERATED - ATTORNEY REVIEW REQUIRED]"
++        slot_status = _display(answer.get("status", "EMPTY"))
++        marker = "" if slot_status == "APPROVED" else f"[REVIEW {slot_status}] "
++        answer_text = marker + (_display(answer.get("answer")) or "[NO RESPONSE GENERATED - ATTORNEY REVIEW REQUIRED]")
+         blocks.append(Paragraph(f"<b>RESPONSE:</b> {escape(answer_text)}", response))
+-        status = _display(answer.get("engine_status", answer.get("status", "ATTORNEY_REVIEW"))).replace("_", " ").title()
+-        workflow = _display(answer.get("workflow_status", "PENDING_REVIEW")).replace("_", " ").title()
+-        details = f"Review status: {status}; {workflow}"
++        status = slot_status.replace("_", " ").title()
++        details = f"Slot status: {status}"
+         missing = answer.get("missing_information", [])
+         if missing:
+             details += " | Unresolved: " + ", ".join(map(_display, missing))
+@@ -332,11 +356,17 @@
+             if key in seen_citations:
+                 continue
+             seen_citations.add(key)
+-            label = f"Source: {_display(citation.get('filename'))}, PDF page {_display(citation.get('page'))}"
++            label = _display(citation.get("citation_label")) if citation.get("citation_kind") == "case_record" else f"Source: {_display(citation.get('source_id'))} — {_display(citation.get('filename'))}, PDF page {_display(citation.get('page'))}"
+             if citation.get("ocr_sourced"):
+                 label += " [OCR-sourced]"
+             story.append(Paragraph("<b>" + escape(label) + "</b><br/>Exact source: " + escape(_display(citation.get("quote"))), small))
+ 
++    if form_id == "202":
++        story.append(PageBreak())
++        story.append(Paragraph("Form 205 Defendant Requests for Production", ParagraphStyle("Production", parent=styles["Heading1"], fontName=sans_bold, fontSize=13, spaceAfter=8)))
++        for number, request_text in enumerate(FORM_205_REQUESTS, start=1):
++            story.append(Paragraph(f"<b>({number})</b> {escape(request_text)}", question))
++
+     story.extend([
+         PageBreak(),
+         Paragraph("Verification", ParagraphStyle("Verify", parent=styles["Heading1"], fontName=sans_bold, fontSize=13, spaceAfter=8)),
+diff -ruN '--exclude=vendor' '--exclude=assets' '--exclude=verification' '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/inquisitio/production.py /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/inquisitio/production.py
+--- /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/inquisitio/production.py	1970-01-01 08:00:00.000000000 +0800
++++ /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/inquisitio/production.py	2026-10-21 10:41:29.096370670 +0800
+@@ -0,0 +1,17 @@
++"""Immutable Connecticut Form 205 requests paired with Form 202."""
++
++FORM_205_REQUESTS = (
++    "All hospital records relating to treatment received as a result of the alleged incident, and to injuries, diseases or defects to which reference is made in the answers to Interrogatories #19, #20, #21 and #22, or written authorization, sufficient to comply with the provisions of the Health Insurance Portability and Accountability Act (HIPAA), to inspect and make copies of said hospital records. Information obtained pursuant to HIPAA shall not be used or disclosed for any purpose other than this litigation or proceeding.",
++    "All reports and records of all doctors and all other care providers relating to treatment allegedly received as a result of the alleged incident, and to the injuries, diseases or defects referenced in the answers to Interrogatories #19, #20, #21 and #22, exclusive of records prepared or maintained by a licensed psychiatrist or psychologist, or sufficient written HIPAA authorization to inspect and copy those reports. Information obtained pursuant to HIPAA shall not be used or disclosed for any purpose other than this litigation or proceeding.",
++    "If a claim for lost wages or lost earning capacity is made, copies of, or sufficient written authorization to inspect and copy, the wage and employment records of all employers of the Plaintiff for three years before the incident and all years after the incident through the date of production.",
++    "If impaired earning capacity or lost wages is alleged, copies of, or sufficient written authorization to obtain copies of, the portions of all income tax returns relating to lost income filed by the Plaintiff for three years before the incident and all years after the incident through trial.",
++    "All property damage bills claimed to have been incurred as a result of this incident.",
++    "All medical bills claimed to have been incurred as a result of this incident, or sufficient written HIPAA authorization to inspect and copy those bills. Information obtained pursuant to HIPAA shall not be used or disclosed for any purpose other than this litigation or proceeding.",
++    "All bills for each item of expense claimed in the answer to Interrogatory #17 and not already provided in response to Requests #5 and #6.",
++    "Copies of all documentation of claims of right to reimbursement provided to the Plaintiff by third-party payors, and copies of, or sufficient written HIPAA authorization to obtain, documentation of payments made by a third party for medical services received or premiums paid to obtain such payment. Information obtained pursuant to HIPAA shall not be used or disclosed for any purpose other than this litigation or proceeding.",
++    "All documents identified or referred to in the answers to Interrogatory #26.",
++    "A copy of any nonprivileged statement, as defined in Practice Book Section 13-1, of any party in this lawsuit concerning this action or its subject matter.",
++    "Any and all photographs or recordings identified in response to Interrogatory #32.",
++    "A copy of all records of blood alcohol testing or drug screens referred to in the answer to Interrogatory #34, or a signed authorization sufficient under HIPAA or the Public Health Service Act, whichever applies, to obtain them. Information obtained pursuant to those laws shall not be used or disclosed for any purpose other than this litigation or proceeding.",
++    "A copy of every recording of surveillance material discoverable under Practice Book Section 13-3 (c), by film, photograph, video, audio or any other digital or electronic means, of any party concerning this lawsuit or its subject matter, including any transcript.",
++)
+diff -ruN '--exclude=vendor' '--exclude=assets' '--exclude=verification' '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/inquisitio/server.py /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/inquisitio/server.py
+--- /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/inquisitio/server.py	2026-10-21 05:07:22.000000000 +0800
++++ /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/inquisitio/server.py	2026-10-21 10:40:53.451539319 +0800
+@@ -17,8 +17,9 @@
+ from urllib.parse import unquote, urlparse
+ 
+ from . import __version__
++from .case_record import apply_case_record, metadata_from_case_record, validate_case_record_bytes
+ from .evidence import EvidenceSegment, extract_pdf
+-from .engine import ENGINE_STATUSES, WORKFLOW_STATUSES, answer_fingerprint, build_response, extract_facts, infer_metadata
++from .engine import ENGINE_STATUSES, _same_person, answer_fingerprint, build_response, extract_facts, infer_metadata
+ from .exporter import export_case, export_case_pdf, export_traceability
+ from .forms import load_forms
+ from .storage import CaseStore
+@@ -54,8 +55,9 @@
+ CASE_PATH = re.compile(r"^/api/cases/([a-f0-9]{32})(?:/(answers|export|pdf|traceability|evidence))?$")
+ METADATA_FIELDS = {
+     "court", "docket_number", "response_date", "plaintiff", "defendant",
+-    "judicial_district", "responding_party_role", "interrogating_party",
++    "judicial_district", "responding_party_role", "interrogating_party", "incident_date",
+ }
++CASE_WRITE_LOCK = threading.RLock()
+ 
+ 
+ def utc_now() -> str:
+@@ -100,20 +102,27 @@
+     value = json.loads(json.dumps(record))
+     value.pop("facts", None)
+     legacy_statuses = {
+-        "DRAFTED_FROM_EVIDENCE": "ATTORNEY_REVIEW",
+-        "CLIENT_CONFIRMATION_REQUIRED": "CLIENT_CONFIRMATION",
+-        "POTENTIAL_CONFLICT": "EVIDENCE_CONFLICT",
+-        "REVIEW_REQUIRED": "ATTORNEY_REVIEW",
+-        "COMPLETE": "ATTORNEY_REVIEW",
+-        "NO_RESPONSIVE_EVIDENCE": "NO_RESPONSIVE_EVIDENCE",
++        "DRAFTED_FROM_EVIDENCE": "DRAFT", "SUPPORTED_DRAFT": "DRAFT",
++        "PARTIAL_DRAFT": "DRAFT", "NOT_APPLICABLE": "DRAFT",
++        "CLIENT_CONFIRMATION_REQUIRED": "REQUIRES_CLIENT", "CLIENT_CONFIRMATION": "REQUIRES_CLIENT",
++        "EVIDENCE_CONFLICT": "POTENTIAL_CONFLICT", "REVIEW_REQUIRED": "EMPTY",
++        "ATTORNEY_REVIEW": "EMPTY", "NO_RESPONSIVE_EVIDENCE": "EMPTY",
+     }
+     counts: dict[str, int] = {}
+     approved = 0
+     for answer in value.get("answers", {}).values():
+-        engine_status = answer.get("engine_status") or legacy_statuses.get(answer.get("status"), "ATTORNEY_REVIEW")
+-        answer["engine_status"] = engine_status
+-        answer["status"] = engine_status
+-        answer.setdefault("workflow_status", "PENDING_REVIEW")
++        raw_status = answer.get("status") or answer.get("engine_status") or "EMPTY"
++        if raw_status == "COMPLETE":
++            status = "APPROVED" if str(answer.get("answer", "")).strip() else "EMPTY"
++        else:
++            status = raw_status if raw_status in ENGINE_STATUSES else legacy_statuses.get(raw_status, "EMPTY")
++        if answer.get("workflow_status") == "APPROVED" and str(answer.get("answer", "")).strip():
++            status = "APPROVED"
++        answer["engine_status"] = status
++        answer["status"] = status
++        answer.pop("workflow_status", None)
++        answer.setdefault("evidence_outcome", raw_status if raw_status not in ENGINE_STATUSES else "")
++        answer.setdefault("reason_code", "NOT_IN_EVIDENCE" if status == "EMPTY" else "")
+         answer.setdefault("generated_answer", "")
+         answer.setdefault("supporting_citations", [])
+         answer.setdefault("candidate_passages", list(answer.get("evidence", [])))
+@@ -123,15 +132,15 @@
+         answer.setdefault("edit_history", [])
+         answer.setdefault("requires_revalidation", bool(answer.get("answer")))
+         answer.setdefault("approval", None)
+-        counts[engine_status] = counts.get(engine_status, 0) + 1
+-        approved += answer["workflow_status"] == "APPROVED"
++        counts[status] = counts.get(status, 0) + 1
++        approved += status == "APPROVED"
+     if "summary" in value:
+         value["summary"]["status_counts"] = counts
+         value["summary"]["approved"] = approved
+     return value
+ 
+ 
+-def _document_summary(document) -> dict:
++def _document_summary(document, uploaded_at: str, party_names: list[str] | None = None, identity_status: str = "IDENTITY_NOT_FOUND") -> dict:
+     return {
+         "source_id": document.source_id,
+         "filename": document.filename,
+@@ -141,13 +150,46 @@
+         "segment_count": len(document.segments),
+         "extraction_errors": list(document.extraction_errors),
+         "page_methods": list(document.page_methods),
++        "uploaded_at": uploaded_at,
++        "party_names": party_names or [],
++        "identity_status": identity_status,
+     }
+ 
+ 
+ def _build_workspace(record: dict, documents: list, segments: list[EvidenceSegment], previous: dict | None = None) -> None:
+-    summaries = [_document_summary(document) for document in documents]
++    old_documents = {item.get("sha256"): item for item in (previous or {}).get("documents", [])}
++    provisional = [
++        _document_summary(document, old_documents.get(document.sha256, {}).get("uploaded_at", utc_now()))
++        for document in documents
++    ]
+     record["metadata"] = infer_metadata(segments, record["metadata"], record["form_id"])
+-    facts = extract_facts(segments, record["metadata"], summaries, FORMS[record["form_id"]].items)
++    facts = extract_facts(segments, record["metadata"], provisional, FORMS[record["form_id"]].items)
++    respondent = str(record["metadata"].get(record["metadata"].get("responding_party_role", ""), "")).strip()
++    names_by_source: dict[str, list[str]] = {}
++    for fact in facts:
++        if fact.attribute == "full_name" and fact.value not in names_by_source.setdefault(fact.source_id, []):
++            names_by_source[fact.source_id].append(fact.value)
++    summaries = []
++    packet_has_match = False
++    packet_has_identity = False
++    for document, summary in zip(documents, provisional):
++        names = names_by_source.get(document.source_id, [])
++        matched = bool(respondent and any(_same_person(name, respondent) for name in names))
++        packet_has_match = packet_has_match or matched
++        packet_has_identity = packet_has_identity or bool(names)
++        identity_status = "MATCHED_RESPONDING_PARTY" if matched else "NO_RESPONDING_PARTY_MATCH" if names else "IDENTITY_NOT_FOUND"
++        summaries.append(_document_summary(document, summary["uploaded_at"], names, identity_status))
++    blocked = bool(respondent and packet_has_identity and not packet_has_match)
++    record["matter_integrity"] = {
++        "status": "BLOCKED" if blocked else "PASS" if packet_has_match else "WARNING",
++        "responding_party": respondent,
++        "packet_identity_found": packet_has_identity,
++        "message": (
++            "Uploaded evidence identifies other people but does not identify the responding party. Automatic drafting is blocked."
++            if blocked else "Responding party identity matched in the uploaded evidence."
++            if packet_has_match else "No affirmative party identity was found; review the packet before approval."
++        ),
++    }
+     status_counts: dict[str, int] = {}
+     answers: dict[str, dict] = {}
+     old_answers = (previous or {}).get("answers", {})
+@@ -156,7 +198,7 @@
+         old = old_answers.get(item.item_id, {})
+         prior_text = str(old.get("answer", ""))
+         prior_generated = str(old.get("generated_answer", ""))
+-        if prior_text and prior_text != prior_generated and answer["engine_status"] == "EVIDENCE_CONFLICT":
++        if prior_text and prior_text != prior_generated and answer["status"] == "POTENTIAL_CONFLICT":
+             answer["edit_history"] = list(old.get("edit_history", [])) + [{
+                 "previous_answer": prior_text,
+                 "reason": "Conflicting evidence; prior manual text retained in history, response left blank.",
+@@ -166,10 +208,23 @@
+             answer["edit_history"] = list(old.get("edit_history", []))
+             answer["requires_revalidation"] = True
+             answer["required_follow_up"] = "Revalidate the attorney-edited response against the newly processed evidence."
+-        answer["workflow_status"] = "PENDING_REVIEW"
++            answer["status"] = "EDITED"
++            answer["engine_status"] = "EDITED"
+         answer["approval"] = None
+         answers[item.item_id] = answer
+-        status_counts[answer["engine_status"]] = status_counts.get(answer["engine_status"], 0) + 1
++    apply_case_record(record, answers)
++    if blocked:
++        for answer in answers.values():
++            answer["candidate_passages"] = answer.get("supporting_citations", []) or answer.get("candidate_passages", [])
++            answer["answer"] = ""
++            answer["generated_answer"] = ""
++            answer["status"] = "REQUIRES_CLIENT"
++            answer["engine_status"] = "REQUIRES_CLIENT"
++            answer["evidence_outcome"] = "MATTER_IDENTITY_BLOCK"
++            answer["reason_code"] = "MATERIAL_IDENTITY_CONTRADICTION"
++            answer["required_follow_up"] = record["matter_integrity"]["message"]
++    for answer in answers.values():
++        status_counts[answer["status"]] = status_counts.get(answer["status"], 0) + 1
+     record["documents"] = summaries
+     record["facts"] = [fact.to_dict() for fact in facts]
+     record["answers"] = answers
+@@ -360,8 +415,6 @@
+             role = str(metadata.get("responding_party_role", "")).lower()
+             if role and role not in {"plaintiff", "defendant"}:
+                 raise ValueError("Responding party must be plaintiff or defendant.")
+-            if role and not str(metadata.get(role, "")).strip():
+-                raise ValueError("Enter the responding party's name before building the workspace.")
+             if form_id == "202" and role != "plaintiff":
+                 if role:
+                     raise ValueError("Form 202 is the defendant's interrogatories to the plaintiff; confirm the plaintiff as responding party.")
+@@ -374,6 +427,24 @@
+             invalid = next((name for name in filenames if Path(name).suffix.lower() != ".pdf"), None)
+             if invalid:
+                 raise ValueError(f"{invalid} is not a PDF.")
++            record_uploads = [item for name, item in parts if name == "case_record" and item.get("filename")]
++            other_uploads = [item for name, item in parts if item.get("filename") and name not in {"evidence", "case_record"}]
++            if other_uploads:
++                raise ValueError("Only evidence PDFs and one case_record.json file are accepted.")
++            if len(record_uploads) > 1:
++                raise ValueError("Upload no more than one case_record.json file.")
++            case_record = None
++            case_record_sha256 = ""
++            if record_uploads:
++                record_name = _safe_filename(str(record_uploads[0]["filename"]))
++                if record_name != "case_record.json":
++                    raise ValueError("The optional case record file must be named case_record.json.")
++                case_record, case_record_sha256 = validate_case_record_bytes(bytes(record_uploads[0]["data"]))
++                for key, value in metadata_from_case_record(case_record).items():
++                    if value and not str(metadata.get(key, "")).strip():
++                        metadata[key] = value
++            if role and not str(metadata.get(role, "")).strip():
++                raise ValueError("Enter the responding party's name or provide it in case_record.json before building the workspace.")
+ 
+             case_id = STORE.new_id()
+             form = FORMS[form_id]
+@@ -381,7 +452,8 @@
+                 "case_id": case_id,
+                 "case_name": case_name,
+                 "form_id": form_id,
+-                "schema_version": 2,
++                "schema_version": 3,
++                "revision": 1,
+                 "created_at": utc_now(),
+                 "updated_at": utc_now(),
+                 "metadata": metadata,
+@@ -389,8 +461,14 @@
+                 "documents": [],
+                 "answers": {},
+                 "summary": {},
++                "case_record": case_record,
++                "case_record_sha256": case_record_sha256,
+             }
+             STORE.create(case_id, record)
++            if case_record is not None:
++                case_record_path = STORE.case_dir(case_id) / "case_record.json"
++                case_record_path.write_bytes(bytes(record_uploads[0]["data"]))
++                os.chmod(case_record_path, 0o600)
+             directory = STORE.case_dir(case_id) / "evidence"
+             documents = []
+             segments: list[EvidenceSegment] = []
+@@ -426,7 +504,8 @@
+             self._json(500, {"error": "Evidence processing failed.", "detail": type(exc).__name__})
+ 
+     def _append_evidence(self, case_id: str) -> None:
+-        staged: list[Path] = []
++        stage_directory: Path | None = None
++        backup_directory: Path | None = None
+         try:
+             record = STORE.load(case_id)
+             body = self._read_body()
+@@ -434,49 +513,87 @@
+             uploads = [item for name, item in parts if name == "evidence" and item.get("filename")]
+             if not uploads:
+                 raise ValueError("Upload at least one evidence PDF.")
+-            directory = STORE.case_dir(case_id) / "evidence"
+-            next_index = len(list(directory.glob("*.pdf"))) + 1
++            mode = _field(parts, "mode", "append")
++            if mode not in {"append", "replace"}:
++                raise ValueError("Evidence update mode must be append or replace.")
++            try:
++                expected_revision = int(_field(parts, "revision"))
++            except ValueError as exc:
++                raise ValueError("A matter revision is required before reprocessing evidence.") from exc
++            current_revision = int(record.get("revision", 1))
++            if expected_revision != current_revision:
++                self._json(409, {
++                    "error": "This matter changed in another browser tab. Reload before reprocessing evidence.",
++                    "current_revision": current_revision,
++                })
++                return
++            evidence_directory = STORE.case_dir(case_id) / "evidence"
++            stage_directory = STORE.case_dir(case_id) / f".evidence-stage-{STORE.new_id()}"
++            stage_directory.mkdir(mode=0o700)
++            existing = sorted(evidence_directory.glob("*.pdf")) if mode == "append" else []
++            next_index = len(existing) + 1
++            if mode == "append":
++                for path in existing:
++                    staged_copy = stage_directory / path.name
++                    shutil.copyfile(path, staged_copy)
++                    os.chmod(staged_copy, 0o600)
+             for offset, upload in enumerate(uploads):
+                 filename = _safe_filename(str(upload["filename"]))
+                 if Path(filename).suffix.lower() != ".pdf":
+                     raise ValueError(f"{filename} is not a PDF.")
+-                final_path = directory / f"{next_index + offset:03d}_{filename}"
+-                pending_path = directory / f".{final_path.name}.pending"
+-                pending_path.write_bytes(bytes(upload["data"]))
+-                os.chmod(pending_path, 0o600)
+-                staged.append(pending_path)
++                staged_path = stage_directory / f"{next_index + offset:03d}_{filename}"
++                staged_path.write_bytes(bytes(upload["data"]))
++                os.chmod(staged_path, 0o600)
+                 try:
+-                    extract_pdf(pending_path, "VALIDATE", filename)
++                    extract_pdf(staged_path, "VALIDATE", filename)
+                 except Exception as exc:
+                     raise ValueError(f"{filename} could not be read as a PDF.") from exc
+-
+-            for pending_path in staged:
+-                final_name = pending_path.name.removeprefix(".").removesuffix(".pending")
+-                os.replace(pending_path, directory / final_name)
+-            staged.clear()
+-
+             documents = []
+             segments: list[EvidenceSegment] = []
+-            for index, path_on_disk in enumerate(sorted(directory.glob("*.pdf")), start=1):
++            for index, path_on_disk in enumerate(sorted(stage_directory.glob("*.pdf")), start=1):
+                 display_name = re.sub(r"^\d{3}_", "", path_on_disk.name)
+                 document = extract_pdf(path_on_disk, f"E-{index:03d}", display_name)
+                 documents.append(document)
+                 segments.extend(document.segments)
+             previous = json.loads(json.dumps(record))
+-            _build_workspace(record, documents, segments, previous)
+-            record["updated_at"] = utc_now()
+-            STORE.save(case_id, record)
++            candidate = json.loads(json.dumps(record))
++            _build_workspace(candidate, documents, segments, previous if mode == "append" else None)
++            candidate["revision"] = current_revision + 1
++            candidate["updated_at"] = utc_now()
++            with CASE_WRITE_LOCK:
++                latest = STORE.load(case_id)
++                if int(latest.get("revision", 1)) != current_revision:
++                    self._json(409, {
++                        "error": "This matter changed while evidence was processing. Reload and try again.",
++                        "current_revision": int(latest.get("revision", 1)),
++                    })
++                    return
++                backup_directory = STORE.case_dir(case_id) / f".evidence-backup-{STORE.new_id()}"
++                os.replace(evidence_directory, backup_directory)
++                os.replace(stage_directory, evidence_directory)
++                stage_directory = None
++                try:
++                    STORE.save(case_id, candidate)
++                except Exception:
++                    os.replace(evidence_directory, stage_directory := STORE.case_dir(case_id) / f".evidence-failed-{STORE.new_id()}")
++                    os.replace(backup_directory, evidence_directory)
++                    backup_directory = None
++                    raise
++            if backup_directory:
++                shutil.rmtree(backup_directory)
++                backup_directory = None
++            record = candidate
+             self._json(200, _public_case(record))
+         except FileNotFoundError:
+             self._json(404, {"error": "Case not found."})
+         except ValueError as exc:
+-            for path in staged:
+-                path.unlink(missing_ok=True)
+             self._json(400, {"error": str(exc)})
+         except Exception as exc:
+-            for path in staged:
+-                path.unlink(missing_ok=True)
+             self._json(500, {"error": "Evidence reprocessing failed.", "detail": type(exc).__name__})
++        finally:
++            for directory in (stage_directory, backup_directory):
++                if directory and directory.exists():
++                    shutil.rmtree(directory, ignore_errors=True)
+ 
+     def do_PUT(self) -> None:
+         if not self._authorize_request():
+@@ -492,56 +609,67 @@
+             updates = payload.get("answers")
+             if not isinstance(updates, dict):
+                 raise ValueError("answers must be an object.")
+-            record = STORE.load(case_id)
+-            allowed = set(record["answers"])
+-            for item_id, update in updates.items():
+-                if item_id not in allowed or not isinstance(update, dict):
+-                    raise ValueError(f"Unknown answer item: {item_id}")
+-                current = record["answers"][item_id]
+-                answer_text = str(update.get("answer", current.get("answer", "")))
+-                workflow_status = str(update.get("workflow_status", current.get("workflow_status", "PENDING_REVIEW")))
+-                if update.get("status") == "COMPLETE":
+-                    workflow_status = "APPROVED"
+-                if len(answer_text) > 50_000:
+-                    raise ValueError(f"Answer {item_id} exceeds 50,000 characters.")
+-                if workflow_status not in WORKFLOW_STATUSES:
+-                    raise ValueError(f"Invalid workflow status for {item_id}.")
+-                previous_text = str(current.get("answer", ""))
+-                if answer_text != previous_text:
+-                    current.setdefault("edit_history", []).append({
+-                        "edited_at": utc_now(),
+-                        "previous_answer": previous_text,
+-                        "new_answer": answer_text,
++            with CASE_WRITE_LOCK:
++                record = STORE.load(case_id)
++                expected_revision = payload.get("revision")
++                if not isinstance(expected_revision, int):
++                    self._json(428, {"error": "A matter revision is required before saving."})
++                    return
++                current_revision = int(record.get("revision", 1))
++                if expected_revision != current_revision:
++                    self._json(409, {
++                        "error": "This matter changed in another browser tab. Reload before saving.",
++                        "current_revision": current_revision,
+                     })
+-                    current["answer"] = answer_text
+-                    current["requires_revalidation"] = answer_text != str(current.get("generated_answer", ""))
+-                    current["approval"] = None
+-                    workflow_status = "PENDING_REVIEW"
+-                if update.get("revalidated") is True:
+-                    current["requires_revalidation"] = False
+-                    current.setdefault("edit_history", []).append({"revalidated_at": utc_now()})
+-                if workflow_status == "APPROVED":
+-                    if current.get("engine_status") in {"EVIDENCE_CONFLICT", "CLIENT_CONFIRMATION", "NO_RESPONSIVE_EVIDENCE"}:
+-                        raise ValueError(f"Resolve the engine finding before approving {item_id}.")
+-                    if not str(current.get("answer", "")).strip() and current.get("engine_status") != "NOT_APPLICABLE":
+-                        raise ValueError(f"A response is required before approving {item_id}.")
+-                    if current.get("requires_revalidation"):
+-                        raise ValueError(f"Revalidate the edited response before approving {item_id}.")
+-                    current["approval"] = {"approved_at": utc_now(), "content_sha256": answer_fingerprint(current)}
+-                else:
+-                    current["approval"] = None
+-                current["workflow_status"] = workflow_status
+-                current["status"] = current.get("engine_status", "ATTORNEY_REVIEW")
+-            counts: dict[str, int] = {}
+-            for answer in record["answers"].values():
+-                engine_status = answer.get("engine_status", answer.get("status", "ATTORNEY_REVIEW"))
+-                if engine_status not in ENGINE_STATUSES:
+-                    engine_status = "ATTORNEY_REVIEW"
+-                counts[engine_status] = counts.get(engine_status, 0) + 1
+-            record["summary"]["status_counts"] = counts
+-            record["summary"]["approved"] = sum(answer.get("workflow_status") == "APPROVED" for answer in record["answers"].values())
+-            record["updated_at"] = utc_now()
+-            STORE.save(case_id, record)
++                    return
++                allowed = set(record["answers"])
++                for item_id, update in updates.items():
++                    if item_id not in allowed or not isinstance(update, dict):
++                        raise ValueError(f"Unknown answer item: {item_id}")
++                    current = record["answers"][item_id]
++                    answer_text = str(update.get("answer", current.get("answer", "")))
++                    requested_status = str(update.get("status", current.get("status", "EMPTY")))
++                    if requested_status == "COMPLETE":
++                        requested_status = "APPROVED" if answer_text.strip() else "EMPTY"
++                    if len(answer_text) > 50_000:
++                        raise ValueError(f"Answer {item_id} exceeds 50,000 characters.")
++                    if requested_status not in ENGINE_STATUSES:
++                        raise ValueError(f"Invalid workflow status for {item_id}.")
++                    previous_text = str(current.get("answer", ""))
++                    if answer_text != previous_text:
++                        current.setdefault("edit_history", []).append({
++                            "edited_at": utc_now(), "previous_answer": previous_text, "new_answer": answer_text,
++                        })
++                        current["answer"] = answer_text
++                        current["requires_revalidation"] = answer_text != str(current.get("generated_answer", ""))
++                        current["approval"] = None
++                        requested_status = "EDITED"
++                    if update.get("revalidated") is True:
++                        current["requires_revalidation"] = False
++                        current.setdefault("edit_history", []).append({"revalidated_at": utc_now()})
++                    if requested_status == "APPROVED":
++                        if current.get("status") in {"POTENTIAL_CONFLICT", "REQUIRES_CLIENT", "EMPTY"}:
++                            raise ValueError(f"Resolve the engine finding before approving {item_id}.")
++                        if not str(current.get("answer", "")).strip():
++                            raise ValueError(f"A response is required before approving {item_id}.")
++                        if current.get("requires_revalidation"):
++                            raise ValueError(f"Revalidate the edited response before approving {item_id}.")
++                        current["approval"] = {"approved_at": utc_now(), "content_sha256": answer_fingerprint(current)}
++                    else:
++                        current["approval"] = None
++                    current["status"] = requested_status
++                    current["engine_status"] = requested_status
++                counts: dict[str, int] = {}
++                for answer in record["answers"].values():
++                    status = answer.get("status", "EMPTY")
++                    if status not in ENGINE_STATUSES:
++                        status = "EMPTY"
++                    counts[status] = counts.get(status, 0) + 1
++                record["summary"]["status_counts"] = counts
++                record["summary"]["approved"] = sum(answer.get("status") == "APPROVED" for answer in record["answers"].values())
++                record["revision"] = current_revision + 1
++                record["updated_at"] = utc_now()
++                STORE.save(case_id, record)
+             self._json(200, _public_case(record))
+         except FileNotFoundError:
+             self._json(404, {"error": "Case not found."})
+diff -ruN '--exclude=vendor' '--exclude=assets' '--exclude=verification' '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/package.json /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/package.json
+--- /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/package.json	2026-10-21 05:13:08.000000000 +0800
++++ /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/package.json	2026-10-21 10:43:39.523373292 +0800
+@@ -1,7 +1,7 @@
+ {
+   "name": "inquisitio-uat",
+   "private": true,
+-  "version": "0.4.3",
++  "version": "0.5.0",
+   "type": "module",
+   "scripts": {
+     "test:browser": "node tests/browser_uat.mjs"
+diff -ruN '--exclude=vendor' '--exclude=assets' '--exclude=verification' '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/packaging/Inquisitio.spec /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/packaging/Inquisitio.spec
+--- /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/packaging/Inquisitio.spec	2026-10-21 05:07:22.000000000 +0800
++++ /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/packaging/Inquisitio.spec	2026-10-21 10:45:48.790246173 +0800
+@@ -64,8 +64,8 @@
+         info_plist={
+             "CFBundleDisplayName": "Inquisitio",
+             "CFBundleName": "Inquisitio",
+-            "CFBundleShortVersionString": "0.4.2",
+-            "CFBundleVersion": "0.4.2",
++            "CFBundleShortVersionString": "0.5.0",
++            "CFBundleVersion": "0.5.0",
+             "NSHighResolutionCapable": True,
+         },
+     )
+diff -ruN '--exclude=vendor' '--exclude=assets' '--exclude=verification' '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/packaging/build_macos.sh /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/packaging/build_macos.sh
+--- /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/packaging/build_macos.sh	2026-10-21 05:07:22.000000000 +0800
++++ /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/packaging/build_macos.sh	2026-10-21 10:45:48.790246173 +0800
+@@ -6,7 +6,7 @@
+ 
+ python -m pip install --upgrade pip
+ python -m pip install -r requirements-build.txt
+-python -m unittest discover -s tests -v
++python tests/offline_harness.py
+ python -m PyInstaller --clean --noconfirm packaging/Inquisitio.spec
+ 
+ APP="$ROOT/dist/Inquisitio.app"
+diff -ruN '--exclude=vendor' '--exclude=assets' '--exclude=verification' '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/packaging/build_offline_manifest.py /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/packaging/build_offline_manifest.py
+--- /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/packaging/build_offline_manifest.py	2026-10-21 05:14:12.000000000 +0800
++++ /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/packaging/build_offline_manifest.py	2026-10-21 10:43:39.523373292 +0800
+@@ -41,7 +41,7 @@
+         path = vendor / f"requirements-{profile}.lock"
+         path.write_text("\n".join(lines) + "\n")
+         profiles[profile] = {"requirements": path.name, "requirements_sha256": digest(path), "versions": versions, "wheels": list(selected)}
+-    result = {"format": 1, "application_version": "0.4.3", "python_version": "3.12.15", "platform": "macos-arm64", "profiles": profiles, "wheels": wheels}
++    result = {"format": 1, "application_version": "0.5.0", "python_version": "3.12.15", "platform": "macos-arm64", "profiles": profiles, "wheels": wheels}
+     (vendor / "manifest.json").write_text(json.dumps(result, indent=2) + "\n")
+     return result
+ 
+diff -ruN '--exclude=vendor' '--exclude=assets' '--exclude=verification' '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/packaging/launch_runtime.py /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/packaging/launch_runtime.py
+--- /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/packaging/launch_runtime.py	2026-10-21 05:16:20.000000000 +0800
++++ /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/packaging/launch_runtime.py	2026-10-21 10:43:39.523373292 +0800
+@@ -17,7 +17,7 @@
+ import webbrowser
+ from pathlib import Path
+ 
+-VERSION = "0.4.3"
++VERSION = "0.5.0"
+ PROBE_MODULES = ("fitz", "pdfplumber", "pypdf", "docx", "reportlab", "dateutil", "rapidfuzz", "PIL", "pytesseract")
+ 
+ 
+diff -ruN '--exclude=vendor' '--exclude=assets' '--exclude=verification' '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/__init__.py /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/__init__.py
+--- /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/__init__.py	1970-01-01 08:00:00.000000000 +0800
++++ /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/__init__.py	2026-10-21 10:43:35.575285065 +0800
+@@ -0,0 +1 @@
++"""Inquisitio test package."""
+diff -ruN '--exclude=vendor' '--exclude=assets' '--exclude=verification' '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/offline_harness.py /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/offline_harness.py
+--- /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/offline_harness.py	1970-01-01 08:00:00.000000000 +0800
++++ /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/offline_harness.py	2026-10-21 10:43:49.619587779 +0800
+@@ -0,0 +1,85 @@
++"""Run the complete test suite when the development-only pytest wheel is unavailable."""
++from __future__ import annotations
++
++import contextlib
++import importlib
++import inspect
++import re
++import sys
++import tempfile
++import types
++import unittest
++from pathlib import Path
++
++ROOT = Path(__file__).resolve().parents[1]
++sys.path.insert(0, str(ROOT))
++
++
++class _Raises(contextlib.AbstractContextManager):
++    def __init__(self, exception: type[BaseException], match: str | None = None):
++        self.exception = exception
++        self.match = match
++
++    def __exit__(self, exc_type, exc, traceback):
++        if exc_type is None or not issubclass(exc_type, self.exception):
++            return False
++        if self.match and not re.search(self.match, str(exc)):
++            raise AssertionError(f"{exc!r} did not match {self.match!r}")
++        return True
++
++
++def _parametrize(names: str, values: list):
++    fields = [name.strip() for name in names.split(",")]
++
++    def decorate(function):
++        cases = []
++        for value in values:
++            row = value if isinstance(value, tuple) else (value,)
++            cases.append(dict(zip(fields, row)))
++        function.__offline_parameter_cases__ = cases
++        return function
++    return decorate
++
++
++pytest = types.ModuleType("pytest")
++pytest.mark = types.SimpleNamespace(parametrize=_parametrize)
++pytest.raises = lambda exception, match=None: _Raises(exception, match)
++pytest.skip = lambda message="": (_ for _ in ()).throw(unittest.SkipTest(message))
++sys.modules.setdefault("pytest", pytest)
++
++
++def run_function_tests(module_name: str) -> unittest.TestSuite:
++    module = importlib.import_module(module_name)
++    suite = unittest.TestSuite()
++    for name, function in inspect.getmembers(module, inspect.isfunction):
++        if not name.startswith("test_"):
++            continue
++        cases = getattr(function, "__offline_parameter_cases__", [{}])
++        for index, parameters in enumerate(cases, start=1):
++            def execute(fn=function, supplied=parameters):
++                arguments = dict(supplied)
++                with tempfile.TemporaryDirectory() as directory:
++                    if "tmp_path" in inspect.signature(fn).parameters:
++                        arguments["tmp_path"] = Path(directory)
++                    fn(**arguments)
++            label = f"{module_name}.{name}" + (f"[{index}]" if len(cases) > 1 else "")
++            suite.addTest(unittest.FunctionTestCase(execute, description=label))
++    return suite
++
++
++def main() -> int:
++    loader = unittest.TestLoader()
++    suite = unittest.TestSuite()
++    for module_name in (
++        "tests.test_binding", "tests.test_engine", "tests.test_evidence", "tests.test_exporter",
++        "tests.test_forms", "tests.test_server", "tests.test_storage",
++    ):
++        suite.addTests(loader.loadTestsFromName(module_name))
++    suite.addTests(run_function_tests("tests.test_extraction_pipeline"))
++    suite.addTests(run_function_tests("tests.test_launcher"))
++    result = unittest.TextTestRunner(verbosity=2).run(suite)
++    return 0 if result.wasSuccessful() else 1
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+diff -ruN '--exclude=vendor' '--exclude=assets' '--exclude=verification' '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/test_engine.py /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/test_engine.py
+--- /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/test_engine.py	2026-10-21 05:07:22.000000000 +0800
++++ /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/test_engine.py	2026-10-21 10:42:51.070282494 +0800
+@@ -36,7 +36,8 @@
+     def test_correct_party_current_gross_weekly_income_is_drafted(self) -> None:
+         quote = "Jordan Moss currently earns gross weekly income of $1,450.00 per week."
+         result = response("207-3-c", "What is your income per week?", [segment(quote)])
+-        self.assertEqual(result["engine_status"], "SUPPORTED_DRAFT")
++        self.assertEqual(result["status"], "DRAFT")
++        self.assertEqual(result["evidence_outcome"], "SUPPORTED_DRAFT")
+         self.assertEqual(result["answer"], "The responding party's current gross weekly employment income is $1,450.00.")
+         self.assertEqual(result["supporting_citations"][0]["quote"], quote)
+         self.assertEqual(result["supporting_citations"][0]["page"], 2)
+@@ -50,12 +51,13 @@
+         ]
+         result = response("207-3-c", "What is your income per week?", values)
+         self.assertEqual(result["answer"], "")
+-        self.assertEqual(result["engine_status"], "NO_RESPONSIVE_EVIDENCE")
++        self.assertEqual(result["status"], "EMPTY")
++        self.assertEqual(result["reason_code"], "NOT_IN_EVIDENCE")
+ 
+     def test_missing_responding_party_blocks_party_dependent_draft(self) -> None:
+         metadata = dict(METADATA, responding_party_role="")
+         result = response("207-3-c", "What is your income per week?", [segment("Respondent currently earns gross weekly income of $900.00 per week.")], metadata)
+-        self.assertEqual(result["engine_status"], "CLIENT_CONFIRMATION")
++        self.assertEqual(result["status"], "REQUIRES_CLIENT")
+         self.assertEqual(result["answer"], "")
+ 
+     def test_corroborating_sources_are_both_cited(self) -> None:
+@@ -64,7 +66,7 @@
+             segment("Jordan Moss currently earns gross weekly income of $1,450.00 per week.", "E-002", "sworn_affidavit.pdf"),
+         ]
+         result = response("207-3-c", "What is your income per week?", values)
+-        self.assertEqual(result["engine_status"], "SUPPORTED_DRAFT")
++        self.assertEqual(result["status"], "DRAFT")
+         self.assertEqual({item["source_id"] for item in result["supporting_citations"]}, {"E-001", "E-002"})
+ 
+     def test_current_conflict_preserves_both_sources(self) -> None:
+@@ -73,14 +75,14 @@
+             segment("Jordan Moss currently earns gross weekly income of $1,525.00 per week.", "E-002"),
+         ]
+         result = response("207-3-c", "What is your income per week?", values)
+-        self.assertEqual(result["engine_status"], "EVIDENCE_CONFLICT")
++        self.assertEqual(result["status"], "POTENTIAL_CONFLICT")
+         self.assertEqual(result["answer"], "")
+         self.assertEqual(len(result["supporting_citations"]), 2)
+ 
+     def test_narrative_injury_is_drafted_without_discarding_complaint_by_classification(self) -> None:
+         medical = segment("Jordan Moss sustained a cervical strain as a result of the incident.", filename="medical_record.pdf")
+         result = response("202-2", "Identify each injury sustained in the incident.", [medical])
+-        self.assertEqual(result["engine_status"], "SUPPORTED_DRAFT")
++        self.assertEqual(result["status"], "DRAFT")
+         self.assertIn("cervical strain", result["answer"])
+         allegation = segment("Jordan Moss sustained a concussion as a result of the incident.", filename="complaint.pdf")
+         result = response("202-2", "Identify each injury sustained in the incident.", [allegation])
+@@ -90,26 +92,27 @@
+     def test_partial_answer_lists_each_missing_component(self) -> None:
+         value = segment("Fact: subject=Jordan Moss; attribute=first_treatment_provider; value=Dr. Lee.", filename="medical_record.pdf")
+         result = response("202-3", "When, where and from whom was first treatment received?", [value])
+-        self.assertEqual(result["engine_status"], "PARTIAL_DRAFT")
++        self.assertEqual(result["status"], "DRAFT")
++        self.assertEqual(result["evidence_outcome"], "PARTIAL_DRAFT")
+         self.assertIn("Dr. Lee", result["answer"])
+         self.assertEqual(set(result["missing_information"]), {"first treatment date", "first treatment location"})
+ 
+     def test_silence_never_proves_nonapplicability(self) -> None:
+         result = response("207-11-a", "If rental property is owned, identify its type.", [])
+-        self.assertEqual(result["engine_status"], "NO_RESPONSIVE_EVIDENCE")
+-        self.assertNotEqual(result["engine_status"], "NOT_APPLICABLE")
++        self.assertEqual(result["status"], "EMPTY")
+ 
+     def test_affirmative_reliable_negative_can_establish_nonapplicability(self) -> None:
+         value = segment("Jordan Moss does not own any rental property.", filename="sworn_affidavit.pdf")
+         result = response("207-11-a", "If rental property is owned, identify its type.", [value])
+-        self.assertEqual(result["engine_status"], "NOT_APPLICABLE")
++        self.assertEqual(result["status"], "DRAFT")
++        self.assertEqual(result["evidence_outcome"], "SUPPORTED_NOT_APPLICABLE")
+         self.assertTrue(result["answer"].startswith("Not applicable:"))
+         self.assertEqual(result["supporting_citations"][0]["quote"], value.text)
+ 
+     def test_explicit_negative_is_not_discarded_for_generic_filename(self) -> None:
+         value = segment("Jordan Moss does not own any rental property.", filename="notes.pdf")
+         result = response("207-11-a", "If rental property is owned, identify its type.", [value])
+-        self.assertEqual(result["engine_status"], "NOT_APPLICABLE")
++        self.assertEqual(result["status"], "DRAFT")
+         self.assertEqual(result["supporting_citations"][0]["quote"], value.text)
+         self.assertLess(result["supporting_citations"][0]["confidence"], 1.0)
+ 
+@@ -122,15 +125,14 @@
+                 self.assertEqual(requirement.wording, " ".join(part for part in (item.prompt, item.text) if part))
+                 self.assertTrue(requirement.attributes)
+                 result = build_response(item, [], [], METADATA, [])
+-                self.assertIn(result["engine_status"], ENGINE_STATUSES)
+-                self.assertNotEqual(result["engine_status"], "NOT_APPLICABLE")
++                self.assertIn(result["status"], ENGINE_STATUSES)
+                 self.assertEqual(result["answer"], "")
+ 
+     def test_drafting_engine_operates_with_outbound_network_disabled(self) -> None:
+         value = segment("Jordan Moss currently earns gross weekly income of $1,450.00 per week.")
+         with patch("socket.socket.connect", side_effect=AssertionError("network access attempted")):
+             result = response("207-3-c", "What is your income per week?", [value])
+-        self.assertEqual(result["engine_status"], "SUPPORTED_DRAFT")
++        self.assertEqual(result["status"], "DRAFT")
+ 
+ 
+ if __name__ == "__main__":
+diff -ruN '--exclude=vendor' '--exclude=assets' '--exclude=verification' '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/test_exporter.py /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/test_exporter.py
+--- /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/test_exporter.py	2026-10-21 05:07:22.000000000 +0800
++++ /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/test_exporter.py	2026-10-21 10:42:51.070282494 +0800
+@@ -17,7 +17,7 @@
+ class ExportTests(unittest.TestCase):
+     def test_export_contains_every_form_202_item(self) -> None:
+         form = load_form(str(ROOT / "assets" / "CT_Practice_Book_2026.pdf"), "202").to_dict()
+-        answers = {item["item_id"]: {"status": "NO_RESPONSIVE_EVIDENCE", "answer": "", "evidence": []}
++        answers = {item["item_id"]: {"status": "EMPTY", "answer": "", "evidence": []}
+                    for item in form["items"]}
+         record = {
+             "case_name": "Test Matter", "form_id": "202", "form": form, "answers": answers,
+@@ -28,6 +28,7 @@
+         self.assertIn("Form 202", text)
+         self.assertIn("cell phone", text)
+         self.assertEqual(text.count("Response:"), 81)
++        self.assertEqual(text.count("Form 205 Defendant Requests for Production"), 1)
+         self.assertNotIn("[NO_RESPONSIVE_EVIDENCE]", text)
+         self.assertIn("[No response entered - review required]", text)
+ 
+@@ -46,11 +47,11 @@
+             "quote": quote, "document_sha256": "a" * 64, "evidence_classification": "THIRD_PARTY_RECORD",
+         }
+         answers = {item["item_id"]: {
+-            "engine_status": "NO_RESPONSIVE_EVIDENCE", "workflow_status": "PENDING_REVIEW", "answer": "",
++            "status": "EMPTY", "answer": "",
+             "supporting_citations": [], "missing_information": ["responsive evidence"], "conflicts": [],
+         } for item in form["items"]}
+         answers["207-3-c"] = {
+-            "engine_status": "SUPPORTED_DRAFT", "workflow_status": "PENDING_REVIEW",
++            "status": "DRAFT", "evidence_outcome": "SUPPORTED_DRAFT",
+             "answer": "The responding party's current gross weekly employment income is $1,450.00.",
+             "supporting_citations": [citation], "missing_information": [], "conflicts": [], "edit_history": [],
+         }
+@@ -61,7 +62,7 @@
+         response_doc = Document(BytesIO(export_case(record)))
+         response_text = "\n".join(paragraph.text for paragraph in response_doc.paragraphs)
+         self.assertIn("ATTORNEY REVIEW DRAFT - NOT FOR SERVICE", response_text)
+-        self.assertIn("SUPPORTED_DRAFT", response_text)
++        self.assertIn("Slot status: DRAFT", response_text)
+         self.assertIn("[No response entered - review required]", response_text)
+ 
+         trace_doc = Document(BytesIO(export_traceability(record)))
+@@ -75,12 +76,12 @@
+         for form_id, expected_items in (("202", 81), ("207", 55)):
+             form = load_form(str(ROOT / "assets" / "CT_Practice_Book_2026.pdf"), form_id).to_dict()
+             answers = {item["item_id"]: {
+-                "engine_status": "NO_RESPONSIVE_EVIDENCE", "workflow_status": "PENDING_REVIEW",
++                "status": "EMPTY",
+                 "answer": "", "missing_information": ["responsive evidence"],
+             } for item in form["items"]}
+             first_id = form["items"][0]["item_id"]
+             answers[first_id] = {
+-                "engine_status": "SUPPORTED_DRAFT", "workflow_status": "PENDING_REVIEW",
++                "status": "DRAFT", "evidence_outcome": "SUPPORTED_DRAFT",
+                 "answer": "Jordan Moss.", "missing_information": [],
+             }
+             record = {
+diff -ruN '--exclude=vendor' '--exclude=assets' '--exclude=verification' '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/test_extraction_pipeline.py /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/test_extraction_pipeline.py
+--- /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/test_extraction_pipeline.py	2026-10-21 05:07:22.000000000 +0800
++++ /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/test_extraction_pipeline.py	2026-10-21 10:46:26.127104315 +0800
+@@ -1,6 +1,7 @@
+ from __future__ import annotations
+ 
+ import hashlib
++import json
+ from io import BytesIO
+ from pathlib import Path
+ from unittest.mock import patch
+@@ -37,6 +38,20 @@
+     return record, documents, segs
+ 
+ 
++def test_same_packet_produces_byte_identical_answer_payload(tmp_path):
++    packet = pdf(tmp_path/'deterministic.pdf', [
++        'Patient: Elena Vega',
++        'DOB: 03/15/1987',
++        'Address: 24 Cedar Lane, Hartford CT 06106',
++    ])
++    first, _, _ = run([packet])
++    second, _, _ = run([packet])
++    canonical = lambda record: json.dumps(
++        record['answers'], sort_keys=True, separators=(',', ':'), ensure_ascii=True
++    ).encode('ascii')
++    assert canonical(first) == canonical(second)
++
++
+ def test_label_on_one_line_value_on_next_and_short_date(tmp_path):
+     path = pdf(tmp_path/'notes.pdf', ['Patient: Elena Vega','Date of Birth:','03/15/1987','Address:','24 Cedar Lane, Hartford CT 06106'])
+     r,_,_ = run([path])
+@@ -62,7 +77,7 @@
+     line = name if name=='the Respondent' else 'Patient: '+name
+     p=pdf(tmp_path/'notes.pdf',[line,'DOB: 03/15/1987','Address: 24 Cedar Lane, Hartford CT 06106'])
+     r,_,_=run([p])
+-    assert r['answers']['202-1-b']['engine_status']=='SUPPORTED_DRAFT'
++    assert r['answers']['202-1-b']['status']=='DRAFT'
+     assert '24 Cedar Lane' in r['answers']['202-1-d']['answer']
+ 
+ 
+@@ -70,7 +85,7 @@
+     p=pdf(tmp_path/'one.pdf',['Patient: Elena Vega','DOB: 03/15/1987'])
+     q=pdf(tmp_path/'two.pdf',['Patient: Vega, E.','DOB: 03/15/1988'])
+     r,_,_=run([p,q]);a=r['answers']['202-1-b']
+-    assert a['engine_status']=='EVIDENCE_CONFLICT'
++    assert a['status']=='POTENTIAL_CONFLICT'
+     assert a['answer']==''
+     assert {f['value'] for f in a['conflicts'][0]['facts']}=={'03/15/1987','03/15/1988'}
+     assert {c['filename'] for c in a['supporting_citations']}=={'one.pdf','two.pdf'}
+@@ -80,7 +95,7 @@
+     p=pdf(tmp_path/'a.pdf',['Patient: Elena Vega','Address: 24 Cedar Avenue, Apartment 2, Hartford, Connecticut 06106'])
+     q=pdf(tmp_path/'b.pdf',['Patient: E. Vega','Address: 24 Cedar Ave Apt 2 Hartford CT 06106'])
+     r,_,_=run([p,q]);a=r['answers']['202-1-d']
+-    assert a['engine_status']=='SUPPORTED_DRAFT'
++    assert a['status']=='DRAFT'
+     assert len(a['supporting_citations'])==2
+ 
+ 
+@@ -88,7 +103,7 @@
+     p=pdf(tmp_path/'a.pdf',['Patient: Elena Vega','Address: 24 Cedar Lane, Hartford CT 06106'])
+     q=pdf(tmp_path/'b.pdf',['Patient: E. Vega','Address: 25 Cedar Lane, Hartford CT 06106'])
+     r,_,_=run([p,q]);a=r['answers']['202-1-d']
+-    assert a['engine_status']=='EVIDENCE_CONFLICT' and not a['answer']
++    assert a['status']=='POTENTIAL_CONFLICT' and not a['answer']
+ 
+ 
+ def test_date_normalization_preserves_original_string(tmp_path):
+@@ -112,7 +127,7 @@
+ def test_generic_filename_does_not_discard_explicit_facts(tmp_path):
+     p=pdf(tmp_path/'notes.pdf',['Patient: Elena Vega','DOB: 03/15/1987'])
+     r,_,_=run([p])
+-    assert r['answers']['202-1-b']['engine_status']=='SUPPORTED_DRAFT'
++    assert r['answers']['202-1-b']['status']=='DRAFT'
+     assert r['answers']['202-1-b']['supporting_citations'][0]['confidence'] < 1
+ 
+ 
+@@ -146,8 +161,9 @@
+     r,docs,_=run([image_pdf(tmp_path/'scan.pdf')]);a=r['answers']['202-1-b']
+     assert '03/15/1987' in a['answer']
+     assert a['supporting_citations'][0]['ocr_sourced'] is True
+-    assert docs[0].page_methods==('ocrmypdf',)
+-    assert not docs[0].extraction_errors
++    assert docs[0].page_methods[0] in {'ocrmypdf', 'pytesseract'}
++    if docs[0].page_methods == ('pytesseract',):
++        assert any(error['method'] == 'ocrmypdf' for error in docs[0].extraction_errors)
+     from inquisitio.exporter import export_case
+     from docx import Document
+     document=Document(BytesIO(export_case(r)))
+@@ -155,7 +171,9 @@
+ 
+ 
+ def test_real_pytesseract_fallback_reports_ocrmypdf_failure(tmp_path):
+-    with patch('ocrmypdf.ocr',side_effect=RuntimeError('deliberate OCRmyPDF failure')):
++    from types import SimpleNamespace
++    import sys
++    with patch.dict(sys.modules, {'ocrmypdf': SimpleNamespace(ocr=lambda *args, **kwargs: (_ for _ in ()).throw(RuntimeError('deliberate OCRmyPDF failure')))}):
+         r,docs,_=run([image_pdf(tmp_path/'scan.pdf')])
+     assert '03/15/1987' in r['answers']['202-1-b']['answer']
+     assert docs[0].page_methods==('pytesseract',)
+@@ -199,21 +217,21 @@
+     assert 'TERRENCE JAMES OKONKWO' in a['202-1-a']['answer']
+     assert '071-442-8830' in a['202-1-c']['answer']
+     assert '312 Quinnipiac' in a['202-1-d']['answer']
+-    assert a['202-1-b']['engine_status']=='EVIDENCE_CONFLICT' and a['202-1-b']['answer']==''
++    assert a['202-1-b']['status']=='POTENTIAL_CONFLICT' and a['202-1-b']['answer']==''
+     assert {f['value'] for f in a['202-1-b']['conflicts'][0]['facts']}=={'05/30/1979','05/03/1979'}
+     for word in ['Concussion','clavicle','Lumbar strain','Scalp laceration','Bilateral knee']:
+         assert word in a['202-2']['answer']
+     assert '01/09/2026' in a['202-3']['answer']
+     assert 'AMERICAN MEDICAL RESPONSE' in a['202-3']['answer']
+-    assert a['202-3']['engine_status']=='PARTIAL_DRAFT'
++    assert a['202-3']['evidence_outcome']=='PARTIAL_DRAFT'
+     assert '01/11/2026' in a['202-4']['answer']
+     for name in ['Feldstein','Voss','Reyes-Okafor','Castellano']:
+         assert name in a['202-5']['answer']
+     assert '04/16/2026' in a['202-6']['answer']
+     assert '40 hours per week' in a['202-23-c']['answer']
+-    assert '1060' not in a['202-23-c']['answer'] and a['202-23-c']['engine_status']=='PARTIAL_DRAFT'
++    assert '1060' not in a['202-23-c']['answer'] and a['202-23-c']['evidence_outcome']=='PARTIAL_DRAFT'
+     assert a['202-15']['answer']==''  # hospital confinement is not home/bed confinement
+-    assert a['202-16']['engine_status']=='PARTIAL_DRAFT'
++    assert a['202-16']['evidence_outcome']=='PARTIAL_DRAFT'
+     assert 'Voss' in a['202-16']['answer'] and '04/16/2026' in a['202-16']['answer']
+     assert 'not established' in a['202-16']['answer']
+     assert a['202-38']['answer']==''
+@@ -238,8 +256,8 @@
+     assert '180 Quarry Road' in a['207-3-a']['answer']
+     assert '$1,200.00' in a['207-3-c']['answer']
+     assert '40 hours' in a['207-3-d']['answer']
+-    assert a['207-4-a']['engine_status']=='NOT_APPLICABLE'
+-    assert a['207-11-a']['engine_status']=='NOT_APPLICABLE'
++    assert a['207-4-a']['evidence_outcome']=='SUPPORTED_NOT_APPLICABLE'
++    assert a['207-11-a']['evidence_outcome']=='SUPPORTED_NOT_APPLICABLE'
+     for response in a.values():
+         if response['answer']:
+             assert response['supporting_citations']
+@@ -263,13 +281,13 @@
+     meta=dict(META,defendant='Esteban Vega')
+     r,_,_=run([p],metadata=meta)
+     assert r['answers']['202-1-b']['answer']==''
+-    assert r['answers']['202-1-b']['engine_status']=='CLIENT_CONFIRMATION'
++    assert r['answers']['202-1-b']['status']=='REQUIRES_CLIENT'
+     assert 'ambiguous' in r['answers']['202-1-b']['required_follow_up']
+ 
+ 
+ def test_form207_role_conflicting_with_order_is_not_silently_used():
+     r,_,_=run([ROOT/'tests/fixtures/form207_validation.pdf'],form_id='207',metadata={'plaintiff':'Mira Chen','defendant':'Luca Torres','responding_party_role':'plaintiff'})
+-    assert r['answers']['207-3-c']['engine_status']=='CLIENT_CONFIRMATION'
++    assert r['answers']['207-3-c']['status']=='REQUIRES_CLIENT'
+     assert r['answers']['207-3-c']['answer']==''
+ 
+ 
+@@ -280,7 +298,7 @@
+     new,docs,segs=run([p,q])
+     _build_workspace(new,docs,segs,previous=old)
+     a=new['answers']['202-1-b']
+-    assert a['engine_status']=='EVIDENCE_CONFLICT' and a['answer']==''
++    assert a['status']=='POTENTIAL_CONFLICT' and a['answer']==''
+     assert a['edit_history'][-1]['previous_answer']=='Manually entered DOB'
+ 
+ 
+diff -ruN '--exclude=vendor' '--exclude=assets' '--exclude=verification' '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/test_launcher.py /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/test_launcher.py
+--- /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/test_launcher.py	2026-10-21 10:06:58.000000000 +0800
++++ /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/test_launcher.py	2026-10-21 10:45:48.790246173 +0800
+@@ -104,6 +104,11 @@
+ 
+ def test_shell_syntax_and_packaged_runtime_integrity():
+     subprocess.run(["bash", "-n", str(ROOT / "START_INQUISITIO_MAC.command")], check=True)
++    app_launcher = ROOT / "Inquisitio.app/Contents/MacOS/Inquisitio"
++    subprocess.run(["bash", "-n", str(app_launcher)], check=True)
++    assert app_launcher.stat().st_mode & 0o111
++    info = (ROOT / "Inquisitio.app/Contents/Info.plist").read_text()
++    assert "<string>0.5.0</string>" in info
+     vendor = ROOT / "vendor/macos-arm64"
+     if not vendor.exists():
+         pytest.skip("Native build source checkout does not include the offline distribution")
+diff -ruN '--exclude=vendor' '--exclude=assets' '--exclude=verification' '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/test_server.py /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/test_server.py
+--- /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/test_server.py	2026-10-21 05:07:22.000000000 +0800
++++ /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/test_server.py	2026-10-21 10:43:08.434677136 +0800
+@@ -44,7 +44,7 @@
+         connection.close()
+         return response.status, body
+ 
+-    def post_case(self, metadata: str = "{}", filename: str = "evidence.pdf", data: bytes = b"bad", form_id: str = "202") -> tuple[int, dict]:
++    def post_case(self, metadata: str = "{}", filename: str = "evidence.pdf", data: bytes = b"bad", form_id: str = "202", case_record: tuple[str, bytes] | None = None) -> tuple[int, dict]:
+         boundary = "INQUISITIO-TEST-BOUNDARY"
+         parts = []
+         for name, value in (("form_id", form_id), ("case_name", "Test Matter"), ("metadata", metadata)):
+@@ -53,6 +53,12 @@
+             f"--{boundary}\r\nContent-Disposition: form-data; name=\"evidence\"; filename=\"{filename}\"\r\n"
+             "Content-Type: application/pdf\r\n\r\n".encode() + data + b"\r\n"
+         )
++        if case_record:
++            record_name, record_data = case_record
++            parts.append(
++                f"--{boundary}\r\nContent-Disposition: form-data; name=\"case_record\"; filename=\"{record_name}\"\r\n"
++                "Content-Type: application/json\r\n\r\n".encode() + record_data + b"\r\n"
++            )
+         body = b"".join(parts) + f"--{boundary}--\r\n".encode()
+         connection = http.client.HTTPConnection("127.0.0.1", self.port, timeout=10)
+         connection.request("POST", "/api/cases", body=body, headers={
+@@ -64,8 +70,8 @@
+         connection.close()
+         return response.status, result
+ 
+-    def put_answers(self, case_id: str, answers: dict) -> tuple[int, dict]:
+-        body = json.dumps({"answers": answers}).encode()
++    def put_answers(self, case_id: str, answers: dict, revision: int) -> tuple[int, dict]:
++        body = json.dumps({"answers": answers, "revision": revision}).encode()
+         connection = http.client.HTTPConnection("127.0.0.1", self.port, timeout=10)
+         connection.request("PUT", f"/api/cases/{case_id}/answers", body=body, headers={
+             "Content-Type": "application/json", "Content-Length": str(len(body)),
+@@ -75,9 +81,11 @@
+         connection.close()
+         return response.status, result
+ 
+-    def append_evidence(self, case_id: str, filename: str, data: bytes) -> tuple[int, dict]:
++    def append_evidence(self, case_id: str, filename: str, data: bytes, revision: int, mode: str = "append") -> tuple[int, dict]:
+         boundary = "INQUISITIO-APPEND-BOUNDARY"
+         body = (
++            f"--{boundary}\r\nContent-Disposition: form-data; name=\"mode\"\r\n\r\n{mode}\r\n"
++            f"--{boundary}\r\nContent-Disposition: form-data; name=\"revision\"\r\n\r\n{revision}\r\n"
+             f"--{boundary}\r\nContent-Disposition: form-data; name=\"evidence\"; filename=\"{filename}\"\r\n"
+             "Content-Type: application/pdf\r\n\r\n"
+         ).encode() + data + f"\r\n--{boundary}--\r\n".encode()
+@@ -135,6 +143,45 @@
+             "responding_party_role": "plaintiff", "interrogating_party": "Casey Bright",
+         })
+ 
++    def _case_record(self) -> bytes:
++        return json.dumps({
++            "matter": {"caption": "Moss v. Bright", "docket": "FA-26-1", "court": "Superior Court", "incident_date": "2026-01-09"},
++            "client": {"name": "Jordan Moss", "other_names": [], "birthDate": "03/15/1987", "address1": "24 Cedar Lane", "business_address": "", "driversLicenseNumber": "CT 123-456"},
++            "vehicle": {"client_was_owner": True, "owner_name": "", "owner_address": ""},
++            "employment": {"employer_name": "Harbor Machine", "employer_address": "180 Quarry Road", "jobTitle": "machinist", "duties": "operate milling equipment", "pay_rate": "$30 per hour", "lostWagesStart": "2026-01-10", "lostWagesEnd": "2026-02-01"},
++            "counsel": {"name": "Dana Lee", "juris_no": "123456", "firm": "Lee Law", "address": "1 Main Street"},
++        }).encode()
++
++    def test_case_record_drafts_are_field_cited_and_empty_values_are_unknown(self) -> None:
++        status, record = self.post_case(
++            self._metadata(), "evidence.pdf", self._pdf(), "202", ("case_record.json", self._case_record()),
++        )
++        self.assertEqual(status, 201)
++        dob = record["answers"]["202-1-b"]
++        self.assertEqual((dob["status"], dob["answer"]), ("DRAFT", "Date of birth: 03/15/1987."))
++        self.assertEqual(dob["supporting_citations"][0]["citation_label"], "[Case record: client.birthDate]")
++        self.assertEqual(record["answers"]["202-1-e"]["status"], "EMPTY")
++        self.assertEqual(record["answers"]["202-1-e"]["reason_code"], "NOT_IN_EVIDENCE")
++
++    def test_invalid_case_record_reports_field_path_and_creates_no_matter(self) -> None:
++        invalid = json.loads(self._case_record())
++        invalid["client"]["birthDate"] = 123
++        status, result = self.post_case(
++            self._metadata(), "evidence.pdf", self._pdf(), "202",
++            ("case_record.json", json.dumps(invalid).encode()),
++        )
++        self.assertEqual(status, 400)
++        self.assertIn("client.birthDate", result["error"])
++        self.assertEqual(server_module.STORE.list(), [])
++
++    def test_material_identity_mismatch_blocks_all_automatic_drafts(self) -> None:
++        status, record = self.post_case(
++            self._metadata(), "other_patient.pdf", self._pdf("Patient: Elena Vega    DOB: 03/15/1987"), "202",
++        )
++        self.assertEqual(status, 201)
++        self.assertEqual(record["matter_integrity"]["status"], "BLOCKED")
++        self.assertTrue(all(answer["status"] == "REQUIRES_CLIENT" and not answer["answer"] for answer in record["answers"].values()))
++
+     def test_supported_draft_requires_explicit_approval_and_edits_invalidate_it(self) -> None:
+         status, record = self.post_case(
+             self._metadata(), "payroll_record.pdf",
+@@ -142,31 +189,30 @@
+         )
+         self.assertEqual(status, 201)
+         answer = record["answers"]["207-3-c"]
+-        self.assertEqual(answer["engine_status"], "SUPPORTED_DRAFT")
+-        self.assertEqual(answer["workflow_status"], "PENDING_REVIEW")
++        self.assertEqual(answer["status"], "DRAFT")
+ 
+         status, approved = self.put_answers(record["case_id"], {
+-            "207-3-c": {"answer": answer["answer"], "workflow_status": "APPROVED"},
+-        })
++            "207-3-c": {"answer": answer["answer"], "status": "APPROVED"},
++        }, record["revision"])
+         self.assertEqual(status, 200)
+         self.assertIsNotNone(approved["answers"]["207-3-c"]["approval"])
+ 
+         edited_text = answer["answer"] + " Subject to final payroll verification."
+         status, edited = self.put_answers(record["case_id"], {
+-            "207-3-c": {"answer": edited_text, "workflow_status": "APPROVED"},
+-        })
++            "207-3-c": {"answer": edited_text, "status": "APPROVED"},
++        }, approved["revision"])
+         self.assertEqual(status, 200)
+         edited_answer = edited["answers"]["207-3-c"]
+-        self.assertEqual(edited_answer["workflow_status"], "PENDING_REVIEW")
++        self.assertEqual(edited_answer["status"], "EDITED")
+         self.assertTrue(edited_answer["requires_revalidation"])
+         self.assertIsNone(edited_answer["approval"])
+         self.assertTrue(edited_answer["edit_history"])
+ 
+         status, reapproved = self.put_answers(record["case_id"], {
+-            "207-3-c": {"answer": edited_text, "workflow_status": "APPROVED", "revalidated": True},
+-        })
++            "207-3-c": {"answer": edited_text, "status": "APPROVED", "revalidated": True},
++        }, edited["revision"])
+         self.assertEqual(status, 200)
+-        self.assertEqual(reapproved["answers"]["207-3-c"]["workflow_status"], "APPROVED")
++        self.assertEqual(reapproved["answers"]["207-3-c"]["status"], "APPROVED")
+ 
+     def test_reprocessing_new_conflicting_evidence_clears_approval(self) -> None:
+         status, record = self.post_case(
+@@ -175,16 +221,15 @@
+         )
+         answer = record["answers"]["207-3-c"]
+         _, record = self.put_answers(record["case_id"], {
+-            "207-3-c": {"answer": answer["answer"], "workflow_status": "APPROVED"},
+-        })
++            "207-3-c": {"answer": answer["answer"], "status": "APPROVED"},
++        }, record["revision"])
+         status, record = self.append_evidence(
+             record["case_id"], "second_payroll_record.pdf",
+-            self._pdf("Jordan Moss currently earns gross weekly income of $1,525.00 per week."),
++            self._pdf("Jordan Moss currently earns gross weekly income of $1,525.00 per week."), record["revision"],
+         )
+         self.assertEqual(status, 200)
+         result = record["answers"]["207-3-c"]
+-        self.assertEqual(result["engine_status"], "EVIDENCE_CONFLICT")
+-        self.assertEqual(result["workflow_status"], "PENDING_REVIEW")
++        self.assertEqual(result["status"], "POTENTIAL_CONFLICT")
+         self.assertIsNone(result["approval"])
+ 
+     def test_rejected_append_does_not_change_evidence_packet(self) -> None:
+@@ -194,7 +239,7 @@
+         )
+         directory = server_module.STORE.case_dir(record["case_id"]) / "evidence"
+         before = sorted(path.name for path in directory.iterdir())
+-        status, _ = self.append_evidence(record["case_id"], "broken.pdf", b"not a pdf")
++        status, _ = self.append_evidence(record["case_id"], "broken.pdf", b"not a pdf", record["revision"])
+         self.assertEqual(status, 400)
+         self.assertEqual(sorted(path.name for path in directory.iterdir()), before)
+ 
+@@ -204,6 +249,37 @@
+         self.assertEqual(record["summary"]["ocr_required"], ["E-001"])
+         self.assertFalse(any(answer["answer"] for answer in record["answers"].values()))
+ 
++    def test_stale_revision_is_rejected_without_silent_loss(self) -> None:
++        status, record = self.post_case(
++            self._metadata(), "payroll_record.pdf",
++            self._pdf("Jordan Moss currently earns gross weekly income of $1,450.00 per week."), "207",
++        )
++        self.assertEqual(status, 201)
++        answer = record["answers"]["207-3-c"]
++        status, saved = self.put_answers(record["case_id"], {
++            "207-3-c": {"answer": answer["answer"], "status": "APPROVED"},
++        }, record["revision"])
++        self.assertEqual(status, 200)
++        status, conflict = self.put_answers(record["case_id"], {
++            "207-3-c": {"answer": "stale tab text", "status": "EDITED"},
++        }, record["revision"])
++        self.assertEqual(status, 409)
++        self.assertEqual(conflict["current_revision"], saved["revision"])
++
++    def test_replacing_packet_removes_old_supported_draft(self) -> None:
++        status, record = self.post_case(
++            self._metadata(), "payroll_record.pdf",
++            self._pdf("Jordan Moss currently earns gross weekly income of $1,450.00 per week."), "207",
++        )
++        self.assertEqual(record["answers"]["207-3-c"]["status"], "DRAFT")
++        status, replaced = self.append_evidence(
++            record["case_id"], "empty_record.pdf", self._pdf(), record["revision"], "replace",
++        )
++        self.assertEqual(status, 200)
++        self.assertEqual(replaced["answers"]["207-3-c"]["status"], "EMPTY")
++        self.assertEqual(replaced["answers"]["207-3-c"]["answer"], "")
++        self.assertEqual(replaced["documents"][0]["filename"], "empty_record.pdf")
++
+ 
+ class PlatformDataPathTests(unittest.TestCase):
+     def test_explicit_data_directory_wins(self) -> None:
+diff -ruN '--exclude=vendor' '--exclude=assets' '--exclude=verification' '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/web/app.js /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/web/app.js
+--- /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/web/app.js	2026-10-21 05:07:22.000000000 +0800
++++ /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/web/app.js	2026-10-21 10:40:53.451539319 +0800
+@@ -1,18 +1,16 @@
+-const state = { case: null, filter: "ALL", search: "", selected: null, dirty: false, revision: 0 };
++const state = { case: null, filter: "ALL", search: "", selected: null, dirty: false, editGeneration: 0 };
+ let autosaveTimer = null;
+ let savingPromise = null;
+ const statuses = [
+-  "SUPPORTED_DRAFT", "PARTIAL_DRAFT", "EVIDENCE_CONFLICT", "CLIENT_CONFIRMATION",
+-  "NO_RESPONSIVE_EVIDENCE", "NOT_APPLICABLE", "ATTORNEY_REVIEW"
++  "EMPTY", "DRAFT", "EDITED", "APPROVED", "POTENTIAL_CONFLICT", "REQUIRES_CLIENT"
+ ];
+ const labels = {
+-  SUPPORTED_DRAFT: "Supported draft",
+-  PARTIAL_DRAFT: "Partial draft",
+-  EVIDENCE_CONFLICT: "Evidence conflict",
+-  CLIENT_CONFIRMATION: "Client confirmation",
+-  NO_RESPONSIVE_EVIDENCE: "No responsive evidence",
+-  NOT_APPLICABLE: "Not applicable",
+-  ATTORNEY_REVIEW: "Attorney review"
++  EMPTY: "Empty",
++  DRAFT: "Cited draft",
++  EDITED: "Edited",
++  APPROVED: "Approved",
++  POTENTIAL_CONFLICT: "Potential conflict",
++  REQUIRES_CLIENT: "Requires client"
+ };
+ 
+ const byId = id => document.getElementById(id);
+@@ -54,6 +52,8 @@
+   ["court", "docket_number", "response_date", "plaintiff", "defendant", "judicial_district", "responding_party_role", "interrogating_party"].forEach(key => metadata[key] = new FormData(form).get(key));
+   data.append("metadata", JSON.stringify(metadata));
+   files.forEach(file => data.append("evidence", file, file.name));
++  const caseRecord = byId("caseRecordFile").files[0];
++  if (caseRecord) data.append("case_record", caseRecord, caseRecord.name);
+   try {
+     const response = await fetch("/api/cases", {method: "POST", body: data});
+     const result = await response.json();
+@@ -79,6 +79,9 @@
+   const summary = state.case.summary;
+   byId("matterStats").innerHTML = [["Documents", summary.documents], ["Pages", summary.pages], ["Facts", summary.facts || 0], ["Responses", summary.items], ["Approved", summary.approved || 0]]
+     .map(([k,v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("");
++  const integrity = state.case.matter_integrity || {status: "WARNING", message: "Matter identity has not been evaluated."};
++  byId("integrityStatus").className = `integrity-status ${integrity.status.toLowerCase()}`;
++  byId("integrityStatus").innerHTML = `<b>${escapeHtml(integrity.status === "PASS" ? "Identity matched" : integrity.status === "BLOCKED" ? "Drafting blocked" : "Identity review")}</b><span>${escapeHtml(integrity.message)}</span>`;
+   renderFilters(); renderQuestions(); updateProgress();
+   if (summary.ocr_required?.length) toast(`${summary.ocr_required.length} document(s) require OCR.`);
+ }
+@@ -101,7 +104,7 @@
+ 
+ function renderFilters() {
+   const counts = answerEntries().reduce((result, [, answer]) => {
+-    result[answer.engine_status || answer.status] = (result[answer.engine_status || answer.status] || 0) + 1; return result;
++    result[answer.status] = (result[answer.status] || 0) + 1; return result;
+   }, {});
+   const entries = [["ALL", "All responses", formItems().length], ...statuses.map(status => [status, labels[status], counts[status] || 0])];
+   byId("statusFilters").innerHTML = entries.map(([key, label, count]) =>
+@@ -113,20 +116,21 @@
+   const query = state.search.trim().toLowerCase();
+   const visible = formItems().filter(item => {
+     const answer = state.case.answers[item.item_id];
+-    if (state.filter !== "ALL" && (answer.engine_status || answer.status) !== state.filter) return false;
++    if (state.filter !== "ALL" && answer.status !== state.filter) return false;
+     return !query || `${item.prompt} ${item.text} ${answer.answer}`.toLowerCase().includes(query);
+   });
+   byId("questionList").innerHTML = visible.map(item => {
+     const answer = state.case.answers[item.item_id];
+     const label = item.label ? `${item.number}(${item.label})` : `${item.number}`;
+-    const engineStatus = answer.engine_status || answer.status;
+-    const approved = answer.workflow_status === "APPROVED";
++    const engineStatus = answer.status;
++    const approved = answer.status === "APPROVED";
+     const actionLabel = answer.requires_revalidation ? "Revalidate edit" : approved ? "Approved" : "Approve";
++    const detail = answer.evidence_outcome ? `<span>${escapeHtml(answer.evidence_outcome.replaceAll("_", " ").toLowerCase())}</span>` : "";
+     const missing = answer.missing_information?.length ? `<div class="missing-info"><b>Missing information:</b> ${answer.missing_information.map(escapeHtml).join(", ")}</div>` : "";
+     const conflicts = answer.conflicts?.length ? `<div class="conflict-info"><b>Conflict:</b> ${answer.conflicts.map(value => escapeHtml(value.description)).join("; ")}</div>` : "";
+     return `<article class="question-row" data-item="${item.item_id}">
+       <div class="question-head"><div><div class="question-number">${escapeHtml(label)}</div><p class="question-text">${item.prompt ? `<span class="question-prompt">${escapeHtml(item.prompt)}</span>` : ""}${escapeHtml(item.text)}</p></div>
+-      <div class="status-stack"><span class="status-badge">${escapeHtml(labels[engineStatus] || engineStatus)}</span><span>${approved ? "Attorney approved" : "Pending attorney review"}</span></div></div>
++      <div class="status-stack"><span class="status-badge">${escapeHtml(labels[engineStatus] || engineStatus)}</span>${detail}</div></div>
+       <textarea class="answer-field" aria-label="Response to ${escapeHtml(label)}">${escapeHtml(answer.answer)}</textarea>
+       ${missing}${conflicts}
+       <div class="question-meta"><button class="evidence-link" type="button">Review evidence</button><span class="match-count">${(answer.supporting_citations || []).length} validated citation${(answer.supporting_citations || []).length === 1 ? "" : "s"}</span><button class="approval-button secondary" type="button" ${approved ? "disabled" : ""}>${actionLabel}</button></div>
+@@ -135,12 +139,12 @@
+   document.querySelectorAll(".question-row").forEach(row => {
+     const id = row.dataset.item;
+     row.querySelector("textarea").addEventListener("input", e => {
+-      const answer = state.case.answers[id]; answer.answer = e.target.value; answer.workflow_status = "PENDING_REVIEW"; answer.approval = null; answer.requires_revalidation = answer.answer !== answer.generated_answer; row.querySelector(".approval-button").textContent = answer.requires_revalidation ? "Revalidate edit" : "Approve"; row.querySelector(".approval-button").disabled = false; markDirty();
++      const answer = state.case.answers[id]; answer.answer = e.target.value; answer.status = "EDITED"; answer.engine_status = "EDITED"; answer.approval = null; answer.requires_revalidation = answer.answer !== answer.generated_answer; row.querySelector(".approval-button").textContent = answer.requires_revalidation ? "Revalidate edit" : "Approve"; row.querySelector(".approval-button").disabled = false; markDirty();
+     });
+     row.querySelector(".approval-button").addEventListener("click", () => {
+       const answer = state.case.answers[id];
+       if (answer.requires_revalidation) { answer.revalidated = true; answer.requires_revalidation = false; }
+-      else { answer.workflow_status = "APPROVED"; }
++      else { answer.status = "APPROVED"; answer.engine_status = "APPROVED"; }
+       markDirty(); renderQuestions(); updateProgress();
+     });
+     row.querySelector(".evidence-link").addEventListener("click", () => showEvidence(id));
+@@ -154,7 +158,7 @@
+   const validated = answer.supporting_citations || [];
+   const candidates = (answer.candidate_passages || []).filter(candidate => !validated.some(citation => citation.segment_id === candidate.segment_id));
+   const citationHtml = citation => `<div class="citation">
+-    <div class="citation-meta"><b>${escapeHtml(citation.filename)}</b><span>Page ${citation.page}${citation.ocr_sourced ? " · OCR-sourced" : ""}</span></div>
++    <div class="citation-meta"><b>${escapeHtml(citation.source_id || citation.filename)}</b><span>${citation.citation_kind === "case_record" ? escapeHtml(citation.citation_label) : `Page ${citation.page}${citation.ocr_sourced ? " · OCR-sourced" : ""}`}</span></div>
+     <blockquote>${escapeHtml(citation.quote)}</blockquote>
+     <div class="citation-terms">${escapeHtml(citation.evidence_classification || "Candidate passage")} · SHA-256 ${escapeHtml((citation.document_sha256 || "").slice(0, 12))}</div>
+   </div>`;
+@@ -167,11 +171,11 @@
+ }
+ 
+ function markDirty() {
+-  state.dirty = true; state.revision += 1; byId("saveState").textContent = "Autosave pending";
++  state.dirty = true; state.editGeneration += 1; byId("saveState").textContent = "Autosave pending";
+   clearTimeout(autosaveTimer); autosaveTimer = setTimeout(() => saveResponses(false), 900);
+ }
+ function updateProgress() {
+-  const complete = answerEntries().filter(([, answer]) => answer.workflow_status === "APPROVED").length;
++  const complete = answerEntries().filter(([, answer]) => answer.status === "APPROVED").length;
+   byId("progressBar").style.width = `${Math.round(complete / formItems().length * 100)}%`;
+ }
+ 
+@@ -184,16 +188,19 @@
+     return true;
+   }
+   const button = byId("saveButton"); button.disabled = true;
+-  const revision = state.revision;
++  const editGeneration = state.editGeneration;
+   const answers = JSON.parse(JSON.stringify(state.case.answers));
+   savingPromise = (async () => {
+    try {
+     const response = await fetch(`/api/cases/${state.case.case_id}/answers`, {
+-      method: "PUT", headers: {"Content-Type": "application/json"}, body: JSON.stringify({answers})
++      method: "PUT", headers: {"Content-Type": "application/json"}, body: JSON.stringify({answers, revision: state.case.revision})
+     });
+     const result = await response.json();
+-    if (!response.ok) throw new Error(result.error || "Save failed.");
+-    if (state.revision === revision) {
++    if (!response.ok) {
++      if (response.status === 409) byId("saveState").textContent = "Conflict - reload matter";
++      throw new Error(result.error || "Save failed.");
++    }
++    if (state.editGeneration === editGeneration) {
+       state.case = result; state.dirty = false; byId("saveState").textContent = "Saved locally";
+       if (showConfirmation) toast("Responses saved.");
+     }
+@@ -202,7 +209,7 @@
+   })();
+   const saved = await savingPromise;
+   savingPromise = null; button.disabled = false;
+-  if (state.dirty && state.revision !== revision) {
++  if (state.dirty && state.editGeneration !== editGeneration) {
+     clearTimeout(autosaveTimer); autosaveTimer = setTimeout(() => saveResponses(false), 300);
+   }
+   return saved && !state.dirty;
+@@ -216,6 +223,8 @@
+   const files = [...byId("additionalEvidence").files];
+   if (!files.length) return toast("Select one or more additional PDFs.");
+   const data = new FormData(); files.forEach(file => data.append("evidence", file, file.name));
++  data.append("mode", byId("evidenceMode").value);
++  data.append("revision", String(state.case.revision));
+   const response = await fetch(`/api/cases/${state.case.case_id}/evidence`, {method: "POST", body: data});
+   const result = await response.json();
+   if (!response.ok) return toast(result.error || "Reprocessing failed.");
+diff -ruN '--exclude=vendor' '--exclude=assets' '--exclude=verification' '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/web/index.html /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/web/index.html
+--- /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/web/index.html	2026-10-21 05:13:06.000000000 +0800
++++ /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/web/index.html	2026-10-21 10:40:40.203231562 +0800
+@@ -10,7 +10,7 @@
+   <header class="app-header">
+     <div class="brand-block">
+       <div class="brand-mark" aria-hidden="true">I</div>
+-      <div><strong>Inquisitio 0.4.3</strong><span>Evidence-bound interrogatory responses</span></div>
++      <div><strong>Inquisitio 0.5.0</strong><span>Cited evidence drafts for attorney review</span></div>
+     </div>
+     <div class="header-actions" id="workspaceActions" hidden>
+       <span class="save-state" id="saveState">Saved locally</span>
+@@ -52,6 +52,10 @@
+           <span class="drop-title">Add evidence PDFs</span>
+           <span class="drop-note" id="fileSummary">No files selected</span>
+         </label>
++        <label class="case-record-input">Optional case record
++          <input id="caseRecordFile" name="case_record" type="file" accept="application/json,.json">
++          <span>Upload one UTF-8 JSON file named case_record.json.</span>
++        </label>
+         <div class="intake-footer">
+           <span id="intakeStatus" role="status"></span>
+           <button class="primary" id="buildButton" type="submit">Build response workspace</button>
+@@ -70,8 +74,13 @@
+         <p class="eyebrow">Current matter</p>
+         <h2 id="caseName"></h2>
+         <p id="caseForm"></p>
++        <div class="integrity-status" id="integrityStatus"></div>
+         <dl class="matter-stats" id="matterStats"></dl>
+-        <label class="add-evidence">Add evidence<input id="additionalEvidence" type="file" accept="application/pdf,.pdf" multiple><button class="secondary" id="reprocessButton" type="button">Upload and reprocess</button></label>
++        <label class="add-evidence">Update evidence packet
++          <input id="additionalEvidence" type="file" accept="application/pdf,.pdf" multiple>
++          <select id="evidenceMode" aria-label="Evidence update mode"><option value="append">Add to packet</option><option value="replace">Replace entire packet</option></select>
++          <button class="secondary" id="reprocessButton" type="button">Upload and reprocess</button>
++        </label>
+         <div class="filters" id="statusFilters"></div>
+       </aside>
+ 
+diff -ruN '--exclude=vendor' '--exclude=assets' '--exclude=verification' '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/web/styles.css /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/web/styles.css
+--- /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/web/styles.css	2026-10-21 05:07:22.000000000 +0800
++++ /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/web/styles.css	2026-10-21 10:40:40.207231654 +0800
+@@ -66,6 +66,9 @@
+ .drop-zone input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+ .drop-title { font-weight: 800; font-size: 16px; }
+ .drop-note { margin-top: 4px; color: var(--muted); }
++.case-record-input { display: grid; grid-template-columns: 170px 1fr; gap: 8px 14px; align-items: center; margin-top: 14px; color: var(--ink); font-size: 12px; font-weight: 800; }
++.case-record-input input { height: auto; margin: 0; padding: 8px; }
++.case-record-input span { grid-column: 2; color: var(--muted); font-weight: 400; }
+ .intake-footer { min-height: 58px; padding-top: 18px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+ #intakeStatus { color: var(--muted); }
+ .recent-matters { margin-top: 30px; }
+@@ -81,6 +84,10 @@
+ .delete-button { width: 100%; margin: -18px 0 26px; padding: 7px 0; border: 0; background: transparent; color: #9b2c2c; text-align: left; }
+ .case-rail h2 { overflow-wrap: anywhere; }
+ #caseForm { margin: 7px 0 24px; color: var(--muted); }
++.integrity-status { display: grid; gap: 3px; margin: -10px 0 20px; padding: 10px 0; border-top: 2px solid var(--amber); border-bottom: 1px solid var(--line); font-size: 12px; }
++.integrity-status span { color: var(--muted); }
++.integrity-status.pass { border-top-color: var(--accent); }
++.integrity-status.blocked { border-top-color: var(--red); }
+ .matter-stats { margin: 0 0 28px; }
+ .matter-stats div { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--line); }
+ .matter-stats dt { color: var(--muted); }
+@@ -88,6 +95,7 @@
+ .filters { display: grid; gap: 5px; }
+ .add-evidence { display: grid; gap: 6px; margin: 0 0 22px; color: var(--muted); font-size: 12px; font-weight: 700; }
+ .add-evidence input { height: auto; padding: 5px 0; border: 0; font-size: 11px; }
++.add-evidence select { height: 34px; padding: 4px 7px; }
+ .add-evidence button { width: 100%; font-size: 12px; }
+ .filter-button { width: 100%; border: 0; background: transparent; padding: 8px 6px; display: flex; justify-content: space-between; text-align: left; color: var(--muted); }
+ .filter-button:hover, .filter-button.active { color: var(--ink); background: var(--paper); }

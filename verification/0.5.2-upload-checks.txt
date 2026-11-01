@@ -1,0 +1,22 @@
+Inquisitio 0.5.2 - upload queue verification
+
+Cause: native file input selection replaced the preceding FileList on each use; drop handler also replaced all files.
+Fix: cumulative separate new-matter and update-matter PDF queues, duplicate detection, remove/clear controls, FormData built from queue; no changes to server/engine, export or storage.
+Executed on Linux:
+- node --check web/app.js: PASS
+- python compileall inquisitio and launch_runtime: PASS
+- Node sandbox of exact app.js staging/event code: PASS (6+8 files, duplicate suppression, remove/re-add, update 6+8, clear, request uses queues)
+- pytest tests/test_forms.py: 5 passed
+- pytest tests/test_production.py: 3 passed
+- Full pytest run: INCOMPLETE (timed out; one preexisting or unrelated failure signal appeared before timeout, traceback not obtained).
+- Chromium visual/E2E: BLOCKED (ERR_BLOCKED_BY_ADMINISTRATOR for HTTP localhost and file URL); no browser confirmation asserted.
+- Physical Apple Silicon Mac double-click: NOT RUN.
+- No third-party dependencies added; bundled runtime unchanged.
+
+Manual acceptance checks on a Mac:
+1. Select 6 Form 202 evidence PDFs. Confirm 6 queued.
+2. Open file picker again and select 8 Form 205 PDFs. Confirm 14 listed and 14 queued.
+3. Remove one PDF, add it again. Confirm 14 queued; reselect another already queued PDF, confirm total stays 14.
+4. Click Build response workspace. Confirm case has 14 PDFs, Forms 202/205 tabs, and the expected Form 202 and 205 review sections.
+5. In Update evidence packet, select two separate batches and choose Add to packet, then Upload and reprocess. Confirm earlier documents remain.
+6. Confirm Word/PDF export and evidence citations continue to work.

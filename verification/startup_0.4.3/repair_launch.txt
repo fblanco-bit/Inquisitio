@@ -1,0 +1,100 @@
+Preparing included PDF and export tools. No downloads are needed.
+Looking in links: /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/wheels
+Processing /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/wheels/cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (from -r /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/requirements-base.lock (line 2))
+Processing /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/wheels/charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (from -r /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/requirements-base.lock (line 3))
+Processing /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/wheels/cryptography-50.0.2-cp311-abi3-manylinux_2_34_x86_64.whl (from -r /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/requirements-base.lock (line 4))
+Processing /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/wheels/lxml-6.1.3-cp312-cp312-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl (from -r /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/requirements-base.lock (line 5))
+Processing /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/wheels/packaging-26.3-py3-none-any.whl (from -r /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/requirements-base.lock (line 6))
+Processing /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/wheels/pdfminer_six-20251230-py3-none-any.whl (from -r /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/requirements-base.lock (line 7))
+Processing /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/wheels/pdfplumber-0.11.9-py3-none-any.whl (from -r /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/requirements-base.lock (line 8))
+Processing /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/wheels/pillow-12.3.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (from -r /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/requirements-base.lock (line 9))
+Processing /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/wheels/pycparser-3.11-py3-none-any.whl (from -r /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/requirements-base.lock (line 10))
+Processing /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/wheels/pymupdf-1.26.6-cp310-abi3-manylinux_2_28_x86_64.whl (from -r /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/requirements-base.lock (line 11))
+Processing /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/wheels/pypdf-6.10.0-py3-none-any.whl (from -r /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/requirements-base.lock (line 12))
+Processing /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/wheels/pypdfium2-4.30.0-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (from -r /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/requirements-base.lock (line 13))
+Processing /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/wheels/pytesseract-0.3.13-py3-none-any.whl (from -r /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/requirements-base.lock (line 14))
+Processing /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/wheels/python_dateutil-2.9.0.post0-py2.py3-none-any.whl (from -r /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/requirements-base.lock (line 15))
+Processing /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/wheels/python_docx-1.2.0-py3-none-any.whl (from -r /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/requirements-base.lock (line 16))
+Processing /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/wheels/rapidfuzz-3.14.6-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (from -r /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/requirements-base.lock (line 17))
+Processing /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/wheels/reportlab-4.4.9-py3-none-any.whl (from -r /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/requirements-base.lock (line 18))
+Processing /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/wheels/six-1.17.0-py2.py3-none-any.whl (from -r /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/requirements-base.lock (line 19))
+Processing /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/wheels/typing_extensions-4.16.0-py3-none-any.whl (from -r /workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/linux-test-vendor/requirements-base.lock (line 20))
+Installing collected packages: typing_extensions, six, RapidFuzz, pypdfium2, pypdf, PyMuPDF, pycparser, pillow, packaging, lxml, charset-normalizer, reportlab, python-docx, python-dateutil, pytesseract, cffi, cryptography, pdfminer.six, pdfplumber
+  Attempting uninstall: typing_extensions
+    Found existing installation: typing_extensions 4.16.0
+    Uninstalling typing_extensions-4.16.0:
+      Successfully uninstalled typing_extensions-4.16.0
+  Attempting uninstall: six
+    Found existing installation: six 1.17.0
+    Uninstalling six-1.17.0:
+      Successfully uninstalled six-1.17.0
+  Attempting uninstall: pypdfium2
+    Found existing installation: pypdfium2 4.30.0
+    Uninstalling pypdfium2-4.30.0:
+      Successfully uninstalled pypdfium2-4.30.0
+  Attempting uninstall: pypdf
+    Found existing installation: pypdf 6.10.0
+    Uninstalling pypdf-6.10.0:
+      Successfully uninstalled pypdf-6.10.0
+  Attempting uninstall: PyMuPDF
+    Found existing installation: PyMuPDF 1.26.6
+    Uninstalling PyMuPDF-1.26.6:
+      Successfully uninstalled PyMuPDF-1.26.6
+  Attempting uninstall: pycparser
+    Found existing installation: pycparser 3.11
+    Uninstalling pycparser-3.11:
+      Successfully uninstalled pycparser-3.11
+  Attempting uninstall: pillow
+    Found existing installation: pillow 12.3.0
+    Uninstalling pillow-12.3.0:
+      Successfully uninstalled pillow-12.3.0
+  Attempting uninstall: packaging
+    Found existing installation: packaging 26.3
+    Uninstalling packaging-26.3:
+      Successfully uninstalled packaging-26.3
+  Attempting uninstall: lxml
+    Found existing installation: lxml 6.1.3
+    Uninstalling lxml-6.1.3:
+      Successfully uninstalled lxml-6.1.3
+  Attempting uninstall: charset-normalizer
+    Found existing installation: charset-normalizer 3.5.2
+    Uninstalling charset-normalizer-3.5.2:
+      Successfully uninstalled charset-normalizer-3.5.2
+  Attempting uninstall: reportlab
+    Found existing installation: reportlab 4.4.9
+    Uninstalling reportlab-4.4.9:
+      Successfully uninstalled reportlab-4.4.9
+  Attempting uninstall: python-docx
+    Found existing installation: python-docx 1.2.0
+    Uninstalling python-docx-1.2.0:
+      Successfully uninstalled python-docx-1.2.0
+  Attempting uninstall: python-dateutil
+    WARNING: Ignoring invalid distribution ~eportlab (/workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/clean runtime with spaces/lib/python3.12/site-packages)
+    Found existing installation: python-dateutil 2.9.0.post0
+    Uninstalling python-dateutil-2.9.0.post0:
+      Successfully uninstalled python-dateutil-2.9.0.post0
+  Attempting uninstall: pytesseract
+    Found existing installation: pytesseract 0.3.13
+    Uninstalling pytesseract-0.3.13:
+      Successfully uninstalled pytesseract-0.3.13
+  Attempting uninstall: cffi
+    Found existing installation: cffi 2.1.1
+    Uninstalling cffi-2.1.1:
+      Successfully uninstalled cffi-2.1.1
+  Attempting uninstall: cryptography
+    Found existing installation: cryptography 50.0.2
+    Uninstalling cryptography-50.0.2:
+      Successfully uninstalled cryptography-50.0.2
+  Attempting uninstall: pdfminer.six
+    WARNING: Ignoring invalid distribution ~eportlab (/workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/clean runtime with spaces/lib/python3.12/site-packages)
+    Found existing installation: pdfminer.six 20251230
+    Uninstalling pdfminer.six-20251230:
+      Successfully uninstalled pdfminer.six-20251230
+  Attempting uninstall: pdfplumber
+    WARNING: Ignoring invalid distribution ~eportlab (/workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/clean runtime with spaces/lib/python3.12/site-packages)
+    Found existing installation: pdfplumber 0.11.9
+    Uninstalling pdfplumber-0.11.9:
+      Successfully uninstalled pdfplumber-0.11.9
+WARNING: Ignoring invalid distribution ~eportlab (/workspace/scratch/f7dcd57753a8/inquisitio-startup-fix/clean runtime with spaces/lib/python3.12/site-packages)
+Successfully installed PyMuPDF-1.26.6 RapidFuzz-3.14.6 cffi-2.1.1 charset-normalizer-3.5.2 cryptography-50.0.2 lxml-6.1.3 packaging-26.3 pdfminer.six-20251230 pdfplumber-0.11.9 pillow-12.3.0 pycparser-3.11 pypdf-6.10.0 pypdfium2-4.30.0 pytesseract-0.3.13 python-dateutil-2.9.0.post0 python-docx-1.2.0 reportlab-4.4.9 six-1.17.0 typing_extensions-4.16.0
+Inquisitio 0.4.3: PDF tools and Forms 202/207 are ready.

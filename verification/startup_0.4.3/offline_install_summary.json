@@ -1,0 +1,9 @@
+{
+  "environment": "Linux x86_64, fresh Python 3.12 venv, equivalent platform wheels",
+  "package_versions": "Same base-profile versions as the Mac wheelhouse",
+  "first_launch": "PASS: installs from local wheels, imports tools, checks both forms",
+  "second_launch": "PASS: skips pip installation",
+  "repair_launch": "PASS: restores missing rapidfuzz locally",
+  "network_configuration": "Package indexes and HTTP(S) proxies point to a closed loopback port; pip uses --no-index and --isolated",
+  "native_mac_execution": "NOT RUN \u2014 Mac hardware/runtime unavailable"
+}

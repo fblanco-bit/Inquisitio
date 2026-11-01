@@ -1,0 +1,42 @@
+INQUISITIO 127.0.0.1 "GET /api/health HTTP/1.1" 200 -
+INQUISITIO 127.0.0.1 "GET / HTTP/1.1" 200 -
+INQUISITIO 127.0.0.1 "GET /app.js HTTP/1.1" 200 -
+INQUISITIO 127.0.0.1 "POST /api/cases HTTP/1.1" 201 -
+INQUISITIO 127.0.0.1 "GET /api/cases/4d03245de86546f0b931b24c3230f279/pdf HTTP/1.1" 200 -
+INQUISITIO 127.0.0.1 "GET /api/cases/4d03245de86546f0b931b24c3230f279/export HTTP/1.1" 200 -
+INQUISITIO 127.0.0.1 "POST /api/cases HTTP/1.1" 201 -
+INQUISITIO 127.0.0.1 "GET /api/cases/c3293f36ee41478e85e3d604ddec46bd/pdf HTTP/1.1" 200 -
+INQUISITIO 127.0.0.1 "GET /api/cases/c3293f36ee41478e85e3d604ddec46bd/export HTTP/1.1" 200 -
+EXPORT Okonkwo_Form_202_responses.pdf pages 13 responses 81
+FORM202 {
+  "documents": 2,
+  "pages": 9,
+  "facts_extracted": 116,
+  "responses_populated": 23,
+  "citation_references_validated": 71,
+  "distinct_source_passages_validated": 47,
+  "questions_left_for_review": 66,
+  "status_counts": {
+    "SUPPORTED_DRAFT": 14,
+    "EVIDENCE_CONFLICT": 1,
+    "NOT_APPLICABLE": 1,
+    "PARTIAL_DRAFT": 8,
+    "NO_RESPONSIVE_EVIDENCE": 57
+  }
+}
+EXPORT Form207_validation_Form_207_responses.pdf pages 8 responses 55
+FORM207 {
+  "documents": 1,
+  "pages": 2,
+  "facts_extracted": 19,
+  "responses_populated": 38,
+  "citation_references_validated": 40,
+  "distinct_source_passages_validated": 18,
+  "questions_left_for_review": 17,
+  "status_counts": {
+    "SUPPORTED_DRAFT": 12,
+    "NO_RESPONSIVE_EVIDENCE": 17,
+    "NOT_APPLICABLE": 26
+  }
+}
+HTTP_UPLOAD_EXTRACTION_CITATION_EXPORT_CHECKS_PASSED

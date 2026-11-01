@@ -1,0 +1,75 @@
+INQUISITIO - FICTIONAL ACCEPTANCE EVIDENCE SUITE
+================================================
+ALL MATERIALS ARE FICTIONAL TEST DATA. NOT REAL LEGAL OR MEDICAL RECORDS.
+DO NOT FILE, SERVE, OR USE IN AN ACTUAL CASE.
+
+CHOOSE ONE TEST CASE AT A TIME. DO NOT COMBINE EVIDENCE FROM DIFFERENT CASES.
+
+FORM 202 - Motor vehicle personal injury:
+ Matter name: Rivera v. Meridian Cargo Services
+ Docket number: CV-TEST-202-0042
+ Plaintiff: Elena Sofia Rivera
+ Defendant: Meridian Cargo Services LLC and Parker Moss
+ Responding party: Plaintiff
+ Interrogating party: Meridian Cargo Services LLC and Parker Moss
+ Court: Superior Court
+ Judicial district / location: New Haven at New Haven
+ Response date for testing: 10/12/2026
+ Upload: ALL 6 PDFs from FORM202_UPLOAD_ONLY (18 pages total).
+ Expected intentional conflict: DOB 06/18/1984 versus 06/16/1984.
+
+FORM 207 - Child support, EMPLOYED respondent:
+ Matter name: Monroe v. Monroe (child support modification)
+ Docket number: FA-TEST-207-0011
+ Plaintiff: Avery Monroe
+ Defendant: Nolan Cameron Monroe
+ Responding party: Defendant
+ Interrogating party: Avery Monroe
+ Court: Superior Court (Family Support Magistrate Division)
+ Judicial district / location: Hartford at Hartford
+ Response date for testing: 10/12/2026
+ Upload: ALL 5 PDFs from FORM207_EMPLOYED_UPLOAD_ONLY (12 pages total).
+ The self-employment section should NOT be filled for this respondent.
+
+FORM 207 - OPTIONAL SELF-EMPLOYED alternate respondent:
+ Matter name: Chen v. Chen (self-employment support review)
+ Docket number: FA-TEST-207-0022
+ Plaintiff: Morgan Chen
+ Defendant: Riley Chen
+ Responding party: Defendant
+ Interrogating party: Morgan Chen
+ Court: Superior Court (Family Support Magistrate Division)
+ Judicial district / location: New London at New London
+ Response date for testing: 10/12/2026
+ Upload: ALL 3 PDFs from FORM207_SELF_EMPLOYED_OPTIONAL_UPLOAD_ONLY (6 pages total).
+ Employee-related subparts 3(b) to 3(h) should be skipped; self-employment 4(a) to 4(l) should be populated where supported.
+
+QUICK TEST (one combined PDF per test):
+ Instead of selecting multiple PDFs, choose ONE matching PDF in ONE_FILE_PER_CASE_QUICK_TEST.
+ DO NOT upload combined PDF alongside original source PDFs (that duplicates evidence).
+ Full acceptance testing should use the separately named source PDFs to verify cross-document citations.
+
+TO VALIDATE:
+ 1. Create a NEW matter for the selected case. Do not reuse an older test matter.
+ 2. Choose correct Form 202 or Form 207 and fill in fields exactly as above.
+ 3. Select all case PDFs in the corresponding UPLOAD_ONLY folder; Build response workspace.
+ 4. Record source count, page count, extracted facts, supported/partial/conflict/N/A and validated citations.
+ 5. Use the DO_NOT_UPLOAD_ANSWER_KEYS folder to check the expected facts for EVERY field.
+ 6. Inspect source filename, PDF page, and exact supporting quote. Verify the quote physically exists on the cited page.
+ 7. Generate Evidence report, Word, and completed-form PDF and compare statuses and sources.
+ 8. Repeat from scratch with the optional self-employed case.
+
+IMPORTANT SAFETY CONTROLS:
+ - Every page bears FICTIONAL TEST DOCUMENT - NOT A REAL RECORD.
+ - The answer keys are NOT evidence and must NEVER be uploaded into Inquisitio.
+ - Source evidence is deliberately written as plausible case documents, NOT as a pre-filled answer sheet.
+ - The acceptance keys describe expected findings, not guaranteed version-specific status labels.
+   Correctly cited answers, legitimate partial findings, and correct refusals outrank hitting a quota.
+ - No unsupported facts, cross-case leakage, or failure to flag explicit contradictions is acceptable.
+ - A failed test does not necessarily identify extraction as the cause: check file selection, matter association,
+   OCR or text extraction, mapping, drafting and citation validation separately.
+
+OFFICIAL FORM REFERENCES FOR QUESTION STRUCTURE:
+ Connecticut Practice Book 2025 / published amendments:
+ https://www.jud.ct.gov/Publications/PracticeBook/PB2025.pdf
+ https://www.jud.ct.gov/lawjournal/Docs/Misc/2025/26/CLJ06242025.pdf

@@ -1,0 +1,173 @@
+test_distinct_values_from_two_sources_are_flagged (tests.test_binding.BindingTests.test_distinct_values_from_two_sources_are_flagged) ... ok
+test_explicit_weekly_income_drafted_with_page_citation (tests.test_binding.BindingTests.test_explicit_weekly_income_drafted_with_page_citation) ... ok
+test_medical_evidence_is_suggested_but_not_inserted (tests.test_binding.BindingTests.test_medical_evidence_is_suggested_but_not_inserted) ... ok
+test_no_evidence_never_creates_factual_answer (tests.test_binding.BindingTests.test_no_evidence_never_creates_factual_answer) ... ok
+test_relevant_match_survives_large_repetitive_corpus (tests.test_binding.BindingTests.test_relevant_match_survives_large_repetitive_corpus) ... ok
+test_unattributed_income_is_not_drafted (tests.test_binding.BindingTests.test_unattributed_income_is_not_drafted) ... ok
+test_unrelated_single_word_match_is_not_suggested (tests.test_binding.BindingTests.test_unrelated_single_word_match_is_not_suggested) ... ok
+test_affirmative_reliable_negative_can_establish_nonapplicability (tests.test_engine.EvidenceEngineTests.test_affirmative_reliable_negative_can_establish_nonapplicability) ... ok
+test_correct_party_current_gross_weekly_income_is_drafted (tests.test_engine.EvidenceEngineTests.test_correct_party_current_gross_weekly_income_is_drafted) ... ok
+test_corroborating_sources_are_both_cited (tests.test_engine.EvidenceEngineTests.test_corroborating_sources_are_both_cited) ... ok
+test_current_conflict_preserves_both_sources (tests.test_engine.EvidenceEngineTests.test_current_conflict_preserves_both_sources) ... ok
+test_drafting_engine_operates_with_outbound_network_disabled (tests.test_engine.EvidenceEngineTests.test_drafting_engine_operates_with_outbound_network_disabled) ... ok
+test_every_form_item_has_an_internal_requirement_and_valid_status (tests.test_engine.EvidenceEngineTests.test_every_form_item_has_an_internal_requirement_and_valid_status) ... ok
+test_explicit_negative_is_not_discarded_for_generic_filename (tests.test_engine.EvidenceEngineTests.test_explicit_negative_is_not_discarded_for_generic_filename) ... ok
+test_missing_responding_party_blocks_party_dependent_draft (tests.test_engine.EvidenceEngineTests.test_missing_responding_party_blocks_party_dependent_draft) ... ok
+test_narrative_injury_is_drafted_without_discarding_complaint_by_classification (tests.test_engine.EvidenceEngineTests.test_narrative_injury_is_drafted_without_discarding_complaint_by_classification) ... ok
+test_partial_answer_lists_each_missing_component (tests.test_engine.EvidenceEngineTests.test_partial_answer_lists_each_missing_component) ... ok
+test_silence_never_proves_nonapplicability (tests.test_engine.EvidenceEngineTests.test_silence_never_proves_nonapplicability) ... ok
+test_wrong_party_net_and_historical_income_do_not_answer (tests.test_engine.EvidenceEngineTests.test_wrong_party_net_and_historical_income_do_not_answer) ... ok
+test_page_and_exact_text_are_retained (tests.test_evidence.EvidenceExtractionTests.test_page_and_exact_text_are_retained) ... ok
+test_completed_form_pdf_contains_caption_questions_responses_and_verification (tests.test_exporter.ExportTests.test_completed_form_pdf_contains_caption_questions_responses_and_verification) ... ok
+test_export_contains_every_form_202_item (tests.test_exporter.ExportTests.test_export_contains_every_form_202_item) ... ok
+test_non_string_metadata_does_not_break_export (tests.test_exporter.ExportTests.test_non_string_metadata_does_not_break_export) ... ok
+test_review_export_and_traceability_preserve_status_and_exact_citation (tests.test_exporter.ExportTests.test_review_export_and_traceability_preserve_status_and_exact_citation) ... ok
+test_every_item_has_exact_text_and_unique_id (tests.test_forms.FormExtractionTests.test_every_item_has_exact_text_and_unique_id) ... ok
+test_form_202_is_complete (tests.test_forms.FormExtractionTests.test_form_202_is_complete) ... ok
+test_form_207_is_complete (tests.test_forms.FormExtractionTests.test_form_207_is_complete) ... ok
+test_line_break_hyphenation_is_removed (tests.test_forms.FormExtractionTests.test_line_break_hyphenation_is_removed) ... ok
+test_explicit_data_directory_wins (tests.test_server.PlatformDataPathTests.test_explicit_data_directory_wins) ... ok
+test_macos_uses_application_support (tests.test_server.PlatformDataPathTests.test_macos_uses_application_support) ... ok
+test_windows_uses_local_app_data (tests.test_server.PlatformDataPathTests.test_windows_uses_local_app_data) ... ok
+test_case_record_drafts_are_field_cited_and_empty_values_are_unknown (tests.test_server.ServerSecurityTests.test_case_record_drafts_are_field_cited_and_empty_values_are_unknown) ... INQUISITIO 127.0.0.1 "POST /api/cases HTTP/1.1" 201 -
+ok
+test_delete_removes_case_and_returns_json (tests.test_server.ServerSecurityTests.test_delete_removes_case_and_returns_json) ... INQUISITIO 127.0.0.1 "DELETE /api/cases/37d994bd27234b49bfdd19b75653e2e8 HTTP/1.1" 200 -
+ok
+test_foreign_host_is_rejected (tests.test_server.ServerSecurityTests.test_foreign_host_is_rejected) ... INQUISITIO 127.0.0.1 "GET /api/cases HTTP/1.1" 421 -
+ok
+test_image_only_pdf_is_flagged_and_never_drafted (tests.test_server.ServerSecurityTests.test_image_only_pdf_is_flagged_and_never_drafted) ... INQUISITIO 127.0.0.1 "POST /api/cases HTTP/1.1" 201 -
+ok
+test_invalid_case_record_reports_field_path_and_creates_no_matter (tests.test_server.ServerSecurityTests.test_invalid_case_record_reports_field_path_and_creates_no_matter) ... INQUISITIO 127.0.0.1 "POST /api/cases HTTP/1.1" 400 -
+ok
+test_material_identity_mismatch_blocks_all_automatic_drafts (tests.test_server.ServerSecurityTests.test_material_identity_mismatch_blocks_all_automatic_drafts) ... INQUISITIO 127.0.0.1 "POST /api/cases HTTP/1.1" 201 -
+ok
+test_rejected_append_does_not_change_evidence_packet (tests.test_server.ServerSecurityTests.test_rejected_append_does_not_change_evidence_packet) ... INQUISITIO 127.0.0.1 "POST /api/cases HTTP/1.1" 201 -
+invalid pdf header: b'not a'
+EOF marker not found
+INQUISITIO 127.0.0.1 "POST /api/cases/75119394a40d47d7a417ae4bce8fa4d0/evidence HTTP/1.1" 400 -
+ok
+test_rejected_uploads_leave_no_case_directory (tests.test_server.ServerSecurityTests.test_rejected_uploads_leave_no_case_directory) ... INQUISITIO 127.0.0.1 "POST /api/cases HTTP/1.1" 400 -
+INQUISITIO 127.0.0.1 "POST /api/cases HTTP/1.1" 400 -
+invalid pdf header: b'bad'
+EOF marker not found
+EOF marker not found
+INQUISITIO 127.0.0.1 "POST /api/cases HTTP/1.1" 400 -
+ok
+test_replacing_packet_removes_old_supported_draft (tests.test_server.ServerSecurityTests.test_replacing_packet_removes_old_supported_draft) ... INQUISITIO 127.0.0.1 "POST /api/cases HTTP/1.1" 201 -
+INQUISITIO 127.0.0.1 "POST /api/cases/4ad185cb069346c89c46ffa4747a0500/evidence HTTP/1.1" 200 -
+ok
+test_reprocessing_new_conflicting_evidence_clears_approval (tests.test_server.ServerSecurityTests.test_reprocessing_new_conflicting_evidence_clears_approval) ... INQUISITIO 127.0.0.1 "POST /api/cases HTTP/1.1" 201 -
+INQUISITIO 127.0.0.1 "PUT /api/cases/6c1444cfa88a416682da0acbbe131637/answers HTTP/1.1" 200 -
+INQUISITIO 127.0.0.1 "POST /api/cases/6c1444cfa88a416682da0acbbe131637/evidence HTTP/1.1" 200 -
+ok
+test_stale_revision_is_rejected_without_silent_loss (tests.test_server.ServerSecurityTests.test_stale_revision_is_rejected_without_silent_loss) ... INQUISITIO 127.0.0.1 "POST /api/cases HTTP/1.1" 201 -
+INQUISITIO 127.0.0.1 "PUT /api/cases/cb0486942fa449cc928ce4beb9d1922f/answers HTTP/1.1" 200 -
+INQUISITIO 127.0.0.1 "PUT /api/cases/cb0486942fa449cc928ce4beb9d1922f/answers HTTP/1.1" 409 -
+ok
+test_supported_draft_requires_explicit_approval_and_edits_invalidate_it (tests.test_server.ServerSecurityTests.test_supported_draft_requires_explicit_approval_and_edits_invalidate_it) ... INQUISITIO 127.0.0.1 "POST /api/cases HTTP/1.1" 201 -
+INQUISITIO 127.0.0.1 "PUT /api/cases/5678bbf784dc4447ad28ffed6348d6fe/answers HTTP/1.1" 200 -
+INQUISITIO 127.0.0.1 "PUT /api/cases/5678bbf784dc4447ad28ffed6348d6fe/answers HTTP/1.1" 200 -
+INQUISITIO 127.0.0.1 "PUT /api/cases/5678bbf784dc4447ad28ffed6348d6fe/answers HTTP/1.1" 200 -
+ok
+test_valid_upload_is_private_and_only_suggests_evidence (tests.test_server.ServerSecurityTests.test_valid_upload_is_private_and_only_suggests_evidence) ... INQUISITIO 127.0.0.1 "POST /api/cases HTTP/1.1" 201 -
+ok
+test_case_records_are_isolated_and_persisted (tests.test_storage.StorageTests.test_case_records_are_isolated_and_persisted) ... ok
+test_path_traversal_is_rejected (tests.test_storage.StorageTests.test_path_traversal_is_rejected) ... ok
+test_records_are_private_and_case_can_be_deleted (tests.test_storage.StorageTests.test_records_are_private_and_case_can_be_deleted) ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_extraction_pipeline.test_ambiguous_initial_shared_by_both_parties_does_not_choose_one ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_extraction_pipeline.test_date_normalization_preserves_original_string ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_extraction_pipeline.test_different_addresses_are_a_conflict ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_extraction_pipeline.test_dob_conflict_keeps_both_dates_and_inserts_nothing ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_extraction_pipeline.test_equivalent_addresses_are_not_a_conflict ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_extraction_pipeline.test_every_official_field_has_targets_and_no_placeholder ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_extraction_pipeline.test_form207_role_conflicting_with_order_is_not_silently_used ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_extraction_pipeline.test_fragmented_pdfplumber_page_uses_pymupdf_layout ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_extraction_pipeline.test_generic_filename_does_not_discard_explicit_facts ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_extraction_pipeline.test_hash_or_quote_tampering_prevents_a_validated_answer ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_extraction_pipeline.test_horizontal_operator_table_does_not_mix_people ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_extraction_pipeline.test_image_only_page_runs_real_ocrmypdf_and_flags_citation ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_extraction_pipeline.test_interactive_field_values_are_read ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_extraction_pipeline.test_label_on_one_line_value_on_next_and_short_date ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_extraction_pipeline.test_latest_treatment_excludes_dob_and_future_scheduled_date ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_extraction_pipeline.test_manual_dob_does_not_survive_reprocessing_a_conflict ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_extraction_pipeline.test_multiple_header_fields_on_one_line ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_extraction_pipeline.test_name_variants_are_bound_without_repeating_full_name[1] ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_extraction_pipeline.test_name_variants_are_bound_without_repeating_full_name[2] ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_extraction_pipeline.test_name_variants_are_bound_without_repeating_full_name[3] ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_extraction_pipeline.test_name_variants_are_bound_without_repeating_full_name[4] ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_extraction_pipeline.test_name_variants_are_bound_without_repeating_full_name[5] ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_extraction_pipeline.test_out_of_order_column_stream_uses_pymupdf_layout ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_extraction_pipeline.test_provided_packet_identity_conflict_treatment_and_wrong_actor ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_extraction_pipeline.test_real_pytesseract_fallback_reports_ocrmypdf_failure ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_extraction_pipeline.test_same_packet_produces_byte_identical_answer_payload ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_extraction_pipeline.test_scanned_entry_beside_printed_blank_label_is_not_skipped ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_extraction_pipeline.test_second_form207_matter_uses_caption_order_and_its_own_targets ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_extraction_pipeline.test_two_column_table_with_label_value_pairs ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_extraction_pipeline.test_wrapped_address_is_preserved_across_nearby_blocks ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_launcher.test_browser_never_opens_a_failed_startup ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_launcher.test_browser_waits_for_the_correct_live_version ... Inquisitio 0.5.0 is ready at http://127.0.0.1:8766
+ok
+unittest.case.FunctionTestCase (execute)
+tests.test_launcher.test_bundled_python_is_a_mac_arm64_executable_with_relocatable_library_paths ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_launcher.test_busy_default_port_uses_another_port ... Starting Inquisitio 0.5.0. Keep this window open while working.
+ok
+unittest.case.FunctionTestCase (execute)
+tests.test_launcher.test_corrupt_wheel_is_detected_before_installation ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_launcher.test_damaged_lock_is_detected_even_when_dependencies_are_ready ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_launcher.test_each_mac_profile_contains_all_target_dependencies_and_compatible_wheels ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_launcher.test_first_launch_installs_only_local_hash_checked_wheels ... Preparing included PDF and export tools. No downloads are needed.
+ok
+unittest.case.FunctionTestCase (execute)
+tests.test_launcher.test_incomplete_install_is_repaired_without_user_commands ... Preparing included PDF and export tools. No downloads are needed.
+Repairing the included tools automatically…
+ok
+unittest.case.FunctionTestCase (execute)
+tests.test_launcher.test_mac_11_through_13_can_start_without_mac_14_ocr_wheel ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_launcher.test_mac_launcher_prepares_verified_runtime_before_executing_it ... ok
+unittest.case.FunctionTestCase (execute)
+tests.test_launcher.test_second_launch_does_not_run_pip ... Included dependencies are ready.
+ok
+unittest.case.FunctionTestCase (execute)
+tests.test_launcher.test_shell_syntax_and_packaged_runtime_integrity ... ok
+
+----------------------------------------------------------------------
+Ran 90 tests in 13.913s
+
+OK

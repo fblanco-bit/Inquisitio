@@ -1,0 +1,57 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.7.0 -- /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python
+rootdir: /workspace/scratch/8de3951dd833/work/Inquisitio_0.4.2_EXTRACTION_FIX
+collecting ... collected 29 items
+
+tests/test_extraction_pipeline.py::test_label_on_one_line_value_on_next_and_short_date PASSED [  3%]
+tests/test_extraction_pipeline.py::test_two_column_table_with_label_value_pairs PASSED [  6%]
+tests/test_extraction_pipeline.py::test_name_variants_are_bound_without_repeating_full_name[E. Vega] PASSED [ 10%]
+tests/test_extraction_pipeline.py::test_name_variants_are_bound_without_repeating_full_name[Vega, Elena] PASSED [ 13%]
+tests/test_extraction_pipeline.py::test_name_variants_are_bound_without_repeating_full_name[Vega, Elena M.] PASSED [ 17%]
+tests/test_extraction_pipeline.py::test_name_variants_are_bound_without_repeating_full_name[Elena Marisol Vega] PASSED [ 20%]
+tests/test_extraction_pipeline.py::test_name_variants_are_bound_without_repeating_full_name[the Respondent] PASSED [ 24%]
+tests/test_extraction_pipeline.py::test_dob_conflict_keeps_both_dates_and_inserts_nothing PASSED [ 27%]
+tests/test_extraction_pipeline.py::test_equivalent_addresses_are_not_a_conflict PASSED [ 31%]
+tests/test_extraction_pipeline.py::test_different_addresses_are_a_conflict PASSED [ 34%]
+tests/test_extraction_pipeline.py::test_date_normalization_preserves_original_string PASSED [ 37%]
+tests/test_extraction_pipeline.py::test_horizontal_operator_table_does_not_mix_people PASSED [ 41%]
+tests/test_extraction_pipeline.py::test_generic_filename_does_not_discard_explicit_facts PASSED [ 44%]
+tests/test_extraction_pipeline.py::test_latest_treatment_excludes_dob_and_future_scheduled_date PASSED [ 48%]
+tests/test_extraction_pipeline.py::test_interactive_field_values_are_read PASSED [ 51%]
+tests/test_extraction_pipeline.py::test_image_only_page_runs_real_ocrmypdf_and_flags_citation PASSED [ 55%]
+tests/test_extraction_pipeline.py::test_real_pytesseract_fallback_reports_ocrmypdf_failure PASSED [ 58%]
+tests/test_extraction_pipeline.py::test_fragmented_pdfplumber_page_uses_pymupdf_layout PASSED [ 62%]
+tests/test_extraction_pipeline.py::test_hash_or_quote_tampering_prevents_a_validated_answer PASSED [ 65%]
+tests/test_extraction_pipeline.py::test_every_official_field_has_targets_and_no_placeholder PASSED [ 68%]
+tests/test_extraction_pipeline.py::test_provided_packet_identity_conflict_treatment_and_wrong_actor PASSED [ 72%]
+tests/test_extraction_pipeline.py::test_second_form207_matter_uses_caption_order_and_its_own_targets PASSED [ 75%]
+tests/test_extraction_pipeline.py::test_wrapped_address_is_preserved_across_nearby_blocks PASSED [ 79%]
+tests/test_extraction_pipeline.py::test_multiple_header_fields_on_one_line PASSED [ 82%]
+tests/test_extraction_pipeline.py::test_ambiguous_initial_shared_by_both_parties_does_not_choose_one PASSED [ 86%]
+tests/test_extraction_pipeline.py::test_form207_role_conflicting_with_order_is_not_silently_used PASSED [ 89%]
+tests/test_extraction_pipeline.py::test_manual_dob_does_not_survive_reprocessing_a_conflict PASSED [ 93%]
+tests/test_extraction_pipeline.py::test_out_of_order_column_stream_uses_pymupdf_layout PASSED [ 96%]
+tests/test_extraction_pipeline.py::test_scanned_entry_beside_printed_blank_label_is_not_skipped FAILED [100%]
+
+=================================== FAILURES ===================================
+_________ test_scanned_entry_beside_printed_blank_label_is_not_skipped _________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-5/test_scanned_entry_beside_prin0')
+
+    def test_scanned_entry_beside_printed_blank_label_is_not_skipped(tmp_path):
+        image=Image.new('RGB',(600,120),'white');d=ImageDraw.Draw(image)
+        font=ImageFont.truetype(str(ROOT/'assets/InquisitioSans.ttf'),48)
+        d.text((5,10),'03/15/1987',font=font,fill='black')
+        path=tmp_path/'mixed.pdf';c=canvas.Canvas(str(path))
+        c.drawString(50,750,'Patient: Elena Vega')
+        c.drawString(50,700,'DOB:')
+        c.drawImage(ImageReader(image),100,680,width=240,height=48)
+        c.save()
+        r,docs,_=run([path]);a=r['answers']['202-1-b']
+>       assert '03/15/1987' in a['answer']
+E       AssertionError: assert '03/15/1987' in ''
+
+tests/test_extraction_pipeline.py:304: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_extraction_pipeline.py::test_scanned_entry_beside_printed_blank_label_is_not_skipped
+========================= 1 failed, 28 passed in 9.17s =========================

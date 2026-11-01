@@ -1,0 +1,2 @@
+Included dependencies are ready.
+Opening the running Inquisitio 0.4.3 workspace.

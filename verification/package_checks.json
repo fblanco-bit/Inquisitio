@@ -1,0 +1,20 @@
+{
+  "visual_review": {
+    "Form_202_PDF_pages": 13,
+    "Form_202_Word_rendered_pages": 21,
+    "Form_207_PDF_pages": 8,
+    "Form_207_Word_rendered_pages": 11
+  },
+  "source_manifest_files_verified": 21,
+  "pdf_and_docx_response_counts_verified": {
+    "Form_202": 81,
+    "Form_207": 55
+  },
+  "runtime_changed_after_final_pytest": false,
+  "packaging_check_correction": "An initial check raised AssertionError because it searched Word XML for uppercase RESPONSE:. Word uses Response:. Counting actual Response: paragraphs confirmed all 81 and 55 responses. No export or runtime change was needed.",
+  "limits": [
+    "macOS and Windows launchers were not run on those operating systems",
+    "Form 207 exercised with a separate fictional regression matter",
+    "Delgado packet and private answer key not supplied"
+  ]
+}

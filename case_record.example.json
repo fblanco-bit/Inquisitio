@@ -1,0 +1,36 @@
+{
+  "matter": {
+    "caption": "Okonkwo v. Brightline Logistics",
+    "docket": "",
+    "court": "",
+    "incident_date": "04/02/2026"
+  },
+  "client": {
+    "name": "Terrence Okonkwo",
+    "other_names": ["Terrence J. Okonkwo"],
+    "birthDate": "",
+    "address1": "18 Blue Hills Avenue, Bloomfield, CT 06002",
+    "business_address": "",
+    "driversLicenseNumber": "CT 071-442-8830"
+  },
+  "vehicle": {
+    "client_was_owner": null,
+    "owner_name": "",
+    "owner_address": ""
+  },
+  "employment": {
+    "employer_name": "North River Distribution",
+    "employer_address": "",
+    "jobTitle": "Warehouse selector",
+    "duties": "",
+    "pay_rate": "$26.50 per hour",
+    "lostWagesStart": "04/03/2026",
+    "lostWagesEnd": ""
+  },
+  "counsel": {
+    "name": "",
+    "juris_no": "",
+    "firm": "",
+    "address": ""
+  }
+}

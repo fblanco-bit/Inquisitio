@@ -1,0 +1,9 @@
+{
+  "status": "ok",
+  "service": "Inquisitio",
+  "version": "0.4.2",
+  "forms": [
+    "202",
+    "207"
+  ]
+}

@@ -1,0 +1,10 @@
+pdfplumber==0.11.9
+python-docx==1.2.0
+reportlab==4.4.9
+PyMuPDF==1.26.6
+pypdf==6.10.0
+python-dateutil==2.9.0.post0
+rapidfuzz==3.14.6
+ocrmypdf==16.13.0
+pytesseract==0.3.13
+Pillow==12.3.0

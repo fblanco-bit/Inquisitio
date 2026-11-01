@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inquisitio</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand-block">
+      <div class="brand-mark" aria-hidden="true">I</div>
+      <div><strong>Inquisitio 0.5.2</strong><span>Cited evidence drafts for attorney review</span></div>
+    </div>
+    <div class="header-actions" id="workspaceActions" hidden>
+      <span class="save-state" id="saveState">Saved locally</span>
+      <button class="secondary" id="saveButton" type="button">Save responses</button>
+      <button class="secondary" id="traceButton" type="button">Evidence report</button>
+      <button class="secondary" id="exportButton" type="button">Word</button>
+      <button class="primary" id="pdfButton" type="button">Completed-form PDF</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="intake" id="intakeView">
+      <div class="intake-heading">
+        <p class="eyebrow">New matter</p>
+        <h1>Complete the served form from the record.</h1>
+        <p>Evidence remains on this machine. Unsupported answers stay visibly unresolved.</p>
+      </div>
+      <form id="intakeForm">
+        <fieldset class="form-picker">
+          <legend>Connecticut Practice Book form</legend>
+          <label><input type="radio" name="form_id" value="202" checked><span><b>Forms 202 + 205</b>Personal injury: interrogatories and document production</span></label>
+          <label><input type="radio" name="form_id" value="207"><span><b>Form 207</b>Child support</span></label>
+        </fieldset>
+
+        <div class="metadata-grid">
+          <label class="wide">Matter name<input name="case_name" required maxlength="160" placeholder="Moss v. Brightline"></label>
+          <label>Docket number<input name="docket_number" placeholder="CV-"></label>
+          <label>Response date<input name="response_date" type="date"></label>
+          <label>Plaintiff<input name="plaintiff"></label>
+          <label>Defendant<input name="defendant"></label>
+          <label>Responding party<select name="responding_party_role" required><option value="">Select party</option><option value="plaintiff">Plaintiff</option><option value="defendant">Defendant</option></select></label>
+          <label>Interrogating party<input name="interrogating_party" required></label>
+          <label class="wide">Court<input name="court" value="Superior Court"></label>
+          <label class="wide">Judicial district / location<input name="judicial_district"></label>
+        </div>
+
+        <label class="drop-zone" id="dropZone">
+          <input id="evidenceFiles" name="evidence" type="file" accept="application/pdf,.pdf" multiple>
+          <span class="drop-title">Add evidence PDFs (select or drop multiple batches)</span>
+          <span class="drop-note" id="fileSummary" role="status" aria-live="polite">No files selected</span>
+        </label>
+        <div class="pending-toolbar"><span>Files selected for this matter</span><button id="clearEvidenceButton" class="file-clear" type="button" hidden>Clear all</button></div>
+        <ul class="pending-files" id="pendingEvidenceList" aria-label="Evidence PDFs queued for intake"></ul>
+        <label class="case-record-input">Optional case record
+          <input id="caseRecordFile" name="case_record" type="file" accept="application/json,.json">
+          <span>Upload one UTF-8 JSON file named case_record.json.</span>
+        </label>
+        <div class="intake-footer">
+          <span id="intakeStatus" role="status"></span>
+          <button class="primary" id="buildButton" type="submit">Build response workspace</button>
+        </div>
+      </form>
+      <section class="recent-matters" id="recentMatters" hidden>
+        <p class="eyebrow">Recent matters</p>
+        <div id="recentMatterList"></div>
+      </section>
+    </section>
+
+    <section class="workspace" id="workspaceView" hidden>
+      <aside class="case-rail">
+        <button class="back-button" id="newCaseButton" type="button">New matter</button>
+        <button class="delete-button" id="deleteCaseButton" type="button">Delete matter</button>
+        <p class="eyebrow">Current matter</p>
+        <h2 id="caseName"></h2>
+        <p id="caseForm"></p>
+        <div class="integrity-status" id="integrityStatus"></div>
+        <dl class="matter-stats" id="matterStats"></dl>
+        <div class="add-evidence">
+          <label for="additionalEvidence">Update evidence packet - select more PDFs in batches</label>
+          <input id="additionalEvidence" type="file" accept="application/pdf,.pdf" multiple>
+          <span id="updateFileSummary" role="status" aria-live="polite">No additional PDFs selected</span>
+          <ul class="pending-files" id="pendingUpdateList" aria-label="Additional PDFs queued for upload"></ul>
+          <button id="clearUpdateButton" class="file-clear" type="button" hidden>Clear selected PDFs</button>
+          <select id="evidenceMode" aria-label="Evidence update mode"><option value="append">Add to packet</option><option value="replace">Replace entire packet</option></select>
+          <button class="secondary" id="reprocessButton" type="button">Upload and reprocess</button>
+        </div>
+        <div class="filters" id="statusFilters"></div>
+        <p class="production-notice" id="productionRailNotice" hidden>Form 205 is a separate document-production review. Candidate PDFs are not proof that anything was actually produced.</p>
+      </aside>
+
+      <section class="response-list">
+        <nav class="form-tabs" id="formTabs" hidden aria-label="Form sections">
+          <button type="button" id="show202Tab" class="active">Form 202 - Interrogatories</button>
+          <button type="button" id="show205Tab">Form 205 - Document Production (13)</button>
+        </nav>
+        <div class="list-toolbar" id="questionToolbar">
+          <div><p class="eyebrow">Responses</p><h2 id="formTitle"></h2></div>
+          <label class="search-label">Search<input id="questionSearch" type="search" placeholder="Question or answer"></label>
+        </div>
+        <div class="progress-track"><span id="progressBar"></span></div>
+        <div id="questionList"></div>
+        <div id="productionView" hidden>
+          <p class="production-notice"><strong>Attorney-review work product only.</strong> The tool surfaces possible evidence, but does not determine privilege or whether any PDF was served. Only a reviewer can confirm production and Bates ranges. Never use this workspace as proof of delivery.</p>
+          <div id="productionList"></div>
+        </div>
+      </section>
+
+      <aside class="evidence-panel">
+        <button class="inspector-close" id="inspectorClose" type="button" aria-label="Close evidence inspector">×</button>
+        <p class="eyebrow">Evidence inspector</p>
+        <h2 id="evidenceTitle">Select a response</h2>
+        <div id="evidenceBody" class="evidence-body">
+          <p class="empty-state">Supported answers are populated automatically with page citations. Missing or conflicting evidence is flagged for review.</p>
+        </div>
+      </aside>
+    </section>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js"></script>
+</body>
+</html>

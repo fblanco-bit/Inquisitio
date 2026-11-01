@@ -1,0 +1,30 @@
+Only in /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK: CHANGE_RECORD.md
+Only in /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK: Inquisitio.app
+Files /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/README.md and /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/README.md differ
+Files /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/RELEASE_NOTES.md and /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/RELEASE_NOTES.md differ
+Only in /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK: ROOT_CAUSE_REPORT.md
+Files /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/START_HERE.txt and /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/START_HERE.txt differ
+Files /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/START_INQUISITIO_MAC.command and /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/START_INQUISITIO_MAC.command differ
+Files /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/TEST_REPORT.md and /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/TEST_REPORT.md differ
+Only in /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK: case_record.example.json
+Files /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/inquisitio/__init__.py and /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/inquisitio/__init__.py differ
+Only in /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/inquisitio: case_record.py
+Files /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/inquisitio/engine.py and /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/inquisitio/engine.py differ
+Files /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/inquisitio/exporter.py and /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/inquisitio/exporter.py differ
+Only in /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/inquisitio: production.py
+Files /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/inquisitio/server.py and /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/inquisitio/server.py differ
+Files /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/package.json and /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/package.json differ
+Files /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/packaging/Inquisitio.spec and /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/packaging/Inquisitio.spec differ
+Files /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/packaging/build_macos.sh and /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/packaging/build_macos.sh differ
+Files /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/packaging/build_offline_manifest.py and /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/packaging/build_offline_manifest.py differ
+Files /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/packaging/launch_runtime.py and /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/packaging/launch_runtime.py differ
+Only in /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests: __init__.py
+Only in /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests: offline_harness.py
+Files /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/test_engine.py and /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/test_engine.py differ
+Files /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/test_exporter.py and /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/test_exporter.py differ
+Files /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/test_extraction_pipeline.py and /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/test_extraction_pipeline.py differ
+Files /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/test_launcher.py and /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/test_launcher.py differ
+Files /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/test_server.py and /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/tests/test_server.py differ
+Files /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/web/app.js and /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/web/app.js differ
+Files /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/web/index.html and /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/web/index.html differ
+Files /workspace/baseline_043/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/web/styles.css and /workspace/inquisitio_build/Inquisitio_0.4.3_MAC_DOUBLE_CLICK/web/styles.css differ

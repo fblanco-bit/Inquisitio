@@ -1,0 +1,17 @@
+INQUISITIO 0.5.2 — APPLE SILICON MAC
+
+1. Extract the entire ZIP in Finder.
+2. Double-click Inquisitio.app. START_INQUISITIO_MAC.command is the fallback.
+3. Wait for the browser to open. Keep the Terminal window open while working.
+
+The first launch prepares the included Python and PDF tools automatically.
+Later launches reuse them. No commands or startup downloads are needed.
+The application header displays Inquisitio 0.5.2. Forms 202 and 205 share one personal-injury matter.
+
+Use the launcher in this new folder instead of the older extracted folder.
+Your existing matters remain in the normal Inquisitio data location.
+
+This package is for M-series Macs running macOS 11 or newer.
+See README.md for scanned-PDF OCR requirements and TEST_REPORT.md for
+verification details, including the limit that native Mac execution was
+not available during this build.

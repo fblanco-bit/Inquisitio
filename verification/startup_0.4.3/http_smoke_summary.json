@@ -1,0 +1,21 @@
+{
+  "health": {
+    "status": "ok",
+    "service": "Inquisitio",
+    "version": "0.4.3",
+    "forms": [
+      "202",
+      "207"
+    ]
+  },
+  "forms": {
+    "202": 81,
+    "207": 55
+  },
+  "occupied_port": 8765,
+  "selected_port": 8766,
+  "duplicate_launch": "PASS",
+  "visible_version": "PASS",
+  "obsolete_interface_text": "ABSENT",
+  "platform": "Linux; same bootstrap and matching package versions, no native Mac execution"
+}
