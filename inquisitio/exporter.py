@@ -27,6 +27,29 @@ def _display(value: object) -> str:
     return value if isinstance(value, str) else "" if value is None else str(value)
 
 
+def _load_firm_profile(form_id: str) -> dict | None:
+    """Load the firm's house-format profile for a form, if one is installed.
+
+    The profile is plain data (data/firm_profile_<form_id>.json): intro wording,
+    per-question fallback answers (Filevine merge fields and the firm's stock
+    answers), signature block, and verification/certification text. Fallbacks
+    are template text supplied by the firm, never evidence claims, and every
+    judgment-call fallback is tagged [ATTORNEY REVIEW: ...]. Deleting the file
+    restores the generic export. The engine never reads this file.
+    """
+    import json
+    root = Path(getattr(sys, "_MEIPASS", Path(__file__).resolve().parent.parent))
+    path = root / "data" / f"firm_profile_{form_id}.json"
+    if not path.exists():
+        return None
+    try:
+        with open(path, encoding="utf-8") as handle:
+            profile = json.load(handle)
+    except (OSError, ValueError):
+        return None
+    return profile if isinstance(profile, dict) else None
+
+
 def _setup_document() -> Document:
     document = Document()
     section = document.sections[0]
@@ -143,10 +166,10 @@ def _add_pleading_caption(document: Document, record: dict) -> None:
     document.add_paragraph()
 
 
-def _legal_answer(value: object) -> str:
+def _legal_answer(value: object, fallback: str | None = None) -> str:
     text = _display(value).strip()
     if not text:
-        return "[No response entered - attorney review required.]"
+        return fallback if fallback else "[No response entered - attorney review required.]"
     normalized = text.rstrip(". ").lower()
     if normalized == "yes":
         return "Yes."
@@ -157,11 +180,11 @@ def _legal_answer(value: object) -> str:
     return text
 
 
-def _add_answer_paragraph(document: Document, label: str, answer: object) -> None:
+def _add_answer_paragraph(document: Document, label: str, answer: object, fallback: str | None = None) -> None:
     paragraph = document.add_paragraph(style="Interrogatory Answer")
     paragraph.paragraph_format.tab_stops.add_tab_stop(Inches(1.25))
     paragraph.add_run(label).bold = True
-    paragraph.add_run("\t" + _legal_answer(answer)).bold = True
+    paragraph.add_run("\t" + _legal_answer(answer, fallback)).bold = True
 
 
 def _response_title(record: dict) -> str:
@@ -216,24 +239,32 @@ def export_case(record: dict) -> bytes:
     run.font.size = Pt(12)
 
     party = _responding_party(record)
-    introduction = document.add_paragraph(style="Pleading Introduction")
-    introduction.add_run(
-        f"The undersigned submits the following responses of {party} to Connecticut Practice Book "
-        f"Form {form_id}, {form.get('title', 'Interrogatories')}. {_display(form.get('deadline_text'))}"
-    )
-    if form_id == "202":
-        definition = document.add_paragraph(style="Pleading Introduction")
-        definition.add_run(
-            'Definition: "You" means the Plaintiff to whom these interrogatories are directed. '
-            "If suit was instituted by the representative of an estate, ward, or incapable person, "
-            '"you" also refers to that decedent, ward, or incapable person unless the context clearly indicates otherwise.'
+    profile = _load_firm_profile(form_id)
+    if profile:
+        for key in ("intro", "definition", "instruction"):
+            text = _display(profile.get(key)).strip()
+            if text:
+                paragraph = document.add_paragraph(style="Pleading Introduction")
+                paragraph.add_run(text)
+    else:
+        introduction = document.add_paragraph(style="Pleading Introduction")
+        introduction.add_run(
+            f"The undersigned submits the following responses of {party} to Connecticut Practice Book "
+            f"Form {form_id}, {form.get('title', 'Interrogatories')}. {_display(form.get('deadline_text'))}"
         )
-    instruction = document.add_paragraph(style="Pleading Introduction")
-    instruction.add_run(
-        "Each response provides the information presently known, possessed, or controlled by the responding party. "
-        "Each subpart is answered separately. If an interrogatory cannot be answered in full, the response states "
-        "the supported information available and identifies any item requiring attorney review."
-    )
+        if form_id == "202":
+            definition = document.add_paragraph(style="Pleading Introduction")
+            definition.add_run(
+                'Definition: "You" means the Plaintiff to whom these interrogatories are directed. '
+                "If suit was instituted by the representative of an estate, ward, or incapable person, "
+                '"you" also refers to that decedent, ward, or incapable person unless the context clearly indicates otherwise.'
+            )
+        instruction = document.add_paragraph(style="Pleading Introduction")
+        instruction.add_run(
+            "Each response provides the information presently known, possessed, or controlled by the responding party. "
+            "Each subpart is answered separately. If an interrogatory cannot be answered in full, the response states "
+            "the supported information available and identifies any item requiring attorney review."
+        )
 
     answers = record.get("answers", {})
     if any(citation.get("ocr_sourced") for answer in answers.values() for citation in answer.get("supporting_citations", [])):
@@ -258,7 +289,8 @@ def export_case(record: dict) -> bytes:
         elif not item.get("prompt"):
             paragraph.add_run(item["text"])
         answer = answers.get(item["item_id"], {})
-        _add_answer_paragraph(document, "ANSWER:", answer.get("answer"))
+        fallback = profile.get("fallback_answers", {}).get(item["item_id"]) if profile else None
+        _add_answer_paragraph(document, "ANSWER:", answer.get("answer"), fallback)
 
     if form_id == "202":
         document.add_page_break()
@@ -269,41 +301,74 @@ def export_case(record: dict) -> bytes:
         run.bold = True
         run.underline = True
         run.font.size = Pt(12)
-        document.add_paragraph(
-            "The Defendant requests that the Plaintiff provide copies of the following documents or appropriate "
-            "written authorizations. Each production response remains subject to attorney review.",
-            style="Pleading Introduction",
-        )
+        if profile:
+            for key in ("production_intro", "production_instruction"):
+                text = _display(profile.get(key)).strip()
+                if text:
+                    document.add_paragraph(text, style="Pleading Introduction")
+        else:
+            document.add_paragraph(
+                "The Defendant requests that the Plaintiff provide copies of the following documents or appropriate "
+                "written authorizations. Each production response remains subject to attorney review.",
+                style="Pleading Introduction",
+            )
         for number, request, production_item in _production_items(record):
             paragraph = document.add_paragraph(style="Production Request")
             paragraph.paragraph_format.keep_with_next = True
             paragraph.paragraph_format.tab_stops.add_tab_stop(Inches(0.5))
             paragraph.add_run(f"{number}.\t")
             paragraph.add_run(request)
-            _add_answer_paragraph(document, "RESPONSE:", _production_response(production_item))
+            human_response = _display(production_item.get("response", "")).strip()
+            production_fallback = profile.get("production_fallbacks", {}).get(f"205-{number}") if profile else None
+            _add_answer_paragraph(
+                document, "RESPONSE:",
+                human_response or None,
+                production_fallback or "[Production response not verified - attorney review required.]",
+            )
+
+    if profile and profile.get("signature_block"):
+        document.add_paragraph()
+        for line in profile["signature_block"]:
+            document.add_paragraph(_display(line))
 
     document.add_page_break()
     verification = document.add_paragraph(style="Title")
     verification.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    verification.add_run("VERIFICATION PAGE")
+    verification.add_run(_display(profile.get("verification_title")) if profile else "VERIFICATION PAGE")
     document.add_paragraph(
-        "I hereby certify that I have reviewed the above interrogatories and responses and that they are true and "
-        "accurate to the best of my knowledge and belief.", style="Pleading Introduction",
+        (_display(profile.get("verification_text")) if profile else
+         "I hereby certify that I have reviewed the above interrogatories and responses and that they are true and "
+         "accurate to the best of my knowledge and belief."), style="Pleading Introduction",
     )
-    document.add_paragraph(f"{party}\n\nBy: ____________________________________    Date: __________________")
-    document.add_paragraph("Subscribed and sworn before me this ______ day of __________________, 20____.")
-    document.add_paragraph("Commissioner of the Superior Court: __________________________________________")
+    if profile:
+        document.add_paragraph("____________________________________")
+        document.add_paragraph(_display(profile.get("verification_signatory")) or party)
+        document.add_paragraph()
+        document.add_paragraph(_display(profile.get("verification_sworn_line")))
+        document.add_paragraph()
+        document.add_paragraph("____________________________________")
+        document.add_paragraph(_display(profile.get("verification_officer_line")))
+    else:
+        document.add_paragraph(f"{party}\n\nBy: ____________________________________    Date: __________________")
+        document.add_paragraph("Subscribed and sworn before me this ______ day of __________________, 20____.")
+        document.add_paragraph("Commissioner of the Superior Court: __________________________________________")
     document.add_page_break()
     certification = document.add_paragraph(style="Title")
     certification.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    certification.add_run("CERTIFICATION")
+    certification.add_run(_display(profile.get("certification_title")) if profile else "CERTIFICATION")
     document.add_paragraph(
-        "I certify that a copy of this document was or will immediately be mailed or delivered electronically or "
-        "non-electronically to all attorneys and self-represented parties of record.", style="Pleading Introduction",
+        (_display(profile.get("certification_text")) if profile else
+         "I certify that a copy of this document was or will immediately be mailed or delivered electronically or "
+         "non-electronically to all attorneys and self-represented parties of record."), style="Pleading Introduction",
     )
-    document.add_paragraph("Recipients: _________________________________________________________________")
-    document.add_paragraph("Filer signature: ____________________  Printed name: ____________________  Date: __________")
-    document.add_paragraph("Mailing or email address: ______________________________  Telephone: __________")
+    if profile:
+        document.add_paragraph()
+        document.add_paragraph("____________________________________")
+        document.add_paragraph(_display(profile.get("certification_signatory")))
+    else:
+        document.add_paragraph("Recipients: _________________________________________________________________")
+        document.add_paragraph("Filer signature: ____________________  Printed name: ____________________  Date: __________")
+        document.add_paragraph("Mailing or email address: ______________________________  Telephone: __________")
 
     stream = BytesIO()
     document.save(stream)
