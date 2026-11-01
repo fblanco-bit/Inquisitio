@@ -447,153 +447,161 @@ def export_traceability(record: dict) -> bytes:
 
 
 def export_case_pdf(record: dict) -> bytes:
-    """Render a completed, official-form-style attorney review PDF."""
+    """Render the Completed-form PDF as a final, filing-style document.
+
+    WR-012 (Freddy, 1 Nov 2026): this output alone is the finished paper and
+    follows Connecticut filing conventions - Times Roman, a colon caption,
+    centered underlined title, numbered questions with plain ANSWER text, a
+    signature block, and a STATE OF CONNECTICUT notary block. It carries no
+    review apparatus: no status tags, no brackets, no citations, no internal
+    notes. An unanswered question shows a blank answer line. While any answer
+    is still unapproved, a draft banner and footer note remain; a fully
+    approved matter renders clean. Formatting conventions only were taken
+    from the sample filing Freddy supplied; none of its content.
+    """
     stream = BytesIO()
     form = record["form"]
     metadata = record.get("metadata", {})
     form_id = _display(form.get("form_id", record.get("form_id", "")))
-    title = _display(form.get("title", "Interrogatories"))
-    sans, sans_bold = _register_pdf_fonts()
+    profile = _load_firm_profile(form_id)
+    answers = record.get("answers", {})
+    items = form.get("items", [])
+    fully_approved = bool(items) and all(
+        answers.get(item["item_id"], {}).get("status") == "APPROVED" for item in items
+    )
+
     styles = getSampleStyleSheet()
-    body = ParagraphStyle(
-        "LegalBody", parent=styles["BodyText"], fontName=sans, fontSize=9.5,
-        leading=12.5, spaceAfter=5,
-    )
-    small = ParagraphStyle(
-        "LegalSmall", parent=body, fontName=sans, fontSize=7.5, leading=9,
-        textColor=colors.HexColor("#4a4a4a"),
-    )
-    question = ParagraphStyle(
-        "Question", parent=body, fontName=sans, fontSize=9.5, leading=12.5,
-        spaceBefore=5, spaceAfter=3,
-    )
-    response = ParagraphStyle(
-        "Response", parent=body, fontName=sans, leftIndent=18, borderColor=colors.HexColor("#c7cbc9"),
-        borderWidth=0.5, borderPadding=6, backColor=colors.HexColor("#f7f8f7"),
-        spaceAfter=4,
-    )
-    warning_style = ParagraphStyle(
-        "Warning", parent=styles["BodyText"], fontName=sans_bold, fontSize=9,
-        leading=11, alignment=TA_CENTER, textColor=colors.HexColor("#8b1e1e"),
-        borderColor=colors.HexColor("#8b1e1e"), borderWidth=0.75, borderPadding=6,
-        spaceAfter=10,
-    )
+    body = ParagraphStyle("FilingBody", parent=styles["BodyText"], fontName="Times-Roman",
+                          fontSize=12, leading=16, spaceAfter=10)
+    intro = ParagraphStyle("FilingIntro", parent=body, firstLineIndent=30)
+    question = ParagraphStyle("FilingQuestion", parent=body, spaceBefore=8, spaceAfter=4)
+    subpart = ParagraphStyle("FilingSubpart", parent=question, leftIndent=24)
+    answer_style = ParagraphStyle("FilingAnswer", parent=body, leftIndent=48, spaceAfter=12)
+    title_style = ParagraphStyle("FilingTitle", parent=styles["Heading1"], fontName="Times-Bold",
+                                 fontSize=12, leading=15, alignment=TA_CENTER, spaceBefore=16, spaceAfter=14)
+    warning_style = ParagraphStyle("FilingWarning", parent=body, fontName="Times-Bold",
+                                   alignment=TA_CENTER, textColor=colors.HexColor("#8b1e1e"), spaceAfter=12)
 
     def footer(canvas, document) -> None:
         canvas.saveState()
-        canvas.setStrokeColor(colors.HexColor("#aeb3b0"))
-        canvas.line(0.75 * inch, 0.52 * inch, 7.75 * inch, 0.52 * inch)
-        canvas.setFont(sans, 7.5)
-        canvas.setFillColor(colors.HexColor("#555555"))
-        canvas.drawString(0.75 * inch, 0.34 * inch, f"Form {form_id} | Attorney Review Draft")
-        canvas.drawRightString(7.75 * inch, 0.34 * inch, f"Page {document.page}")
+        canvas.setFont("Times-Roman", 11)
+        canvas.setFillColor(colors.black)
+        canvas.drawCentredString(4.25 * inch, 0.5 * inch, str(document.page))
+        if not fully_approved:
+            canvas.setFont("Times-Roman", 8)
+            canvas.setFillColor(colors.HexColor("#8b1e1e"))
+            canvas.drawString(1.0 * inch, 0.5 * inch, "DRAFT - ATTORNEY REVIEW PENDING")
         canvas.restoreState()
 
     pdf = SimpleDocTemplate(
-        stream, pagesize=letter, leftMargin=0.75 * inch, rightMargin=0.75 * inch,
-        topMargin=0.62 * inch, bottomMargin=0.68 * inch,
-        title=f"Form {form_id} - {title}", author="Inquisitio",
+        stream, pagesize=letter, leftMargin=1.0 * inch, rightMargin=1.0 * inch,
+        topMargin=1.0 * inch, bottomMargin=0.9 * inch,
+        title=f"Form {form_id} Responses", author="Inquisitio",
     )
-    story = [
-        Paragraph(f"FORM {escape(form_id)}", ParagraphStyle("Form", parent=styles["Heading2"], fontName=sans, fontSize=9, alignment=TA_CENTER, spaceAfter=3)),
-        Paragraph(escape(title), ParagraphStyle("Title", parent=styles["Heading1"], fontName=sans_bold, fontSize=12.5, leading=15, alignment=TA_CENTER, spaceAfter=10)),
-    ]
+
+    def caps(value: object) -> str:
+        return escape(_display(value).upper())
+
     caption_rows = [
-        [Paragraph(f"<b>No.</b> {escape(_display(metadata.get('docket_number')))}", body), Paragraph("<b>SUPERIOR COURT</b>", body)],
-        [Paragraph(escape(_display(metadata.get("plaintiff"))) or "(Plaintiff)", body), Paragraph(f"<b>JUDICIAL DISTRICT OF</b> {escape(_display(metadata.get('judicial_district')))}", body)],
-        [Paragraph("VS.", body), Paragraph(f"<b>AT</b> {escape(_display(metadata.get('court', form.get('court', ''))))}", body)],
-        [Paragraph(escape(_display(metadata.get("defendant"))) or "(Defendant)", body), Paragraph(f"<b>DATE</b> {escape(_display(metadata.get('response_date')))}", body)],
+        [Paragraph(f"DOCKET NO. {caps(metadata.get('docket_number'))}", body), Paragraph(":", body), Paragraph("SUPERIOR COURT", body)],
+        [Paragraph(caps(metadata.get("plaintiff")) or "PLAINTIFF", body), Paragraph(":", body), Paragraph(f"J.D. OF {caps(metadata.get('judicial_district'))}", body)],
+        [Paragraph("VS.", body), Paragraph(":", body), Paragraph(f"AT {caps(metadata.get('court', form.get('court', '')))}", body)],
+        [Paragraph(caps(metadata.get("defendant")) or "DEFENDANT", body), Paragraph(":", body), Paragraph(caps(metadata.get("response_date")), body)],
     ]
-    caption = Table(caption_rows, colWidths=[3.35 * inch, 3.65 * inch], hAlign="LEFT")
+    caption = Table(caption_rows, colWidths=[3.3 * inch, 0.5 * inch, 2.7 * inch], hAlign="LEFT")
     caption.setStyle(TableStyle([
-        ("VALIGN", (0, 0), (-1, -1), "TOP"), ("LINEBELOW", (0, 0), (-1, -1), 0.35, colors.HexColor("#c2c6c3")),
-        ("LEFTPADDING", (0, 0), (-1, -1), 5), ("RIGHTPADDING", (0, 0), (-1, -1), 5),
+        ("VALIGN", (0, 0), (-1, -1), "TOP"),
+        ("ALIGN", (1, 0), (1, -1), "CENTER"),
+        ("LEFTPADDING", (0, 0), (-1, -1), 0),
         ("TOPPADDING", (0, 0), (-1, -1), 4), ("BOTTOMPADDING", (0, 0), (-1, -1), 4),
     ]))
-    story.extend([
-        caption, Spacer(1, 10),
-        Paragraph("ATTORNEY REVIEW DRAFT - NOT FOR SERVICE", warning_style),
-        Paragraph(
-            f"The following responses correspond to Connecticut Practice Book Form {escape(form_id)}. "
-            f"They were prepared from locally uploaded evidence for review by the responding party and counsel. "
-            f"{escape(_display(form.get('deadline_text')))}", body,
-        ),
-        Paragraph(
-            "If an interrogatory cannot be answered in full, the supported portion is stated and the unresolved information is identified. "
-            "No response is final until expressly approved and verified.", body,
-        ),
-        Spacer(1, 5),
-    ])
+    story = [caption, Spacer(1, 6)]
+    if not fully_approved:
+        story.append(Paragraph("ATTORNEY REVIEW DRAFT - NOT FOR SERVICE", warning_style))
+    story.append(Paragraph("<u>" + escape(_response_title(record).replace("\n", " ")) + "</u>", title_style))
 
-    answers = record.get("answers", {})
+    intro_texts = []
+    if profile:
+        intro_texts = [profile.get("intro", ""), profile.get("definition", ""), profile.get("instruction", "")]
+    else:
+        intro_texts = [
+            f"The undersigned submits the following responses of {_display(_responding_party(record))} to "
+            f"Connecticut Practice Book Form {form_id}, {form.get('title', 'Interrogatories')}.",
+        ]
+    for text in intro_texts:
+        if _display(text).strip():
+            story.append(Paragraph(escape(_display(text)), intro))
+
+    def answer_text(item_id: str) -> str:
+        return _display(answers.get(item_id, {}).get("answer", "")).strip()
+
     last_number = None
-    for item in form.get("items", []):
-        blocks = []
+    for item in items:
         if item["number"] != last_number:
             last_number = item["number"]
             prompt = _display(item.get("prompt"))
             if prompt:
-                blocks.append(Paragraph(f"<b>({item['number']})</b> {escape(prompt)}", question))
+                story.append(Paragraph(f"{item['number']}. {escape(prompt)}", question))
         label = _display(item.get("label"))
         if label:
-            blocks.append(Paragraph(f"<b>({escape(label)})</b> {escape(_display(item.get('text')))}", question))
+            story.append(Paragraph(f"({escape(label)}) {escape(_display(item.get('text')))}", subpart))
         elif not item.get("prompt"):
-            blocks.append(Paragraph(f"<b>({item['number']})</b> {escape(_display(item.get('text')))}", question))
-
-        answer = answers.get(item["item_id"], {})
-        slot_status = _display(answer.get("status", "EMPTY"))
-        marker = "" if slot_status == "APPROVED" else f"[REVIEW {slot_status}] "
-        answer_text = marker + (_display(answer.get("answer")) or "[NO RESPONSE GENERATED - ATTORNEY REVIEW REQUIRED]")
-        blocks.append(Paragraph(f"<b>RESPONSE:</b> {escape(answer_text)}", response))
-        status = slot_status.replace("_", " ").title()
-        details = f"Slot status: {status}"
-        missing = answer.get("missing_information", [])
-        if missing:
-            details += " | Unresolved: " + ", ".join(map(_display, missing))
-        blocks.append(Paragraph(escape(details), small))
-        for conflict in answer.get("conflicts", []):
-            blocks.append(Paragraph("<b>Conflict:</b> " + escape(_display(conflict.get("description"))), small))
-        story.append(KeepTogether(blocks))
-        seen_citations = set()
-        for citation in answer.get("supporting_citations", []):
-            key = (citation.get("filename"), citation.get("page"), citation.get("quote"))
-            if key in seen_citations:
-                continue
-            seen_citations.add(key)
-            label = _display(citation.get("citation_label")) if citation.get("citation_kind") == "case_record" else f"Source: {_display(citation.get('source_id'))} — {_display(citation.get('filename'))}, PDF page {_display(citation.get('page'))}"
-            if citation.get("ocr_sourced"):
-                label += " [OCR-sourced]"
-            story.append(Paragraph("<b>" + escape(label) + "</b><br/>Exact source: " + escape(_display(citation.get("quote"))), small))
+            story.append(Paragraph(f"{item['number']}. {escape(_display(item.get('text')))}", question))
+        text = answer_text(item["item_id"])
+        rendered = escape(text) if text else "_" * 60
+        story.append(Paragraph(f"<b>ANSWER:</b> {rendered}", answer_style))
 
     if form_id == "202":
-        story.append(PageBreak())
-        story.append(Paragraph("Form 205 Defendant Requests for Production", ParagraphStyle("Production", parent=styles["Heading1"], fontName=sans_bold, fontSize=13, spaceAfter=8)))
-        story.append(Paragraph("<b>ATTORNEY REVIEW DRAFT - NOT FOR SERVICE</b>", small))
-        for number, request_text, production_item in _production_items(record):
-            story.append(Paragraph(f"<b>({number})</b> {escape(request_text)}", question))
-            story.append(Paragraph("<b>RESPONSE:</b> " + escape(_production_response(production_item)), body))
+        story.append(Spacer(1, 10))
+        story.append(Paragraph("<u>REQUESTS FOR PRODUCTION</u>", title_style))
+        if profile:
+            for key in ("production_intro", "production_instruction"):
+                if _display(profile.get(key)).strip():
+                    story.append(Paragraph(escape(_display(profile.get(key))), intro))
+        for number, request, production_item in _production_items(record):
+            story.append(Paragraph(f"{number}. {escape(request)}", question))
+            response = _display(production_item.get("response", "")).strip()
+            story.append(Paragraph("<b>RESPONSE:</b> " + (escape(response) if response else "_" * 58), answer_style))
 
+    if profile and profile.get("signature_block"):
+        story.append(Spacer(1, 18))
+        for line in profile["signature_block"]:
+            story.append(Paragraph(escape(_display(line)), ParagraphStyle("Sig", parent=body, leftIndent=3.2 * inch, spaceAfter=2)))
+
+    party = _responding_party(record)
     story.extend([
         PageBreak(),
-        Paragraph("Verification", ParagraphStyle("Verify", parent=styles["Heading1"], fontName=sans_bold, fontSize=13, spaceAfter=8)),
-        Paragraph(
-            "I, ______________________________, certify that I have reviewed these interrogatories and responses and that they are true and accurate to the best of my knowledge and belief.", body,
-        ),
-        Spacer(1, 24),
-        Paragraph("Signature: ____________________________________    Date: __________________", body),
-        Spacer(1, 20),
-        Paragraph("Subscribed and sworn before me this ______ day of __________________, 20____.", body),
-        Spacer(1, 20),
-        Paragraph("Notary Public / Commissioner of the Superior Court: ____________________________________", body),
+        Paragraph("<u>VERIFICATION</u>", title_style),
+        Paragraph(escape(_display(profile.get("verification_text")) if profile else
+                         "I hereby certify that I have reviewed the above interrogatories and responses and that "
+                         "they are true and accurate to the best of my knowledge and belief."), intro),
+        Spacer(1, 30),
+        Paragraph("____________________________________", ParagraphStyle("VSig", parent=body, leftIndent=3.2 * inch)),
+        Paragraph(escape(_display(profile.get("verification_signatory")) if profile else party) or escape(party),
+                  ParagraphStyle("VName", parent=body, leftIndent=3.2 * inch)),
         Spacer(1, 18),
-        Paragraph("Certification", ParagraphStyle("Cert", parent=styles["Heading1"], fontName=sans_bold, fontSize=13, spaceAfter=8)),
-        Paragraph(
-            "I certify that a copy of this document was or will immediately be mailed or delivered electronically or non-electronically to all attorneys and self-represented parties of record.", body,
-        ),
-        Spacer(1, 18),
-        Paragraph("Recipients: __________________________________________________________________________", body),
+        Paragraph("STATE OF CONNECTICUT&nbsp;&nbsp;&nbsp;&nbsp;)", ParagraphStyle("Notary1", parent=body, spaceAfter=0)),
+        Paragraph("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+                  "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)"
+                  "&nbsp;&nbsp;&nbsp;&nbsp;ss.:", ParagraphStyle("Notary2", parent=body, spaceAfter=0)),
+        Paragraph("COUNTY OF ____________&nbsp;&nbsp;)", body),
         Spacer(1, 12),
-        Paragraph("Filer signature: ______________________________    Date: __________________", body),
+        Paragraph(escape(_display(profile.get("verification_sworn_line")) if profile else
+                         "SUBSCRIBED AND SWORN TO before me this ____ day of ______________, 20____."), body),
+        Spacer(1, 30),
+        Paragraph("____________________________________", ParagraphStyle("NSig", parent=body, leftIndent=3.2 * inch)),
+        Paragraph(escape(_display(profile.get("verification_officer_line")) if profile else
+                         "Notary Public / Commissioner of the Superior Court"),
+                  ParagraphStyle("NName", parent=body, leftIndent=3.2 * inch)),
+        Spacer(1, 26),
+        Paragraph("<u>CERTIFICATION</u>", title_style),
+        Paragraph(escape(_display(profile.get("certification_text")) if profile else
+                         "I certify that a copy of this document was or will immediately be mailed or delivered "
+                         "electronically or non-electronically to all attorneys and self-represented parties of record."), intro),
+        Spacer(1, 30),
+        Paragraph("____________________________________", ParagraphStyle("CSig", parent=body, leftIndent=3.2 * inch)),
+        Paragraph(escape(_display(profile.get("certification_signatory")) if profile else "") or "&nbsp;",
+                  ParagraphStyle("CName", parent=body, leftIndent=3.2 * inch)),
     ])
     pdf.build(story, onFirstPage=footer, onLaterPages=footer)
     return stream.getvalue()

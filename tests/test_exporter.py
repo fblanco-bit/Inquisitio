@@ -133,13 +133,33 @@ class ExportTests(unittest.TestCase):
             with pdfplumber.open(BytesIO(export_case_pdf(record))) as pdf:
                 self.assertGreater(len(pdf.pages), 2)
                 text = "\n".join(page.extract_text() or "" for page in pdf.pages)
-            self.assertIn(f"FORM {form_id}", text)
-            self.assertIn("ATTORNEY REVIEW DRAFT - NOT FOR SERVICE", text)
+            # WR-012: the Completed-form PDF is the final filing document.
+            self.assertIn("ATTORNEY REVIEW DRAFT - NOT FOR SERVICE", text)  # not all approved
             self.assertIn("CV-2026-001", text)
-            self.assertIn("Jordan Moss", text)
-            self.assertEqual(text.count("RESPONSE:"), expected_items + (13 if form_id == "202" else 0))
-            self.assertIn("Verification", text)
-            self.assertIn("Certification", text)
+            self.assertIn("JORDAN MOSS", text)
+            self.assertEqual(text.count("ANSWER:"), expected_items)
+            self.assertEqual(text.count("RESPONSE:"), 13 if form_id == "202" else 0)
+            self.assertIn("VERIFICATION", text)
+            self.assertIn("CERTIFICATION", text)
+            self.assertIn("STATE OF CONNECTICUT", text)
+            # No review apparatus in the final paper.
+            self.assertNotIn("Slot status", text)
+            self.assertNotIn("[REVIEW", text)
+            self.assertNotIn("Source:", text)
+
+    def test_completed_form_pdf_clean_when_fully_approved(self) -> None:
+        form = load_form(str(ROOT / "assets" / "CT_Practice_Book_2026.pdf"), "202").to_dict()
+        answers = {item["item_id"]: {"status": "APPROVED", "answer": "None."} for item in form["items"]}
+        record = {
+            "case_name": "Moss v. Bright", "form_id": "202", "form": form, "answers": answers,
+            "metadata": {"docket_number": "CV-2026-001", "plaintiff": "Jordan Moss", "defendant": "Casey Bright",
+                         "judicial_district": "Hartford", "court": "Superior Court", "response_date": "2026-10-19"},
+        }
+        with pdfplumber.open(BytesIO(export_case_pdf(record))) as pdf:
+            text = "\n".join(page.extract_text() or "" for page in pdf.pages)
+        self.assertNotIn("ATTORNEY REVIEW DRAFT", text)
+        self.assertNotIn("DRAFT - ATTORNEY REVIEW PENDING", text)
+        self.assertNotIn("[", text.replace("[W", ""))
 
 
 if __name__ == "__main__":
